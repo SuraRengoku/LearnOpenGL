@@ -1,0 +1,196 @@
+//
+//  general.cpp
+//  OpenGLdemo
+//
+//  Created by SHERLOCK on 21.05.23.
+//
+//#define STB_IMAGE_IMPLEMENTATION
+#include "general.h"
+
+Triangle::Triangle(GLint verticesNum){
+    this->vertices=new float(verticesNum*3);
+}
+
+void Test::ShaderTest(unsigned int Shader,int type){
+    if(type){
+        this->shaderType="VERTEX";
+    }
+    else{
+        this->shaderType="FRAGMENT";
+    }
+    glGetShaderiv(Shader,GL_COMPILE_STATUS,&this->success);
+    if(!this->success){
+        glGetShaderInfoLog(Shader,512,NULL,this->infoLog);
+        cout<<"ERROR::SHADER::"<<this->shaderType<<"::COMPILATION_FAILED\n"<<infoLog<<"\n";
+    }
+}
+void Test::ProgramTest(unsigned int shaderProgram){
+    glGetProgramiv(shaderProgram,GL_LINK_STATUS,&this->success);
+    if(!this->success){
+        glGetProgramInfoLog(shaderProgram,512,NULL,infoLog);
+        cout<<"ERROR::PORGRAM::SHADERPROGRAM::LINK_FAILED\n"<<infoLog<<"\n";
+    }
+}
+
+
+//void Texture::load_texture(char* filepath){
+//    int width, height, nrChannels;
+//    unsigned char* data=stbi_load(filepath,&width, &height, &nrChannels, 0);
+//    if(data){
+//        glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,width,height,0,GL_RGB,GL_UNSIGNED_BYTE,data);
+//        glGenerateMipmap(GL_TEXTURE_2D);
+//    }else{
+//        cout<<"Failed to load texture\n";
+//    }
+//    stbi_image_free(data);
+//}
+
+
+void framebuffer_size_callback(GLFWwindow* window,int width, int height){
+    glViewport(0,0,width,height);
+}
+
+void processInput(GLFWwindow* window){
+    if(glfwGetKey(window,GLFW_KEY_ESCAPE)==GLFW_PRESS){
+        //检测键盘输入，需要一个窗口和一个键盘键做参数，返回该键盘键是否被按下，如果没有被按下返回GLFW_RELEASE
+        glfwSetWindowShouldClose(window, true);//使用函数将window的WindowShouldClose属性设置为true，该举动可以打破while循环
+    }
+}
+
+void processCameraWSAD(GLFWwindow* window,Camera &camera,float &deltaTime){
+    if(glfwGetKey(window, GLFW_KEY_W)==GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if(glfwGetKey(window, GLFW_KEY_S)==GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if(glfwGetKey(window, GLFW_KEY_A)==GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if(glfwGetKey(window, GLFW_KEY_D)==GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+}
+
+int processInputUpDown(GLFWwindow* window){
+    if(glfwGetKey(window, GLFW_KEY_UP)==GLFW_PRESS){
+        return 1;
+    }else if(glfwGetKey(window, GLFW_KEY_DOWN)==GLFW_PRESS){
+        return -1;
+    }else{
+        return 0;
+    }
+}
+
+/**
+ * @param window 窗口指针
+ * @param xpos 当前鼠标x位置
+ * @param ypos 当前鼠标y位置
+ * @param lastX 鼠标上一帧x位置
+ * @param lastY 鼠标上一帧y位置
+ * @param firstMouse 是否第一次获取焦点
+ * @param yaw 偏航弧度
+ * @param pitch 俯仰弧度
+ */
+//void mouse_callback(GLFWwindow* window,double &xpos,double ypos,float &lastX,float &lastY,bool &firstMouse,float &yaw,float &pitch,glm::vec3 &cameraFront){
+//    if(firstMouse){
+//        lastX=xpos;
+//        lastY=ypos;
+//        firstMouse=false;
+//    }
+//
+//    float sensitivity=0.05f;
+//
+//    float xoffset=(xpos-lastX)*sensitivity;
+//    float yoffset=(lastY-ypos)*sensitivity;
+//    lastX=xpos;
+//    lastY=ypos;
+//
+//    yaw+=xoffset;
+//    pitch+=yoffset;
+//
+//    //限位防止gimbal lock
+//    if(pitch>89.0f)
+//        pitch=89.0f;
+//    if(pitch<-89.0f)
+//        pitch=-89.0f;
+//
+//    glm::vec3 front;
+//    front.x=cos(glm::radians(yaw))*cos(glm::radians(pitch));
+//    front.y=sin(glm::radians(pitch));
+//    front.z=sin(glm::radians(yaw))*cos(glm::radians(pitch));
+//    cameraFront=glm::normalize(front);
+//}
+
+glm::mat4 Camera::selfLookAt(){
+    glm::mat4 translate(1.0f);
+    translate[3]=glm::vec4(-Position,1.0f);
+    glm::mat4 ori(1.0f);
+    ori[0][0]=Right.x;
+    ori[0][1]=Up.x;
+    ori[0][2]=-Front.x;
+    ori[1][0]=Right.y;
+    ori[1][1]=Up.y;
+    ori[1][2]=-Front.y;
+    ori[2][0]=Right.z;
+    ori[2][1]=Up.z;
+    ori[2][2]=-Front.z;
+    return ori*translate;
+}
+
+glm::mat4 Camera::GetViewMatrix(){
+    return selfLookAt();
+//    return glm::lookAt(this->Position,this->Position+this->Front,this->Up);
+}
+
+void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime){
+    float velocity=MovementSpeed*deltaTime;
+    if(direction==FORWARD)
+        Position+=Front*velocity;
+    if(direction==BACKWARD)
+        Position-=Front*velocity;
+    if(direction==LEFT)
+        Position-=Right*velocity;
+    if(direction==RIGHT)
+        Position+=Right*velocity;
+}
+
+void Camera::ProcessMouseMovement(float xoffset, float yoffset,GLboolean constrianPitch){
+    xoffset*=MouseSensitivity;
+    yoffset*=MouseSensitivity;
+    Yaw+=xoffset;
+    Pitch+=yoffset;
+    if(constrianPitch){
+        if(Pitch>89.0f)
+            Pitch=89.0f;
+        if(Pitch<-89.0f)
+            Pitch=-89.0f;
+    }
+    updataCameraVectors();
+}
+
+void Camera::ProcessMouseScroll(float yoffset){
+    Zoom-=(float)yoffset;
+    if(Zoom<1.0f)
+        Zoom=1.0f;
+    if(Zoom>45.f)
+        Zoom=45.0f;
+}
+
+void Camera::updataCameraVectors(){
+    glm::vec3 front;
+    front.x=cos(glm::radians(Yaw))*cos(glm::radians(Pitch));
+    front.y=sin(glm::radians(Pitch));
+    front.z=sin(glm::radians(Yaw))*cos(glm::radians(Pitch));
+    Front=glm::normalize(front);
+    Right=glm::normalize(glm::cross(Front, WorldUp));
+    Up=glm::normalize(glm::cross(Right, Front));
+}
+
+void FPSCamera::ProcessKeyboard(Camera_Movement direction, float deltaTime){
+    float velocity=MovementSpeed*deltaTime;
+    if(direction==FORWARD)
+        Position+=glm::vec3(Front.x*velocity,0.0f,Front.z*velocity);
+    if(direction==BACKWARD)
+        Position-=glm::vec3(Front.x*velocity,0.0f,Front.z*velocity);
+    if(direction==LEFT)
+        Position-=glm::vec3(Right.x*velocity,0.0f,Right.z*velocity);
+    if(direction==RIGHT)
+        Position+=glm::vec3(Right.x*velocity,0.0f,Right.z*velocity);
+}
