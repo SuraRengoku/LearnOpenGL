@@ -16,7 +16,6 @@
 #include "texture_1.hpp"
 #include "texture_2.hpp"
 #include "transformation_0.hpp"
-
 #include "coord_0.hpp"
 #include "coord_1.hpp"
 #include "camera_0.hpp"
