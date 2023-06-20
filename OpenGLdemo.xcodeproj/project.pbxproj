@@ -64,7 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1630AC4B2A2264E20092788F /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
+		1630AC4B2A2264E20092788F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		16355AF32A3210A9001BAF56 /* shader_0.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.vs; sourceTree = "<group>"; };
 		16355AF42A3210BF001BAF56 /* shader_0.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.fs; sourceTree = "<group>"; };
 		16355AF52A32899E001BAF56 /* coord_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = coord_0.cpp; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 				16DE6AFF2A30BCF6006B7C10 /* resource */,
 				16540E7B2A1AA0D5004648E8 /* general.h */,
 				16540E7D2A1AA4E8004648E8 /* general.cpp */,
-				1630AC4B2A2264E20092788F /* Empty.md */,
+				1630AC4B2A2264E20092788F /* README.md */,
 				16E22C172A2D4939007F78A2 /* main.cpp */,
 				16E22C2F2A2E6A49007F78A2 /* stb_image.h */,
 			);
