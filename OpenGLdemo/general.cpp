@@ -194,3 +194,21 @@ void FPSCamera::ProcessKeyboard(Camera_Movement direction, float deltaTime){
     if(direction==RIGHT)
         Position+=glm::vec3(Right.x*velocity,0.0f,Right.z*velocity);
 }
+
+//glm::mat4 inverse_mat4(glm::mat4 &mat){
+//    std::vector<float> vec{
+//        mat[0][0],mat[1][0],mat[2][0],mat[3][0],
+//        mat[0][1],mat[1][1],mat[2][1],mat[3][1],
+//        mat[0][2],mat[1][2],mat[2][2],mat[3][2],
+//        mat[0][3],mat[1][3],mat[2][3],mat[3][3],
+//    };
+//    Eigen::Map<Eigen::MatrixXf> map(vec.data(),4,4);
+//    Eigen::MatrixXf inv=map.inverse();
+//    glm::mat4 result;
+//    for(int m=0;m<4;m++){
+//        for(int n=0;n<4;n++){
+//            result[m][n]=inv[m*4+n];
+//        }
+//    }
+//    return result;
+//}

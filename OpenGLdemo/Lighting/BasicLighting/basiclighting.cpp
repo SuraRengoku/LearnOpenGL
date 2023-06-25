@@ -192,6 +192,8 @@ int basiclighting(){
         objshader->setMat4("view", view);
         glm::mat4 objmodel=glm::mat4(1.0f);
         objshader->setMat4("model", objmodel);
+        glm::mat4 normalMatrix=glm::mat3(glm::transpose(glm::inverse(objmodel)));
+        objshader->setMat3("normalMatrix", normalMatrix);
         
         glBindVertexArray(objVAO);
         glDrawArrays(GL_TRIANGLES,0,36);

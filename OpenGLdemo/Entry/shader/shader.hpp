@@ -28,6 +28,7 @@ public:
     void setFloat(const std::string &name,float value) const;
     void setVec4f(const std::string &name,float,float,float,float) const;
     void setMat4(const std::string &name,glm::mat4 mat4) const;
+    void setMat3(const std::string &name,glm::mat3 mat3) const;
     void setVec3(const std::string &name,float,float,float) const;
     void setVec3(const std::string &name,const glm::vec3 &vec3) const;
 };

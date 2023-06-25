@@ -4,7 +4,7 @@
 //
 //  Created by SHERLOCK on 05.06.23.
 //
-
+#include "general.h"
 #include "triangle_0.hpp"
 #include "triangle_1.hpp"
 #include "triangle_2.hpp"

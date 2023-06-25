@@ -20,6 +20,7 @@
 #include <string>
 #include <math.h>
 #include <vector>
+#include <Eigen/Dense>
 //#include "stb_image.h"
 
 
@@ -115,4 +116,9 @@ int processInputUpDown(GLFWwindow* window);
 void processCameraWSAD(GLFWwindow* window,Camera &camera,float &deltaTime);
 //void mouse_callback(GLFWwindow* window,double &xpos,double &ypos,float &lastX,float &lastY,bool &firstMouse,float &yaw,float &pitch,glm::vec3 &cameraFront);
 
+
+//使用Eigen计算
+glm::mat4 inverse_mat4(glm::mat4 &mat);
+
 #endif
+
