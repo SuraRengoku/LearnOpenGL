@@ -21,8 +21,9 @@
 #include "camera_0.hpp"
 #include "color_0.hpp"
 #include "basiclighting.hpp"
+#include "movelight.hpp"
 
 int main(int argc, const char * argv[]){
-    basiclighting();
+    movelight();
     return 0;
 }

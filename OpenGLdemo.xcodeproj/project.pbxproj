@@ -21,6 +21,7 @@
 		16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B2A2A3E0D78001BAF56 /* basiclighting.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
+		16CE599D2A4994F20000F354 /* movelight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE599B2A4994F20000F354 /* movelight.cpp */; };
 		16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B032A312536006B7C10 /* texture_1.cpp */; };
 		16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B072A313403006B7C10 /* texture_2.cpp */; };
 		16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B0D2A31D9F7006B7C10 /* transformation_0.cpp */; };
@@ -108,6 +109,8 @@
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
+		16CE599B2A4994F20000F354 /* movelight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movelight.cpp; sourceTree = "<group>"; };
+		16CE599C2A4994F20000F354 /* movelight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movelight.hpp; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				16355B2D2A3E0E07001BAF56 /* basiclighting.vs */,
 				16355B2E2A3E0E17001BAF56 /* basicobject.fs */,
 				16355B2F2A3E1ED0001BAF56 /* basiclight.fs */,
+				16CE599B2A4994F20000F354 /* movelight.cpp */,
+				16CE599C2A4994F20000F354 /* movelight.hpp */,
 			);
 			path = BasicLighting;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */,
 				16355B0D2A36283B001BAF56 /* color_0.cpp in Sources */,
 				16355B212A3DFA88001BAF56 /* imgui_widgets.cpp in Sources */,
+				16CE599D2A4994F20000F354 /* movelight.cpp in Sources */,
 				16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */,
 				16E22C222A2DF7F9007F78A2 /* changingColor.cpp in Sources */,
 				16355B272A3DFAE0001BAF56 /* imgui_impl_glfw.cpp in Sources */,
