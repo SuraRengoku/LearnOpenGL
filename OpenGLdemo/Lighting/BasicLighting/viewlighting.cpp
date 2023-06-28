@@ -1,11 +1,11 @@
 ////
-////  basiclighting.cpp
+////  viewlighting.cpp
 ////  OpenGLdemo
 ////
-////  Created by SHERLOCK on 17.06.23.
+////  Created by SHERLOCK on 28.06.23.
 ////
 //#define STB_IMAGE_IMPLEMENTATION
-//#include "basiclighting.hpp"
+//#include "viewlighting.hpp"
 //
 //void mouse_callback(GLFWwindow* window,double xposIn,double yposIn);
 //void scroll_callback(GLFWwindow* window,double xoffset,double yoffset);
@@ -67,7 +67,7 @@
 //
 //glm::vec3 lightPos(1.2f,1.0f,2.0f);
 //
-//int basiclighting(){
+//int viewlighting(){
 //    glfwInit();
 //    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 //    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -115,8 +115,8 @@
 ////    bool show_another_window=false;
 ////    ImVec4 clear_color=ImVec4(0.45f,0.55f,0.60f,1.00f);
 //
-//    Shader *objshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/basiclighting.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/basicobject.fs");
-//    Shader *lightshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/basiclighting.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/basiclight.fs");
+//    Shader *objshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/viewlighting.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/viewlighting.fs");
+//    Shader *lightshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/viewlighting.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/BasicLighting/basiclight.fs");
 //
 //    unsigned int VBO,objVAO;
 //    glGenBuffers(1,&VBO);
@@ -184,7 +184,7 @@
 //        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
 //
 //        objshader->use();
-//        objshader->setVec3("viewPos", camera.Position);
+////        objshader->setVec3("viewPos", camera.Position);
 //        objshader->setMat4("projection", projection);
 //        objshader->setVec3("objectColor",1.0f,0.5f,0.31f);
 //        objshader->setVec3("lightColor",1.0f,1.0f,1.0f);
@@ -199,6 +199,7 @@
 //        glDrawArrays(GL_TRIANGLES,0,36);
 //
 //        lightshader->use();
+//        lightshader->setVec3("lightPos", lightPos);
 //        lightshader->setMat4("projection", projection);
 //        lightshader->setMat4("view", view);
 //        glm::mat4 lightmodel=glm::mat4(1.0f);

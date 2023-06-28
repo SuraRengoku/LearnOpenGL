@@ -22,8 +22,10 @@
 #include "color_0.hpp"
 #include "basiclighting.hpp"
 #include "movelight.hpp"
+#include "viewlighting.hpp"
+#include "Gouraudshading.hpp"
 
 int main(int argc, const char * argv[]){
-    movelight();
+    Gouraudshading();
     return 0;
 }
