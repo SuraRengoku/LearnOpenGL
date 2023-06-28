@@ -24,6 +24,7 @@
 		16CE599D2A4994F20000F354 /* movelight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE599B2A4994F20000F354 /* movelight.cpp */; };
 		16CE59A22A4CC6B30000F354 /* viewlighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A02A4CC6B30000F354 /* viewlighting.cpp */; };
 		16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A52A4CCCBB0000F354 /* Gouraudshading.cpp */; };
+		16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A92A4CD2B00000F354 /* materials.cpp */; };
 		16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B032A312536006B7C10 /* texture_1.cpp */; };
 		16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B072A313403006B7C10 /* texture_2.cpp */; };
 		16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B0D2A31D9F7006B7C10 /* transformation_0.cpp */; };
@@ -121,6 +122,12 @@
 		16CE59A42A4CC9CB0000F354 /* Gouraudshading.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Gouraudshading.fs; sourceTree = "<group>"; };
 		16CE59A52A4CCCBB0000F354 /* Gouraudshading.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Gouraudshading.cpp; sourceTree = "<group>"; };
 		16CE59A62A4CCCBB0000F354 /* Gouraudshading.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Gouraudshading.hpp; sourceTree = "<group>"; };
+		16CE59A92A4CD2B00000F354 /* materials.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = materials.cpp; sourceTree = "<group>"; };
+		16CE59AA2A4CD2B00000F354 /* materials.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = materials.hpp; sourceTree = "<group>"; };
+		16CE59AC2A4CD2D00000F354 /* materials.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = materials.vs; sourceTree = "<group>"; };
+		16CE59AD2A4CD2F80000F354 /* materialsobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = materialsobj.fs; sourceTree = "<group>"; };
+		16CE59AE2A4CD3060000F354 /* materialslight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = materialslight.fs; sourceTree = "<group>"; };
+		16CE59AF2A4CF2430000F354 /* materialslight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = materialslight.vs; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -200,6 +207,7 @@
 		16355B092A3627FC001BAF56 /* Lighting */ = {
 			isa = PBXGroup;
 			children = (
+				16CE59A82A4CD1B50000F354 /* Materials */,
 				16355B292A3E0D2D001BAF56 /* BasicLighting */,
 				16355B0A2A362823001BAF56 /* Color */,
 			);
@@ -261,6 +269,19 @@
 				16CE59A62A4CCCBB0000F354 /* Gouraudshading.hpp */,
 			);
 			path = BasicLighting;
+			sourceTree = "<group>";
+		};
+		16CE59A82A4CD1B50000F354 /* Materials */ = {
+			isa = PBXGroup;
+			children = (
+				16CE59A92A4CD2B00000F354 /* materials.cpp */,
+				16CE59AA2A4CD2B00000F354 /* materials.hpp */,
+				16CE59AC2A4CD2D00000F354 /* materials.vs */,
+				16CE59AD2A4CD2F80000F354 /* materialsobj.fs */,
+				16CE59AE2A4CD3060000F354 /* materialslight.fs */,
+				16CE59AF2A4CF2430000F354 /* materialslight.vs */,
+			);
+			path = Materials;
 			sourceTree = "<group>";
 		};
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
@@ -442,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */,
 				16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */,
 				16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */,
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,

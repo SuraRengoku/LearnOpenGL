@@ -24,8 +24,9 @@
 #include "movelight.hpp"
 #include "viewlighting.hpp"
 #include "Gouraudshading.hpp"
+#include "materials.hpp"
 
 int main(int argc, const char * argv[]){
-    Gouraudshading();
+    materials();
     return 0;
 }
