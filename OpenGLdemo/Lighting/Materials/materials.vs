@@ -14,4 +14,4 @@ void main(){
     Normal=normalMatrix*aNormal;
     gl_Position=projection*view*vec4(FragPos,1.0f);
 }
-
+//该文件同样可以作为光源的顶点着色器，尽管其中有些uniform变量并没有从主程序中接收到参数，但是其会以默认参数运行
