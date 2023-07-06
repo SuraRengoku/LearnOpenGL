@@ -137,7 +137,11 @@ int materials(){
     glEnableVertexAttribArray(0);
     
     objshader->use();
-    objshader->setVec3("lightPos", lightPos);
+    objshader->setVec3("light.position", lightPos);
+    
+    glm::vec3 lightColor;
+    glm::vec3 diffuseColor;
+    glm::vec3 ambientColor;
     
     while (!glfwWindowShouldClose(window)) {
         float currentTime=static_cast<float>(glfwGetTime());
@@ -179,14 +183,21 @@ int materials(){
                 show_another_window=false;
             ImGui::End();
         }
-
+        
+        lightColor.x=sin(glfwGetTime()*2.0f);
+        lightColor.y=sin(glfwGetTime()*0.7f);
+        lightColor.z=sin(glfwGetTime()*1.3f);
+        diffuseColor=lightColor*glm::vec3(0.5f);
+        ambientColor=diffuseColor*glm::vec3(0.2f);
         
         glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
         
         objshader->use();
         objshader->setMat4("projection", projection);
         objshader->setVec3("viewPos", camera.Position);
-        objshader->setVec3("lightColor",1.0f,1.0f,1.0f);
+        objshader->setVec3("light.ambient", ambientColor);
+        objshader->setVec3("light.diffuse", diffuseColor);
+        objshader->setVec3("light.specular", lightColor);
         objshader->setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
         objshader->setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
         objshader->setVec3("material.specular", 0.5f, 0.5f, 0.5f);
@@ -202,6 +213,7 @@ int materials(){
         glDrawArrays(GL_TRIANGLES,0,36);
         
         lightshader->use();
+        lightshader->setVec3("lightColor", lightColor);
         lightshader->setMat4("view", view);
         lightshader->setMat4("projection", projection);
         glm::mat4 lightmodel=glm::scale(glm::translate(glm::mat4(1.0f),lightPos),glm::vec3(0.2f));
