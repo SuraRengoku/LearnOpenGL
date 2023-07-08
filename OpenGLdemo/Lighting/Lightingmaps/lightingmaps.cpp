@@ -169,6 +169,10 @@ int lightingmaps(){
         glm::mat3 normalMatrix=glm::mat3(glm::transpose(glm::inverse(objmodel)));
         objshader->setMat3("normalMatrix", normalMatrix);
         
+        glm::vec3 matrixlight=glm::vec3((sin(currentTime)*2)+1.0f);
+        objshader->setVec3("light.emission", matrixlight);
+        objshader->setFloat("ymove", currentTime);
+        
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,diffuseMap);
         

@@ -20,11 +20,13 @@ struct Light {
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
+    vec3 emission;
 };
 
 uniform Material material;
 uniform Light light;
 uniform vec3 viewPos;
+uniform float ymove;
 
 void main(){
     vec3 ambient=light.ambient*texture(material.diffuse,TexCoord).rgb;
@@ -38,7 +40,7 @@ void main(){
     float spec=pow(max(dot(viewDir,reflectDir),0.0f),material.shininess);
     vec3 specular=light.specular*spec*texture(material.specular,TexCoord).rgb;
 //    vec3 specular=light.specular*spec*(vec3(1.0f)-texture(material.specular,TexCoord).rgb);//反反转镜面光贴图
-    vec3 emission=texture(material.emission,TexCoord).rgb;
+    vec3 emission=light.emission*texture(material.emission,vec2(TexCoord.x,TexCoord.y+ymove)).rgb;
     
     FragColor=vec4(ambient+diffuse+specular+emission,1.0f);
 }
