@@ -128,14 +128,17 @@ int lightingmaps(){
     
     unsigned int diffuseMap=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/container2.png");
     unsigned int specularMap=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/container2_specular.png");
+    unsigned int specularMapColor=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/lighting_maps_specular_color.png");//彩色镜面光贴图
+    unsigned int emissionMap=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/matrix.jpg");
     
     objshader->use();
     objshader->setVec3("light.position", lightPos);
     objshader->setInt("material.diffuse", 0);
     objshader->setInt("material.specular",1);
+    objshader->setInt("material.emission",2);
     
-    glm::vec3 ambientColor=glm::vec3(0.2f,0.2f,0.2f);
-    glm::vec3 diffuseColor=glm::vec3(0.5f,0.5f,0.5f);
+    glm::vec3 ambientColor=glm::vec3(0.5f,0.5f,0.5f);
+    glm::vec3 diffuseColor=glm::vec3(0.8f,0.8f,0.8f);
     glm::vec3 specularColor=glm::vec3(1.0f,1.0f,1.0f);
     
     while (!glfwWindowShouldClose(window)) {
@@ -171,6 +174,9 @@ int lightingmaps(){
         
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D,specularMap);
+        
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D,emissionMap);
         
         glBindVertexArray(objVAO);
         glDrawArrays(GL_TRIANGLES,0,36);

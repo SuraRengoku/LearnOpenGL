@@ -9,6 +9,7 @@ struct Material{
     sampler2D diffuse;
     sampler2D specular;//使用灰度图可以根据具体亮度实现高光识别
     float shininess;
+    sampler2D emission;//放射光贴图
 };
 
 //注意sampler2D是所谓的不透明类型(Opaque Type)，也就是说我们不能将它实例化，只能通过uniform来定义它。如果我们使用除uniform以外的方法（比如函数的参数）实例化这个结构体，GLSL会抛出一些奇怪的错误。这同样也适用于任何封装了不透明类型的结构体。
@@ -36,6 +37,8 @@ void main(){
     vec3 reflectDir=reflect(-lightDir,norm);
     float spec=pow(max(dot(viewDir,reflectDir),0.0f),material.shininess);
     vec3 specular=light.specular*spec*texture(material.specular,TexCoord).rgb;
+//    vec3 specular=light.specular*spec*(vec3(1.0f)-texture(material.specular,TexCoord).rgb);//反反转镜面光贴图
+    vec3 emission=texture(material.emission,TexCoord).rgb;
     
-    FragColor=vec4(ambient+diffuse+specular,1.0f);
+    FragColor=vec4(ambient+diffuse+specular+emission,1.0f);
 }
