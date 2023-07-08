@@ -25,8 +25,9 @@
 #include "viewlighting.hpp"
 #include "Gouraudshading.hpp"
 #include "materials.hpp"
+#include "lightingmaps.hpp"
 
 int main(int argc, const char * argv[]){
-    materials();
+    lightingmaps();
     return 0;
 }

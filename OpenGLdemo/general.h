@@ -17,11 +17,13 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <math.h>
 #include <vector>
 #include <Eigen/Dense>
-//#include "stb_image.h"
+#include "stb_image.h"
 
 
 using std::cout,std::cin,std::endl;
@@ -119,6 +121,9 @@ void processCameraWSAD(GLFWwindow* window,Camera &camera,float &deltaTime);
 
 //使用Eigen计算
 glm::mat4 inverse_mat4(glm::mat4 &mat);
+
+//加载材质
+unsigned int loadTexture(char const *filepath);
 
 #endif
 
