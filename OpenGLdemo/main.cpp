@@ -26,8 +26,9 @@
 #include "Gouraudshading.hpp"
 #include "materials.hpp"
 #include "lightingmaps.hpp"
+#include "parallellights.hpp"
 
 int main(int argc, const char * argv[]){
-    lightingmaps();
+    parallellights();
     return 0;
 }
