@@ -22,6 +22,7 @@
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
+		169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED02A5FFF2200F78236 /* pointlight.cpp */; };
 		16CE599D2A4994F20000F354 /* movelight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE599B2A4994F20000F354 /* movelight.cpp */; };
 		16CE59A22A4CC6B30000F354 /* viewlighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A02A4CC6B30000F354 /* viewlighting.cpp */; };
 		16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A52A4CCCBB0000F354 /* Gouraudshading.cpp */; };
@@ -123,6 +124,12 @@
 		169DEECD2A5F512C00F78236 /* parallelobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = parallelobj.fs; sourceTree = "<group>"; };
 		169DEECE2A5F514400F78236 /* parallellight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = parallellight.vs; sourceTree = "<group>"; };
 		169DEECF2A5F515000F78236 /* parallellight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = parallellight.fs; sourceTree = "<group>"; };
+		169DEED02A5FFF2200F78236 /* pointlight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pointlight.cpp; sourceTree = "<group>"; };
+		169DEED12A5FFF2200F78236 /* pointlight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pointlight.hpp; sourceTree = "<group>"; };
+		169DEED32A5FFF3100F78236 /* pointobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pointobj.vs; sourceTree = "<group>"; };
+		169DEED42A5FFF3E00F78236 /* pointobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pointobj.fs; sourceTree = "<group>"; };
+		169DEED52A5FFF5100F78236 /* pointlight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pointlight.vs; sourceTree = "<group>"; };
+		169DEED62A5FFF8600F78236 /* pointlight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pointlight.fs; sourceTree = "<group>"; };
 		16CE599B2A4994F20000F354 /* movelight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movelight.cpp; sourceTree = "<group>"; };
 		16CE599C2A4994F20000F354 /* movelight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movelight.hpp; sourceTree = "<group>"; };
 		16CE599E2A4CC18C0000F354 /* viewlighting.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = viewlighting.vs; sourceTree = "<group>"; };
@@ -300,6 +307,12 @@
 				169DEECD2A5F512C00F78236 /* parallelobj.fs */,
 				169DEECE2A5F514400F78236 /* parallellight.vs */,
 				169DEECF2A5F515000F78236 /* parallellight.fs */,
+				169DEED02A5FFF2200F78236 /* pointlight.cpp */,
+				169DEED12A5FFF2200F78236 /* pointlight.hpp */,
+				169DEED32A5FFF3100F78236 /* pointobj.vs */,
+				169DEED42A5FFF3E00F78236 /* pointobj.fs */,
+				169DEED52A5FFF5100F78236 /* pointlight.vs */,
+				169DEED62A5FFF8600F78236 /* pointlight.fs */,
 			);
 			path = lightcasters;
 			sourceTree = "<group>";
@@ -519,6 +532,7 @@
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,
 				169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */,
 				16E22C252A2E0102007F78A2 /* moreAttributes.cpp in Sources */,
+				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,
 				DD9339032A12F1F900F4FCDD /* triangle_0.cpp in Sources */,
 				16E22C192A2D4939007F78A2 /* main.cpp in Sources */,
 				16355B1F2A3DFA88001BAF56 /* imgui_draw.cpp in Sources */,
