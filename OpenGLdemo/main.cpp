@@ -27,8 +27,9 @@
 #include "materials.hpp"
 #include "lightingmaps.hpp"
 #include "parallellights.hpp"
+#include "pointlight.hpp"
 
 int main(int argc, const char * argv[]){
-    parallellights();
+    pointlight();
     return 0;
 }
