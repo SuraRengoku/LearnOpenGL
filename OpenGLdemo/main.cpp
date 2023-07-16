@@ -28,8 +28,9 @@
 #include "lightingmaps.hpp"
 #include "parallellights.hpp"
 #include "pointlight.hpp"
+#include "spotlight.hpp"
 
 int main(int argc, const char * argv[]){
-    pointlight();
+    spotlight();
     return 0;
 }
