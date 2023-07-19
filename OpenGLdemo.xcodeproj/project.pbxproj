@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1602478B2A6842F30069EA77 /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1602478A2A6842F30069EA77 /* libassimp.5.2.4.dylib */; };
+		1602478D2A6842FD0069EA77 /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1602478C2A6842FD0069EA77 /* libassimp.dylib */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
 		16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AFA2A336CC9001BAF56 /* coord_1.cpp */; };
 		16355B022A3471CF001BAF56 /* camera_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B002A3471CF001BAF56 /* camera_0.cpp */; };
@@ -30,6 +32,7 @@
 		16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A52A4CCCBB0000F354 /* Gouraudshading.cpp */; };
 		16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A92A4CD2B00000F354 /* materials.cpp */; };
 		16CE59B42A57713B0000F354 /* lightingmaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59B22A57713B0000F354 /* lightingmaps.cpp */; };
+		16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */; };
 		16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B032A312536006B7C10 /* texture_1.cpp */; };
 		16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B072A313403006B7C10 /* texture_2.cpp */; };
 		16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B0D2A31D9F7006B7C10 /* transformation_0.cpp */; };
@@ -73,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1602478A2A6842F30069EA77 /* libassimp.5.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimp.5.2.4.dylib; sourceTree = "<group>"; };
+		1602478C2A6842FD0069EA77 /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimp.dylib; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
 		162BE6752A594C3000BD1A6E /* matrix.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matrix.jpg; sourceTree = "<group>"; };
 		1630AC4B2A2264E20092788F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 		16CE59B62A57717D0000F354 /* lightingmapsobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightingmapsobj.fs; sourceTree = "<group>"; };
 		16CE59B72A57718E0000F354 /* lightingmapslight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightingmapslight.vs; sourceTree = "<group>"; };
 		16CE59B82A57719D0000F354 /* lightingmapslight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightingmapslight.fs; sourceTree = "<group>"; };
+		16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.2.4.dylib; path = ../../../../../opt/homebrew/Cellar/assimp/5.2.5/lib/libassimp.5.2.4.dylib; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -212,6 +218,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1602478D2A6842FD0069EA77 /* libassimp.dylib in Frameworks */,
+				1602478B2A6842F30069EA77 /* libassimp.5.2.4.dylib in Frameworks */,
+				16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */,
 				DD15A1AA2A12F512003FF486 /* libglfw.3.dylib in Frameworks */,
 				DD15A1AB2A12F512003FF486 /* libglfw3.a in Frameworks */,
 			);
@@ -377,6 +386,21 @@
 			path = Lightingmaps;
 			sourceTree = "<group>";
 		};
+		16CE79AF2A683487004586BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		16D51B352A682CDA00A67222 /* LoadModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoadModels;
+			sourceTree = "<group>";
+		};
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +488,7 @@
 				DD9339092A12F39700F4FCDD /* lib */,
 				DD9339012A12F1F900F4FCDD /* OpenGLdemo */,
 				DD9339002A12F1F900F4FCDD /* Products */,
+				16CE79AF2A683487004586BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -478,6 +503,7 @@
 		DD9339012A12F1F900F4FCDD /* OpenGLdemo */ = {
 			isa = PBXGroup;
 			children = (
+				16D51B352A682CDA00A67222 /* LoadModels */,
 				16355B112A3DF98D001BAF56 /* imgui */,
 				16355B092A3627FC001BAF56 /* Lighting */,
 				16355B082A3626D9001BAF56 /* Entry */,
@@ -495,6 +521,8 @@
 		DD9339092A12F39700F4FCDD /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				1602478C2A6842FD0069EA77 /* libassimp.dylib */,
+				1602478A2A6842F30069EA77 /* libassimp.5.2.4.dylib */,
 				DD15A1A82A12F512003FF486 /* libglfw.3.dylib */,
 				DD15A1A92A12F512003FF486 /* libglfw3.a */,
 				DD15A1A62A12F505003FF486 /* glad.c */,
@@ -656,6 +684,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/opt/homebrew/Cellar/glm/0.9.9.8/include\n/**",
 				);
+				LIBRARY_SEARCH_PATHS = /opt/homebrew/Cellar/assimp/5.2.5/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -712,6 +741,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/opt/homebrew/Cellar/glm/0.9.9.8/include\n/**",
 				);
+				LIBRARY_SEARCH_PATHS = /opt/homebrew/Cellar/assimp/5.2.5/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -728,10 +758,12 @@
 				HEADER_SEARCH_PATHS = (
 					Dependencies/glad/include,
 					Dependencies/glfw/include,
+					/opt/homebrew/Cellar/assimp/5.2.5/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					/opt/homebrew/Cellar/assimp/5.2.5/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -745,10 +777,12 @@
 				HEADER_SEARCH_PATHS = (
 					Dependencies/glad/include,
 					Dependencies/glfw/include,
+					/opt/homebrew/Cellar/assimp/5.2.5/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					/opt/homebrew/Cellar/assimp/5.2.5/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

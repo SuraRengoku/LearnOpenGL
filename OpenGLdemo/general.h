@@ -24,6 +24,9 @@
 #include <vector>
 #include <Eigen/Dense>
 #include "stb_image.h"
+#include <assimp/scene.h>
+#include <assimp/Importer.hpp>
+#include <assimp/postprocess.h>
 
 
 using std::cout,std::cin,std::endl;
