@@ -29,8 +29,9 @@
 #include "parallellights.hpp"
 #include "pointlight.hpp"
 #include "spotlight.hpp"
+#include "multiplelights.hpp"
 
 int main(int argc, const char * argv[]){
-    spotlight();
+    multiplelights();
     return 0;
 }

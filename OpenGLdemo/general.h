@@ -125,5 +125,7 @@ glm::mat4 inverse_mat4(glm::mat4 &mat);
 //加载材质
 unsigned int loadTexture(char const *filepath);
 
+//批量uniform赋值名称获取
+std::vector<std::string> multiuniform(std::string _main, std::string(elements) [], int num, int elenum);
 #endif
 

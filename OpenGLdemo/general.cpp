@@ -244,3 +244,15 @@ unsigned int loadTexture(char const *filepath){
     }
     return textureID;
 }
+
+
+std::vector<std::string> multiuniform(std::string _main, std::string(elements) [], int num,int elenum){
+    std::vector<std::string> result;
+    for(int i=0;i<num;i++){
+        for(int j=0;j<elenum;j++){
+            std::string element=_main+"["+std::to_string(i)+"]."+elements[j];
+            result.push_back(element);
+        }
+    }
+    return result;
+}

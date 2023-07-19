@@ -24,6 +24,7 @@
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
 		169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED02A5FFF2200F78236 /* pointlight.cpp */; };
 		169DEED92A63E69400F78236 /* spotlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED72A63E69400F78236 /* spotlight.cpp */; };
+		169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEE32A64395C00F78236 /* multiplelights.cpp */; };
 		16CE599D2A4994F20000F354 /* movelight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE599B2A4994F20000F354 /* movelight.cpp */; };
 		16CE59A22A4CC6B30000F354 /* viewlighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A02A4CC6B30000F354 /* viewlighting.cpp */; };
 		16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A52A4CCCBB0000F354 /* Gouraudshading.cpp */; };
@@ -137,6 +138,12 @@
 		169DEEDB2A63E6AE00F78236 /* spotobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = spotobj.fs; sourceTree = "<group>"; };
 		169DEEDC2A63E6B800F78236 /* spotlight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = spotlight.vs; sourceTree = "<group>"; };
 		169DEEDD2A63E6C300F78236 /* spotlight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = spotlight.fs; sourceTree = "<group>"; };
+		169DEEDF2A64391900F78236 /* multipleobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = multipleobj.vs; sourceTree = "<group>"; };
+		169DEEE02A64392700F78236 /* multipleobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = multipleobj.fs; sourceTree = "<group>"; };
+		169DEEE12A64393700F78236 /* multiplelight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = multiplelight.vs; sourceTree = "<group>"; };
+		169DEEE22A64394500F78236 /* multiplelight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = multiplelight.fs; sourceTree = "<group>"; };
+		169DEEE32A64395C00F78236 /* multiplelights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = multiplelights.cpp; sourceTree = "<group>"; };
+		169DEEE42A64395C00F78236 /* multiplelights.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = multiplelights.hpp; sourceTree = "<group>"; };
 		16CE599B2A4994F20000F354 /* movelight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movelight.cpp; sourceTree = "<group>"; };
 		16CE599C2A4994F20000F354 /* movelight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movelight.hpp; sourceTree = "<group>"; };
 		16CE599E2A4CC18C0000F354 /* viewlighting.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = viewlighting.vs; sourceTree = "<group>"; };
@@ -239,6 +246,7 @@
 		16355B092A3627FC001BAF56 /* Lighting */ = {
 			isa = PBXGroup;
 			children = (
+				169DEEDE2A63FCB900F78236 /* multiplelights */,
 				169DEEC82A59BDE700F78236 /* lightcasters */,
 				16CE59B02A5724F80000F354 /* Lightingmaps */,
 				16CE59A82A4CD1B50000F354 /* Materials */,
@@ -328,6 +336,19 @@
 				169DEEDD2A63E6C300F78236 /* spotlight.fs */,
 			);
 			path = lightcasters;
+			sourceTree = "<group>";
+		};
+		169DEEDE2A63FCB900F78236 /* multiplelights */ = {
+			isa = PBXGroup;
+			children = (
+				169DEEDF2A64391900F78236 /* multipleobj.vs */,
+				169DEEE02A64392700F78236 /* multipleobj.fs */,
+				169DEEE12A64393700F78236 /* multiplelight.vs */,
+				169DEEE22A64394500F78236 /* multiplelight.fs */,
+				169DEEE32A64395C00F78236 /* multiplelights.cpp */,
+				169DEEE42A64395C00F78236 /* multiplelights.hpp */,
+			);
+			path = multiplelights;
 			sourceTree = "<group>";
 		};
 		16CE59A82A4CD1B50000F354 /* Materials */ = {
@@ -540,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */,
+				169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */,
 				16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */,
 				16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */,
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,
