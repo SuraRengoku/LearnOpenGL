@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1602478B2A6842F30069EA77 /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1602478A2A6842F30069EA77 /* libassimp.5.2.4.dylib */; };
-		1602478D2A6842FD0069EA77 /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1602478C2A6842FD0069EA77 /* libassimp.dylib */; };
 		160247912A684E2E0069EA77 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1602478F2A684E2E0069EA77 /* mesh.cpp */; };
 		160247952A695B160069EA77 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247932A695B160069EA77 /* model.cpp */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
@@ -224,7 +223,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1602478D2A6842FD0069EA77 /* libassimp.dylib in Frameworks */,
 				1602478B2A6842F30069EA77 /* libassimp.5.2.4.dylib in Frameworks */,
 				16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */,
 				DD15A1AA2A12F512003FF486 /* libglfw.3.dylib in Frameworks */,

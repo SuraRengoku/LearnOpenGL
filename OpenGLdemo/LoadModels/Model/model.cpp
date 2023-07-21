@@ -30,3 +30,21 @@ void Model::loadModel(std::string path){
     processNode(scene->mRootNode, scene);
 }
 
+void Model::processNode(aiNode *node, const aiScene *scene){
+    for(unsigned int i=0;i<node->mNumMeshes;i++){
+        
+    }
+}
+
+Mesh Model::processMesh(aiNode *mesh, const aiScene *scene){
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+    std::vector<_Texture> _textures;
+    
+    return Mesh(vertices,indices,_textures);
+}
+
+std::vector<_Texture> Model::loadMaterialTexture(aiMaterial *material, aiTextureType type, std::string typeName){
+    std::vector<_Texture> _textures;
+    return _textures;
+}
