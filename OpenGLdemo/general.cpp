@@ -218,7 +218,7 @@ unsigned int loadTexture(char const *filepath){
     glGenTextures(1,&textureID);
     
     int width,height,nrChannels;
-    stbi_set_flip_vertically_on_load(true);
+//    stbi_set_flip_vertically_on_load(true);
     unsigned char *data=stbi_load(filepath, &width, &height, &nrChannels, 0);
     if(data){
         GLenum format;

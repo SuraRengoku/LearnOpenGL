@@ -30,8 +30,9 @@
 #include "pointlight.hpp"
 #include "spotlight.hpp"
 #include "multiplelights.hpp"
+#include "loadnanosuit.hpp"
 
 int main(int argc, const char * argv[]){
-    multiplelights();
+    loadnanosuit();
     return 0;
 }

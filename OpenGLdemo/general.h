@@ -22,6 +22,7 @@
 #include <string>
 #include <math.h>
 #include <vector>
+#include <map>
 #include <Eigen/Dense>
 #include "stb_image.h"
 #include <assimp/scene.h>
