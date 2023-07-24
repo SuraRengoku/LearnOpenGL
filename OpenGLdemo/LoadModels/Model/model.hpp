@@ -1,34 +1,45 @@
+////
+////  model.hpp
+////  OpenGLdemo
+////
+////  Created by SHERLOCK on 20.07.23.
+////
 //
-//  model.hpp
-//  OpenGLdemo
-//
-//  Created by SHERLOCK on 20.07.23.
-//
-
 #ifndef model_hpp
 #define model_hpp
 
 #include "mesh.hpp"
-//extern TEXTURE_TYPE_MAP ttMap;
-//ttMap.insert(pair<texturetype,std::string>("texture_diffuse",diffuseMap));
 
-class Model{
+//unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
+
+class Model
+{
 public:
-    Model(std::string const &path, bool gamma=false):gammaCorrection(gamma){
+    // model data
+    vector<_Texture> textures_loaded;    // stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+    vector<Mesh>    meshes;
+    string directory;
+    bool gammaCorrection;
+    // constructor, expects a filepath to a 3D model.
+    Model(string const &path, bool gamma=false):gammaCorrection(gamma){
         loadModel(path);
     }
+    // draws the model, and thus all its meshes
     void Draw(Shader &shader);
+
 private:
-    std::vector<_Texture> textures_load;
-    std::vector<Mesh> meshes;
-    std::string directory;
-    bool gammaCorrection;
-    void loadModel(std::string const &path);
-    void processNode(aiNode *node,const aiScene *scene);
-    Mesh processMesh(aiMesh *mesh,const aiScene *scene);
-    std::vector<_Texture> loadMaterialTexture(aiMaterial *material,aiTextureType type,std::string typeName);
+    // loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
+    void loadModel(string const &path);
+    // processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
+    void processNode(aiNode *node, const aiScene *scene);
+
+    Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+
+    // checks all material textures of a given type and loads the textures if they're not loaded yet.
+    // the required info is returned as a Texture struct.
+    vector<_Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName);
 };
 
-//unsigned int TextureFromFile(const char *path, const string &directory);
 unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
-#endif /* model_hpp */
+
+#endif

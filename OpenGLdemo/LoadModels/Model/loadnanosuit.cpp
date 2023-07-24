@@ -12,7 +12,7 @@ static unsigned const int SCR_HEIGHT=800;
 void mouse_callback(GLFWwindow* window,double xposIn,double yposIn);
 void scroll_callback(GLFWwindow* window,double xoffset,double yoffset);
 
-Camera camera(glm::vec3(0.0f,0.0f,20.0f));
+Camera camera(glm::vec3(0.0f,10.0f,20.0f));
 bool firstMouse=true;
 float lastX=SCR_WIDTH/2.0f;
 float lastY=SCR_HEIGHT/2.0f;
@@ -58,7 +58,7 @@ int loadnanosuit(){
     }
 
     // tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
-    stbi_set_flip_vertically_on_load(true);
+//    stbi_set_flip_vertically_on_load(true);
     
     glEnable(GL_DEPTH_TEST);
     
@@ -66,9 +66,11 @@ int loadnanosuit(){
     
     Model *nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/nanosuit/nanosuit.obj");
     
+    float movingvelocity=4.0f;
+    
     while (!glfwWindowShouldClose(window)) {
         float currentTime=static_cast<float>(glfwGetTime());
-        deltaTime=currentTime-lastTime;
+        deltaTime=(currentTime-lastTime)*movingvelocity;
         lastTime=currentTime;
         
         processInput(window);

@@ -31,6 +31,7 @@
 
 
 using std::cout,std::cin,std::endl;
+using std::string,std::vector,std::map;
 
 class Triangle{
 public:
