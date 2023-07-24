@@ -156,6 +156,8 @@
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
+		165B242C2A6DFA8F000B845C /* VampireALusth.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = VampireALusth.fbx; sourceTree = "<group>"; };
+		165B242D2A6DFB0A000B845C /* MawJLaygo.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = MawJLaygo.fbx; sourceTree = "<group>"; };
 		169DEEC92A59BDFD00F78236 /* parallellights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = parallellights.cpp; sourceTree = "<group>"; };
 		169DEECA2A59BDFD00F78236 /* parallellights.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = parallellights.hpp; sourceTree = "<group>"; };
 		169DEECC2A5F511D00F78236 /* parallelobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = parallelobj.vs; sourceTree = "<group>"; };
@@ -284,6 +286,8 @@
 		160247B12A6BCEAA0069EA77 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				165B242C2A6DFA8F000B845C /* VampireALusth.fbx */,
+				165B242D2A6DFB0A000B845C /* MawJLaygo.fbx */,
 				160247B22A6BCEB40069EA77 /* nanosuit */,
 			);
 			path = models;

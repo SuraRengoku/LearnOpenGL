@@ -22,6 +22,7 @@
 #include <string>
 #include <math.h>
 #include <vector>
+#include <algorithm>
 #include <map>
 #include <Eigen/Dense>
 #include "stb_image.h"
@@ -29,9 +30,21 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
-
 using std::cout,std::cin,std::endl;
 using std::string,std::vector,std::map;
+
+namespace StringUtil{
+    template<typename ... Args>
+    string Format(const string& format, Args ... args){
+        size_t size=snprintf(nullptr, 0, format.c_str(), args ...)+1;
+        if(size<=0){
+            throw std::runtime_error("Error during formatting.");
+        }
+        std::unique_ptr<char[]> buf(new char[size]);
+        snprintf(buf.get(), size, format.c_str(),args ...);
+        return string(buf.get(),buf.get()+size-1);
+    }
+}
 
 class Triangle{
 public:
@@ -129,6 +142,7 @@ glm::mat4 inverse_mat4(glm::mat4 &mat);
 
 //加载材质
 unsigned int loadTexture(char const *filepath);
+unsigned int loadTextureFromAssimp(const aiTexture* aiTex, GLint wrapMode, GLint MagFilterMode, GLint MinFilterMode);
 
 //批量uniform赋值名称获取
 std::vector<std::string> multiuniform(std::string _main, std::string(elements) [], int num, int elenum);

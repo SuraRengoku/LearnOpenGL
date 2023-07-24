@@ -65,6 +65,8 @@ int loadnanosuit(){
     Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/nanosuitobj.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/nanosuitobj.fs");
     
     Model *nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/nanosuit/nanosuit.obj");
+    Model *MawJLaygo=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/MawJLaygo.fbx");
+
     
     float movingvelocity=4.0f;
     
@@ -86,6 +88,7 @@ int loadnanosuit(){
         shader->setMat4("view", view);
         glm::mat4 model=glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,0.0f,0.0f)),glm::vec3(1.0f,1.0f,1.0f));
         shader->setMat4("model", model);
+        MawJLaygo->Draw(*shader);
         nanosuit->Draw(*shader);
         
         glfwSwapBuffers(window);

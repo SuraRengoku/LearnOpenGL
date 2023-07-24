@@ -26,6 +26,7 @@ void Model::loadModel(std::string const &path){
         cout<<"ERROR:ASSIMP::"<<importer.GetErrorString()<<"\n";
         return;
     }
+    this->modeltype=path.substr(path.find_last_of('.')+1);
     this->directory=path.substr(0,path.find_last_of('/'));
     processNode(scene->mRootNode, scene);
 }
@@ -91,19 +92,19 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene){
     //处理材质
     if(mesh->mMaterialIndex>=0){
         aiMaterial *material=scene->mMaterials[mesh->mMaterialIndex];
-        vector<_Texture> diffuseMaps=loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+        vector<_Texture> diffuseMaps=loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse",scene);
         _textures.insert(_textures.end(), diffuseMaps.begin(),diffuseMaps.end());
-        vector<_Texture> specularMaps=loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+        vector<_Texture> specularMaps=loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular",scene);
         _textures.insert(_textures.end(), specularMaps.begin(),specularMaps.end());
-        vector<_Texture> normalMaps=loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
+        vector<_Texture> normalMaps=loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal",scene);
         _textures.insert(_textures.end(), normalMaps.begin(),normalMaps.end());
-        vector<_Texture> heightMaps=loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
+        vector<_Texture> heightMaps=loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height",scene);
         _textures.insert(_textures.end(), heightMaps.begin(),heightMaps.end());
     }
     return Mesh(vertices,indices,_textures);
 }
 
-std::vector<_Texture> Model::loadMaterialTextures(aiMaterial *material, aiTextureType type, std::string typeName){
+std::vector<_Texture> Model::loadMaterialTextures(aiMaterial *material, aiTextureType type, std::string typeName, const aiScene* scene){
     std::vector<_Texture> _textures;
     for(unsigned int i=0;i<material->GetTextureCount(type);i++){
         aiString str;
@@ -117,12 +118,27 @@ std::vector<_Texture> Model::loadMaterialTextures(aiMaterial *material, aiTextur
             }
         }
         if(!skip){
-            _Texture _texture;
-            _texture.id=TextureFromFile(str.C_Str(),this->directory);
-            _texture.type=typeName;
-            _texture.path=str.C_Str();
-            _textures.push_back(_texture);
-            textures_loaded.push_back(_texture);
+            if(this->modeltype=="obj"){
+                _Texture _texture;
+                _texture.id=TextureFromFile(str.C_Str(),this->directory);
+                _texture.type=typeName;
+                _texture.path=str.C_Str();
+                _textures.push_back(_texture);
+                textures_loaded.push_back(_texture);
+            }
+            else if(this->modeltype=="fbx"){
+                _Texture _texture;
+                auto filepath=StringUtil::Format("%s/%s",directory.c_str(),str.C_Str());
+                auto aitexture=scene->GetEmbeddedTexture(str.C_Str());
+                if(aitexture!=nullptr)
+                    _texture.id=loadTextureFromAssimp(aitexture, GL_CLAMP, GL_LINEAR, GL_LINEAR);
+                else
+                    _texture.id=loadTexture(filepath.c_str());
+                _texture.type=typeName;
+                _texture.path=str.C_Str();
+                _textures.push_back(_texture);
+                textures_loaded.push_back(_texture);
+            }
         }
     }
     return _textures;

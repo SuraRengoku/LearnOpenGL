@@ -19,6 +19,7 @@ public:
     vector<_Texture> textures_loaded;    // stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
     vector<Mesh>    meshes;
     string directory;
+    string modeltype;
     bool gammaCorrection;
     // constructor, expects a filepath to a 3D model.
     Model(string const &path, bool gamma=false):gammaCorrection(gamma){
@@ -37,7 +38,7 @@ private:
 
     // checks all material textures of a given type and loads the textures if they're not loaded yet.
     // the required info is returned as a Texture struct.
-    vector<_Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName);
+    vector<_Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName, const aiScene* scene);
 };
 
 unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
