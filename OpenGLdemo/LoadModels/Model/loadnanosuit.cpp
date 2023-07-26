@@ -34,7 +34,7 @@ int loadnanosuit(){
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Demo", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -64,9 +64,10 @@ int loadnanosuit(){
     
     Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/nanosuitobj.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/nanosuitobj.fs");
     
-    Model *nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/nanosuit/nanosuit.obj");
-    Model *MawJLaygo=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/MawJLaygo.fbx");
-
+//    Model *nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/nanosuit/nanosuit.obj");
+//    Model *MawJLaygo=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/MawJLaygo.fbx");
+    Model *AlienSoldier=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/AlienSoldier.fbx");
+//    Model *Paladin=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/Paladin.fbx");
     
     float movingvelocity=4.0f;
     
@@ -82,20 +83,20 @@ int loadnanosuit(){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
         shader->use();
-        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 1000.0f);
         glm::mat4 view=camera.GetViewMatrix();
         shader->setMat4("projection", projection);
         shader->setMat4("view", view);
         glm::mat4 model=glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,0.0f,0.0f)),glm::vec3(1.0f,1.0f,1.0f));
         shader->setMat4("model", model);
-        MawJLaygo->Draw(*shader);
-        nanosuit->Draw(*shader);
+        AlienSoldier->Draw(*shader);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
     delete shader;
-    delete nanosuit;
+//    delete nanosuit;
+    delete AlienSoldier;
     
     glfwTerminate();
     return 0;

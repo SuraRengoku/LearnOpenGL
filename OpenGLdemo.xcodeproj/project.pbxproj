@@ -111,6 +111,9 @@
 		160247CC2A6BD1E90069EA77 /* nanosuitobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.fs; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
 		162BE6752A594C3000BD1A6E /* matrix.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matrix.jpg; sourceTree = "<group>"; };
+		1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlienSoldier.fbx; sourceTree = "<group>"; };
+		163041502A6E733F00FB4C55 /* MawJLaygo.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = MawJLaygo.fbx; sourceTree = "<group>"; };
+		163041512A6E73BE00FB4C55 /* Paladin.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Paladin.fbx; sourceTree = "<group>"; };
 		1630AC4B2A2264E20092788F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		16355AF32A3210A9001BAF56 /* shader_0.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.vs; sourceTree = "<group>"; };
 		16355AF42A3210BF001BAF56 /* shader_0.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.fs; sourceTree = "<group>"; };
@@ -157,7 +160,6 @@
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		165B242C2A6DFA8F000B845C /* VampireALusth.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = VampireALusth.fbx; sourceTree = "<group>"; };
-		165B242D2A6DFB0A000B845C /* MawJLaygo.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = MawJLaygo.fbx; sourceTree = "<group>"; };
 		169DEEC92A59BDFD00F78236 /* parallellights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = parallellights.cpp; sourceTree = "<group>"; };
 		169DEECA2A59BDFD00F78236 /* parallellights.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = parallellights.hpp; sourceTree = "<group>"; };
 		169DEECC2A5F511D00F78236 /* parallelobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = parallelobj.vs; sourceTree = "<group>"; };
@@ -286,8 +288,10 @@
 		160247B12A6BCEAA0069EA77 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */,
 				165B242C2A6DFA8F000B845C /* VampireALusth.fbx */,
-				165B242D2A6DFB0A000B845C /* MawJLaygo.fbx */,
+				163041502A6E733F00FB4C55 /* MawJLaygo.fbx */,
+				163041512A6E73BE00FB4C55 /* Paladin.fbx */,
 				160247B22A6BCEB40069EA77 /* nanosuit */,
 			);
 			path = models;
