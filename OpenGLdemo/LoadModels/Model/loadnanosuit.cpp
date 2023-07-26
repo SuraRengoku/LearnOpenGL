@@ -66,7 +66,7 @@ int loadnanosuit(){
     
 //    Model *nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/nanosuit/nanosuit.obj");
 //    Model *MawJLaygo=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/MawJLaygo.fbx");
-    Model *AlienSoldier=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/AlienSoldier.fbx");
+    Model *AlienSoldier=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/AlienSoldier.fbx");
 //    Model *Paladin=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/Paladin.fbx");
     
     float movingvelocity=4.0f;
