@@ -11,6 +11,7 @@
 		160247912A684E2E0069EA77 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1602478F2A684E2E0069EA77 /* mesh.cpp */; };
 		160247952A695B160069EA77 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247932A695B160069EA77 /* model.cpp */; };
 		160247CA2A6BD10B0069EA77 /* loadnanosuit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247C82A6BD10B0069EA77 /* loadnanosuit.cpp */; };
+		162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162671BB2A9F06E4003F03E0 /* depthtest.cpp */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
 		16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AFA2A336CC9001BAF56 /* coord_1.cpp */; };
 		16355B022A3471CF001BAF56 /* camera_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B002A3471CF001BAF56 /* camera_0.cpp */; };
@@ -109,6 +110,8 @@
 		160247C92A6BD10B0069EA77 /* loadnanosuit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = loadnanosuit.hpp; sourceTree = "<group>"; };
 		160247CB2A6BD1DF0069EA77 /* nanosuitobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.vs; sourceTree = "<group>"; };
 		160247CC2A6BD1E90069EA77 /* nanosuitobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.fs; sourceTree = "<group>"; };
+		162671BB2A9F06E4003F03E0 /* depthtest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = depthtest.cpp; sourceTree = "<group>"; };
+		162671BC2A9F06E4003F03E0 /* depthtest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depthtest.hpp; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
 		162BE6752A594C3000BD1A6E /* matrix.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matrix.jpg; sourceTree = "<group>"; };
 		1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlienSoldier.fbx; sourceTree = "<group>"; };
@@ -323,6 +326,23 @@
 				160247BA2A6BCEE40069EA77 /* nanosuit.obj */,
 			);
 			path = nanosuit;
+			sourceTree = "<group>";
+		};
+		162671B92A9F026D003F03E0 /* Advanced */ = {
+			isa = PBXGroup;
+			children = (
+				162671BA2A9F028D003F03E0 /* DepthTest */,
+			);
+			path = Advanced;
+			sourceTree = "<group>";
+		};
+		162671BA2A9F028D003F03E0 /* DepthTest */ = {
+			isa = PBXGroup;
+			children = (
+				162671BB2A9F06E4003F03E0 /* depthtest.cpp */,
+				162671BC2A9F06E4003F03E0 /* depthtest.hpp */,
+			);
+			path = DepthTest;
 			sourceTree = "<group>";
 		};
 		16355AFF2A3471BA001BAF56 /* camera */ = {
@@ -602,6 +622,7 @@
 		DD9339012A12F1F900F4FCDD /* OpenGLdemo */ = {
 			isa = PBXGroup;
 			children = (
+				162671B92A9F026D003F03E0 /* Advanced */,
 				16D51B352A682CDA00A67222 /* LoadModels */,
 				16355B112A3DF98D001BAF56 /* imgui */,
 				16355B092A3627FC001BAF56 /* Lighting */,
@@ -706,6 +727,7 @@
 				16E22C382A2E6CD4007F78A2 /* texture_0.cpp in Sources */,
 				16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */,
 				16E22C2E2A2E18A7007F78A2 /* shadersApplication.cpp in Sources */,
+				162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */,
 				16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */,
 				16E22C152A2D4810007F78A2 /* triangle_1.cpp in Sources */,
 				16540E7C2A1AA0D5004648E8 /* general.h in Sources */,

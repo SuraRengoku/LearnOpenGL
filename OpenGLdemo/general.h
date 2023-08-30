@@ -30,7 +30,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
-using std::cout,std::cin,std::endl;
+using std::cout,std::cin,std::endl,std::cerr;
 using std::string,std::vector,std::map;
 
 namespace StringUtil{
