@@ -5,6 +5,8 @@
 //  Created by SHERLOCK on 30.08.23.
 //
 
+//深度缓冲值与片段的z深度值并不是线性关系，而是在近处有着较高的精度而远处的精度较低
+//公式可以表示为：F_depth=(1/z-1/near)/(1/far-1/near)
 #include "depthtest.hpp"
 
 static unsigned const int SCR_WIDTH=1200;
@@ -131,7 +133,7 @@ int depthtest(){
 //    glDepthMask(GL_FALSE);
     //深度掩码可以将深度缓存设置成只读模式，在深度测试不通过时丢弃片段，在通过时不更新深度缓冲
     
-    Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/DepthTest/depthtest.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/DepthTest/depthtest.fs");
+    Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/DepthTest/depthtest.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/DepthTest/depthbuffer.fs");
     
     stbi_set_flip_vertically_on_load(false);
     
@@ -179,6 +181,10 @@ int depthtest(){
         
         glm::mat4 view=camera.GetViewMatrix();
         glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
+        
+        shader->setFloat("near", 0.1f);
+        shader->setFloat("far", 100.0f);
+        
         shader->setMat4("projection",projection);
         shader->setMat4("view",view);
         
