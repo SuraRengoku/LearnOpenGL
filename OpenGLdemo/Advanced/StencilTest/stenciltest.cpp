@@ -125,11 +125,11 @@ int stenciltest(){
      * @param GLenum dppass 模版测试和深度测试都通过时采取的行为
      */
     glStencilOp(GL_KEEP,GL_KEEP,GL_REPLACE);
-    //GL_KEEP
-    //GL_ZERO
-    //GL_REPLACE
-    //GL_INCR
-    //GL_INCR_WRAP
+    //GL_KEEP 保持当前存储的模版值
+    //GL_ZERO 将模版值设置为0
+    //GL_REPLACE 将模版值设置为glfwStencilFunc函数设置的ref值
+    //GL_INCR 如果模版值小于最大值将模版值加1
+    //GL_INCR_WRAP 与GL_INCR一样
     //GL_DECR
     //GL_DECR_WRAP
     //GL_INVERT
