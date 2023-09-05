@@ -11,6 +11,7 @@
 		160247912A684E2E0069EA77 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1602478F2A684E2E0069EA77 /* mesh.cpp */; };
 		160247952A695B160069EA77 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247932A695B160069EA77 /* model.cpp */; };
 		160247CA2A6BD10B0069EA77 /* loadnanosuit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247C82A6BD10B0069EA77 /* loadnanosuit.cpp */; };
+		162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162357262AA6CB3C006B83A3 /* stenciltest.cpp */; };
 		162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162671BB2A9F06E4003F03E0 /* depthtest.cpp */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
 		16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AFA2A336CC9001BAF56 /* coord_1.cpp */; };
@@ -115,6 +116,9 @@
 		162357222A9F4A96006B83A3 /* depthtest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.fs; sourceTree = "<group>"; };
 		162357232AA1034D006B83A3 /* marble.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = marble.jpg; sourceTree = "<group>"; };
 		162357242AA1A7A2006B83A3 /* depthbuffer.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthbuffer.fs; sourceTree = "<group>"; };
+		162357262AA6CB3C006B83A3 /* stenciltest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stenciltest.cpp; sourceTree = "<group>"; };
+		162357272AA6CB3C006B83A3 /* stenciltest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stenciltest.hpp; sourceTree = "<group>"; };
+		162357292AA6D068006B83A3 /* shaderSingleColor.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shaderSingleColor.fs; sourceTree = "<group>"; };
 		162671BB2A9F06E4003F03E0 /* depthtest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = depthtest.cpp; sourceTree = "<group>"; };
 		162671BC2A9F06E4003F03E0 /* depthtest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depthtest.hpp; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
@@ -336,6 +340,9 @@
 		162357252AA1C14D006B83A3 /* StencilTest */ = {
 			isa = PBXGroup;
 			children = (
+				162357262AA6CB3C006B83A3 /* stenciltest.cpp */,
+				162357272AA6CB3C006B83A3 /* stenciltest.hpp */,
+				162357292AA6D068006B83A3 /* shaderSingleColor.fs */,
 			);
 			path = StencilTest;
 			sourceTree = "<group>";
@@ -732,6 +739,7 @@
 				16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */,
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,
 				169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */,
+				162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */,
 				16E22C252A2E0102007F78A2 /* moreAttributes.cpp in Sources */,
 				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,
 				DD9339032A12F1F900F4FCDD /* triangle_0.cpp in Sources */,
