@@ -253,6 +253,8 @@
 		16E22C372A2E6CD4007F78A2 /* texture_0.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture_0.hpp; sourceTree = "<group>"; };
 		16E22C392A2E708F007F78A2 /* shader_0.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.vs; sourceTree = "<group>"; };
 		16E22C3A2A2E70B1007F78A2 /* shader_0.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.fs; sourceTree = "<group>"; };
+		16F4CC932AAC26E900A8BD5A /* stenciltest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = stenciltest.vs; sourceTree = "<group>"; };
+		16F4CC942AAC26F800A8BD5A /* stenciltest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = stenciltest.fs; sourceTree = "<group>"; };
 		DD15A1A62A12F505003FF486 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		DD15A1A82A12F512003FF486 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.3.dylib; sourceTree = "<group>"; };
 		DD15A1A92A12F512003FF486 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
@@ -343,6 +345,8 @@
 				162357262AA6CB3C006B83A3 /* stenciltest.cpp */,
 				162357272AA6CB3C006B83A3 /* stenciltest.hpp */,
 				162357292AA6D068006B83A3 /* shaderSingleColor.fs */,
+				16F4CC932AAC26E900A8BD5A /* stenciltest.vs */,
+				16F4CC942AAC26F800A8BD5A /* stenciltest.fs */,
 			);
 			path = StencilTest;
 			sourceTree = "<group>";

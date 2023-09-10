@@ -32,8 +32,9 @@
 #include "multiplelights.hpp"
 #include "loadnanosuit.hpp"
 #include "depthtest.hpp"
+#include "stenciltest.hpp"
 
 int main(int argc, const char * argv[]){
-    depthtest();
+    stenciltest();
     return 0;
 }
