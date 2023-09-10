@@ -168,7 +168,7 @@ int stenciltest(){
      * @param GLenum dppass 模版测试和深度测试都通过时采取的行为
      * 默认情况下三个参数都是GL_KEEP
      */
-    glStencilOp(GL_KEEP,GL_KEEP,GL_REPLACE);//测试失败或通过时的行为
+    glStencilOp(GL_KEEP,GL_REPLACE,GL_REPLACE);//测试失败或通过时的行为
     //GL_KEEP 保持当前存储的模版值
     //GL_ZERO 将模版值设置为0
     //GL_REPLACE 将模版值设置为glfwStencilFunc函数设置的ref值
@@ -214,22 +214,71 @@ int stenciltest(){
         glBindVertexArray(cubeVAO);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,marbleTexture);
-        shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,0.0f,-1.0f)));
+        shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,-0.25f,-1.0f)));
         glDrawArrays(GL_TRIANGLES,0,36);
-        shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,0.0f,0.0f)));
+        
+        glStencilFunc(GL_NOTEQUAL,1,0xFF);
+        glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
+        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+        Frame->use();
+        float scale=1.03f;
+        glBindVertexArray(cubeVAO);
+        Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,-0.25f,-1.0f)), glm::vec3(scale,scale,scale)));
+        glDrawArrays(GL_TRIANGLES,0,36);
+
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,marbleTexture);
+        glEnable(GL_DEPTH_TEST);
+        shader->use();
+        shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.15f,0.0f)));
+        glDrawArrays(GL_TRIANGLES,0,36);
+        
+        glStencilFunc(GL_NOTEQUAL,1,0xFF);
+        glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
+        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+        Frame->use();
+        Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.15f,0.0f)), glm::vec3(scale,scale,scale)));
+        glDrawArrays(GL_TRIANGLES,0,36);
+        
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,marbleTexture);
+        glEnable(GL_DEPTH_TEST);
+        shader->use();
+        shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.5f,-3.0f)));
         glDrawArrays(GL_TRIANGLES,0,36);
 
         glStencilFunc(GL_NOTEQUAL,1,0xFF);
         glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
         glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
         Frame->use();
-        float scale=1.1f;
-
+        Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.5f,-3.0f)),
+            glm::vec3(scale,scale,scale)));
+        glDrawArrays(GL_TRIANGLES,0,36);
+        
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
         glBindVertexArray(cubeVAO);
-        Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,0.0f,-1.0f)), glm::vec3(scale,scale,scale)));
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,marbleTexture);
+        glEnable(GL_DEPTH_TEST);
+        shader->use();
+        shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(2.5f,-1.5f,-2.15f)));
         glDrawArrays(GL_TRIANGLES,0,36);
-        Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,0.0f,0.0f)), glm::vec3(scale,scale,scale)));
+
+        glStencilFunc(GL_NOTEQUAL,1,0xFF);
+        glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
+        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+        Frame->use();
+        Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.5f,-1.5f,-2.15f)),
+            glm::vec3(scale,scale,scale)));
         glDrawArrays(GL_TRIANGLES,0,36);
+
         
         glBindVertexArray(0);
         glStencilMask(0xFF);//将模版缓冲的写入行为恢复正常
