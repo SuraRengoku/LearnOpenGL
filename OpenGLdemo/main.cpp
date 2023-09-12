@@ -33,6 +33,7 @@
 #include "loadnanosuit.hpp"
 #include "depthtest.hpp"
 #include "stenciltest.hpp"
+#include "blending.hpp"
 
 int main(int argc, const char * argv[]){
     stenciltest();

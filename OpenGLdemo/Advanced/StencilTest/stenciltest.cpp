@@ -7,8 +7,8 @@
 
 #include "stenciltest.hpp"
 
-static unsigned const int SCR_WIDTH=800;
-static unsigned const int SCR_HEIGHT=1200;
+static unsigned const int SCR_WIDTH=1200;
+static unsigned const int SCR_HEIGHT=800;
 
 Camera camera(glm::vec3(0.0f,0.0f,6.0f));
 bool firstMouse=true;
@@ -65,13 +65,13 @@ static float cubeVertices[] = {
 };
 static float planeVertices[] = {
     // positions          // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-     5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
+     5.0f, -0.5f,  5.0f,  1.0f, 0.0f,
     -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
-    -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
+    -5.0f, -0.5f, -5.0f,  0.0f, 1.0f,
 
-     5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-    -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-     5.0f, -0.5f, -5.0f,  2.0f, 2.0f
+     5.0f, -0.5f,  5.0f,  1.0f, 0.0f,
+    -5.0f, -0.5f, -5.0f,  0.0f, 1.0f,
+     5.0f, -0.5f, -5.0f,  1.0f, 1.0f
 };
 
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
@@ -92,7 +92,7 @@ int stenciltest(){
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     //启用向前兼容模式，允许在较新的版本中使用较旧的特性
 #endif
-    
+
     GLFWwindow* window=glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "learnOpenGL", NULL, NULL);
     try{
         if(window==nullptr)
@@ -102,13 +102,13 @@ int stenciltest(){
         glfwTerminate();
         return -1;
     }
-    
+
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    
+
     try{
         if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
             throw std::runtime_error("fail to initialize GLAD");
@@ -117,20 +117,20 @@ int stenciltest(){
         glfwTerminate();
         return -1;
     }
-    
-    
+
+
     Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/StencilTest/stenciltest.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/StencilTest/stenciltest.fs");
     Shader *Frame=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/StencilTest/stenciltest.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/StencilTest/shaderSingleColor.fs");
 
     unsigned marbleTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/marble.jpg");
     unsigned metalTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metal.png");
-    
+
     unsigned int cubeVAO,cubeVBO,planeVAO,planeVBO;
     glGenVertexArrays(1,&cubeVAO);
     glGenVertexArrays(1,&planeVAO);
     glGenBuffers(1,&cubeVBO);
     glGenBuffers(1,&planeVBO);
-    
+
     glBindVertexArray(cubeVAO);
     glBindBuffer(GL_ARRAY_BUFFER,cubeVBO);
     glBufferData(GL_ARRAY_BUFFER,sizeof(cubeVertices),&cubeVertices,GL_STATIC_DRAW);
@@ -138,7 +138,7 @@ int stenciltest(){
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(GL_FLOAT),(void*)(3*sizeof(GL_FLOAT)));
     glEnableVertexAttribArray(1);
-    
+
     glBindVertexArray(planeVAO);
     glBindBuffer(GL_ARRAY_BUFFER,planeVBO);
     glBufferData(GL_ARRAY_BUFFER,sizeof(planeVertices),&planeVertices,GL_STATIC_DRAW);
@@ -146,12 +146,12 @@ int stenciltest(){
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(GL_FLOAT),(void*)(3*sizeof(GL_FLOAT)));
     glEnableVertexAttribArray(1);
-    
+
     glBindVertexArray(0);
-    
+
     shader->use();
     shader->setInt("texture1", 0);
-    
+
     //global configuration
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -177,38 +177,38 @@ int stenciltest(){
     //GL_DECR 如果模版值大于小于最小值则将模版值减1
     //GL_DECR_WRAP 与GL_DECR一样，但如果模版值小于0则将其设置为最大值
     //GL_INVERT 安慰反转当前的模版桓冲值
-    
+
     while(!glfwWindowShouldClose(window)){
         float currentTime=static_cast<float>(glfwGetTime());
         deltaTime=currentTime-lastTime;
         lastTime=currentTime;
-        
+
         processInput(window);
         processCameraWSAD(window, camera, deltaTime);
-        
+
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
-        
-        
+
+
         glm::mat4 view=camera.GetViewMatrix();
         glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
-        
+
         Frame->use();
         Frame->setMat4("view", view);
         Frame->setMat4("projection", projection);
-        
+
         shader->use();//在渲染之前，一定要指定着色器
         shader->setMat4("view", view);
         shader->setMat4("projection", projection);
-        
-        
+
+
         glStencilMask(0x00);//在渲染地板时，禁用模版缓冲写入
         glBindVertexArray(planeVAO);
         glBindTexture(GL_TEXTURE_2D,metalTexture);
         shader->setMat4("model", glm::mat4(1.0f));
         glDrawArrays(GL_TRIANGLES,0,6);
         glBindVertexArray(0);
-        
+
         glStencilFunc(GL_ALWAYS,1,0xFF);
         glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
         glBindVertexArray(cubeVAO);
@@ -216,15 +216,18 @@ int stenciltest(){
         glBindTexture(GL_TEXTURE_2D,marbleTexture);
         shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,-0.25f,-1.0f)));
         glDrawArrays(GL_TRIANGLES,0,36);
-        
+
         glStencilFunc(GL_NOTEQUAL,1,0xFF);
         glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
-        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+//        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
         Frame->use();
         float scale=1.03f;
         glBindVertexArray(cubeVAO);
         Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,-0.25f,-1.0f)), glm::vec3(scale,scale,scale)));
         glDrawArrays(GL_TRIANGLES,0,36);
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);
+        glClear(GL_STENCIL_BUFFER_BIT);
 
         glStencilFunc(GL_ALWAYS,1,0xFF);
         glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
@@ -235,14 +238,17 @@ int stenciltest(){
         shader->use();
         shader->setMat4("model", glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.15f,0.0f)));
         glDrawArrays(GL_TRIANGLES,0,36);
-        
+
         glStencilFunc(GL_NOTEQUAL,1,0xFF);
         glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
-        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+//        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
         Frame->use();
         Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.15f,0.0f)), glm::vec3(scale,scale,scale)));
         glDrawArrays(GL_TRIANGLES,0,36);
-        
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);
+        glClear(GL_STENCIL_BUFFER_BIT);
+
         glStencilFunc(GL_ALWAYS,1,0xFF);
         glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
         glBindVertexArray(cubeVAO);
@@ -255,12 +261,15 @@ int stenciltest(){
 
         glStencilFunc(GL_NOTEQUAL,1,0xFF);
         glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
-        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+//        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
         Frame->use();
         Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,-0.5f,-3.0f)),
             glm::vec3(scale,scale,scale)));
         glDrawArrays(GL_TRIANGLES,0,36);
-        
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);
+        glClear(GL_STENCIL_BUFFER_BIT);
+
         glStencilFunc(GL_ALWAYS,1,0xFF);
         glStencilMask(0xFF);//在渲染箱子时，启用模版缓冲写入
         glBindVertexArray(cubeVAO);
@@ -273,13 +282,16 @@ int stenciltest(){
 
         glStencilFunc(GL_NOTEQUAL,1,0xFF);
         glStencilMask(0x00);//在渲染轮廓时，禁用模版缓冲写入
-        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
+//        glDisable(GL_DEPTH_TEST);//防止深度信息干扰模版测试
         Frame->use();
         Frame->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.5f,-1.5f,-2.15f)),
             glm::vec3(scale,scale,scale)));
         glDrawArrays(GL_TRIANGLES,0,36);
+        glStencilFunc(GL_ALWAYS,1,0xFF);
+        glStencilMask(0xFF);
+        glClear(GL_STENCIL_BUFFER_BIT);
 
-        
+
         glBindVertexArray(0);
         glStencilMask(0xFF);//将模版缓冲的写入行为恢复正常
         //如果不及时清除箱子的模版带来的影响，其大范围的移动会导致后续的渲染始终无法通过
@@ -287,7 +299,7 @@ int stenciltest(){
         //因此在这里需要将其恢复为可写入状态
         glStencilFunc(GL_ALWAYS,0,0xFF);
         glEnable(GL_DEPTH_TEST);
-        
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -297,7 +309,7 @@ int stenciltest(){
     glDeleteBuffers(1,&planeVBO);
     delete shader;
     delete Frame;
-    
+
     glfwTerminate();
     return 0;
 }
@@ -305,19 +317,19 @@ int stenciltest(){
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn){
     float xpos=static_cast<float>(xposIn);
     float ypos=static_cast<float>(yposIn);
-    
+
     if(firstMouse){
         firstMouse=false;
         lastX=xpos;
         lastY=ypos;
     }
-    
+
     float xoffset=xpos-lastX;
     float yoffset=lastY-ypos;
     lastX=xpos;
     lastY=ypos;
     camera.ProcessMouseMovement(xoffset, yoffset);
-    
+
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset){

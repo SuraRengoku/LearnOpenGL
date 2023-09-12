@@ -49,6 +49,7 @@
 		16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16E22C262A2E05A9007F78A2 /* shader.cpp */; };
 		16E22C2E2A2E18A7007F78A2 /* shadersApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16E22C2C2A2E18A7007F78A2 /* shadersApplication.cpp */; };
 		16E22C382A2E6CD4007F78A2 /* texture_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16E22C362A2E6CD4007F78A2 /* texture_0.cpp */; };
+		16F4CC982AADF27000A8BD5A /* blending.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F4CC962AADF27000A8BD5A /* blending.cpp */; };
 		DD15A1A72A12F505003FF486 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = DD15A1A62A12F505003FF486 /* glad.c */; };
 		DD15A1AA2A12F512003FF486 /* libglfw.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD15A1A82A12F512003FF486 /* libglfw.3.dylib */; };
 		DD15A1AB2A12F512003FF486 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD15A1A92A12F512003FF486 /* libglfw3.a */; };
@@ -111,6 +112,7 @@
 		160247C92A6BD10B0069EA77 /* loadnanosuit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = loadnanosuit.hpp; sourceTree = "<group>"; };
 		160247CB2A6BD1DF0069EA77 /* nanosuitobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.vs; sourceTree = "<group>"; };
 		160247CC2A6BD1E90069EA77 /* nanosuitobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.fs; sourceTree = "<group>"; };
+		16129D852AAF4529005CB9AD /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		162357202A9F4951006B83A3 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		162357212A9F4A86006B83A3 /* depthtest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.vs; sourceTree = "<group>"; };
 		162357222A9F4A96006B83A3 /* depthtest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.fs; sourceTree = "<group>"; };
@@ -255,6 +257,10 @@
 		16E22C3A2A2E70B1007F78A2 /* shader_0.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0.fs; sourceTree = "<group>"; };
 		16F4CC932AAC26E900A8BD5A /* stenciltest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = stenciltest.vs; sourceTree = "<group>"; };
 		16F4CC942AAC26F800A8BD5A /* stenciltest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = stenciltest.fs; sourceTree = "<group>"; };
+		16F4CC962AADF27000A8BD5A /* blending.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blending.cpp; sourceTree = "<group>"; };
+		16F4CC972AADF27000A8BD5A /* blending.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blending.hpp; sourceTree = "<group>"; };
+		16F4CC992AADF28900A8BD5A /* blending.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blending.vs; sourceTree = "<group>"; };
+		16F4CC9A2AADF29500A8BD5A /* blending.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blending.fs; sourceTree = "<group>"; };
 		DD15A1A62A12F505003FF486 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 		DD15A1A82A12F512003FF486 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.3.dylib; sourceTree = "<group>"; };
 		DD15A1A92A12F512003FF486 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
@@ -354,6 +360,7 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				16F4CC952AADF08300A8BD5A /* Blending */,
 				162357252AA1C14D006B83A3 /* StencilTest */,
 				162671BA2A9F028D003F03E0 /* DepthTest */,
 			);
@@ -549,6 +556,7 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				16129D852AAF4529005CB9AD /* grass.png */,
 				162357232AA1034D006B83A3 /* marble.jpg */,
 				162357202A9F4951006B83A3 /* metal.png */,
 				160247B12A6BCEAA0069EA77 /* models */,
@@ -628,6 +636,17 @@
 				16DE6B082A313403006B7C10 /* texture_2.hpp */,
 			);
 			path = texture;
+			sourceTree = "<group>";
+		};
+		16F4CC952AADF08300A8BD5A /* Blending */ = {
+			isa = PBXGroup;
+			children = (
+				16F4CC962AADF27000A8BD5A /* blending.cpp */,
+				16F4CC972AADF27000A8BD5A /* blending.hpp */,
+				16F4CC992AADF28900A8BD5A /* blending.vs */,
+				16F4CC9A2AADF29500A8BD5A /* blending.fs */,
+			);
+			path = Blending;
 			sourceTree = "<group>";
 		};
 		DD9338F62A12F1F900F4FCDD = {
@@ -773,6 +792,7 @@
 				16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */,
 				16E22C222A2DF7F9007F78A2 /* changingColor.cpp in Sources */,
 				16355B272A3DFAE0001BAF56 /* imgui_impl_glfw.cpp in Sources */,
+				16F4CC982AADF27000A8BD5A /* blending.cpp in Sources */,
 				160247912A684E2E0069EA77 /* mesh.cpp in Sources */,
 				16E22C1C2A2DD7E8007F78A2 /* triangle_2.cpp in Sources */,
 				16E22C1F2A2DEAB9007F78A2 /* triangle_3.cpp in Sources */,
