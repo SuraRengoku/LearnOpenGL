@@ -34,8 +34,11 @@
 #include "depthtest.hpp"
 #include "stenciltest.hpp"
 #include "blending.hpp"
+#include "blending_.hpp"
+#include "faceculling.hpp"
+#include "framebuffers.hpp"
 
 int main(int argc, const char * argv[]){
-    stenciltest();
+    framebuffers();
     return 0;
 }

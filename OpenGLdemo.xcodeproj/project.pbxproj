@@ -11,6 +11,9 @@
 		160247912A684E2E0069EA77 /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1602478F2A684E2E0069EA77 /* mesh.cpp */; };
 		160247952A695B160069EA77 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247932A695B160069EA77 /* model.cpp */; };
 		160247CA2A6BD10B0069EA77 /* loadnanosuit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160247C82A6BD10B0069EA77 /* loadnanosuit.cpp */; };
+		16129D892AB01A8D005CB9AD /* blending_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16129D872AB01A8D005CB9AD /* blending_.cpp */; };
+		16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16129D8C2AB04DFB005CB9AD /* faceculling.cpp */; };
+		16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16221FC92AB18D460010E439 /* framebuffers.cpp */; };
 		162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162357262AA6CB3C006B83A3 /* stenciltest.cpp */; };
 		162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162671BB2A9F06E4003F03E0 /* depthtest.cpp */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
@@ -113,6 +116,20 @@
 		160247CB2A6BD1DF0069EA77 /* nanosuitobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.vs; sourceTree = "<group>"; };
 		160247CC2A6BD1E90069EA77 /* nanosuitobj.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuitobj.fs; sourceTree = "<group>"; };
 		16129D852AAF4529005CB9AD /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
+		16129D862AB01A3A005CB9AD /* blending_transparent_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blending_transparent_window.png; sourceTree = "<group>"; };
+		16129D872AB01A8D005CB9AD /* blending_.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blending_.cpp; sourceTree = "<group>"; };
+		16129D882AB01A8D005CB9AD /* blending_.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blending_.hpp; sourceTree = "<group>"; };
+		16129D8A2AB01A9D005CB9AD /* blending_.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blending_.fs; sourceTree = "<group>"; };
+		16129D8C2AB04DFB005CB9AD /* faceculling.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = faceculling.cpp; sourceTree = "<group>"; };
+		16129D8D2AB04DFB005CB9AD /* faceculling.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = faceculling.hpp; sourceTree = "<group>"; };
+		16129D8F2AB08730005CB9AD /* faceculling.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.vs; sourceTree = "<group>"; };
+		16129D902AB0873D005CB9AD /* faceculling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.fs; sourceTree = "<group>"; };
+		16221FC72AB18D2E0010E439 /* framebuffers.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.vs; sourceTree = "<group>"; };
+		16221FC82AB18D390010E439 /* framebuffers.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.fs; sourceTree = "<group>"; };
+		16221FC92AB18D460010E439 /* framebuffers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framebuffers.cpp; sourceTree = "<group>"; };
+		16221FCA2AB18D460010E439 /* framebuffers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffers.hpp; sourceTree = "<group>"; };
+		16221FCC2AB1ABFE0010E439 /* framebuffers_screen.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_screen.vs; sourceTree = "<group>"; };
+		16221FCD2AB1AC0D0010E439 /* framebuffers_screen.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_screen.fs; sourceTree = "<group>"; };
 		162357202A9F4951006B83A3 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		162357212A9F4A86006B83A3 /* depthtest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.vs; sourceTree = "<group>"; };
 		162357222A9F4A96006B83A3 /* depthtest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.fs; sourceTree = "<group>"; };
@@ -345,6 +362,30 @@
 			path = nanosuit;
 			sourceTree = "<group>";
 		};
+		16129D8B2AB04DE0005CB9AD /* FaceCulling */ = {
+			isa = PBXGroup;
+			children = (
+				16129D8C2AB04DFB005CB9AD /* faceculling.cpp */,
+				16129D8D2AB04DFB005CB9AD /* faceculling.hpp */,
+				16129D8F2AB08730005CB9AD /* faceculling.vs */,
+				16129D902AB0873D005CB9AD /* faceculling.fs */,
+			);
+			path = FaceCulling;
+			sourceTree = "<group>";
+		};
+		16221FC62AB18D0E0010E439 /* Framebuffers */ = {
+			isa = PBXGroup;
+			children = (
+				16221FC72AB18D2E0010E439 /* framebuffers.vs */,
+				16221FC82AB18D390010E439 /* framebuffers.fs */,
+				16221FC92AB18D460010E439 /* framebuffers.cpp */,
+				16221FCA2AB18D460010E439 /* framebuffers.hpp */,
+				16221FCC2AB1ABFE0010E439 /* framebuffers_screen.vs */,
+				16221FCD2AB1AC0D0010E439 /* framebuffers_screen.fs */,
+			);
+			path = Framebuffers;
+			sourceTree = "<group>";
+		};
 		162357252AA1C14D006B83A3 /* StencilTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +401,8 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				16221FC62AB18D0E0010E439 /* Framebuffers */,
+				16129D8B2AB04DE0005CB9AD /* FaceCulling */,
 				16F4CC952AADF08300A8BD5A /* Blending */,
 				162357252AA1C14D006B83A3 /* StencilTest */,
 				162671BA2A9F028D003F03E0 /* DepthTest */,
@@ -556,6 +599,7 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				16129D862AB01A3A005CB9AD /* blending_transparent_window.png */,
 				16129D852AAF4529005CB9AD /* grass.png */,
 				162357232AA1034D006B83A3 /* marble.jpg */,
 				162357202A9F4951006B83A3 /* metal.png */,
@@ -645,6 +689,9 @@
 				16F4CC972AADF27000A8BD5A /* blending.hpp */,
 				16F4CC992AADF28900A8BD5A /* blending.vs */,
 				16F4CC9A2AADF29500A8BD5A /* blending.fs */,
+				16129D872AB01A8D005CB9AD /* blending_.cpp */,
+				16129D882AB01A8D005CB9AD /* blending_.hpp */,
+				16129D8A2AB01A9D005CB9AD /* blending_.fs */,
 			);
 			path = Blending;
 			sourceTree = "<group>";
@@ -765,8 +812,10 @@
 				162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */,
 				16E22C252A2E0102007F78A2 /* moreAttributes.cpp in Sources */,
 				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,
+				16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */,
 				DD9339032A12F1F900F4FCDD /* triangle_0.cpp in Sources */,
 				16E22C192A2D4939007F78A2 /* main.cpp in Sources */,
+				16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */,
 				16355B1F2A3DFA88001BAF56 /* imgui_draw.cpp in Sources */,
 				16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */,
 				169DEED92A63E69400F78236 /* spotlight.cpp in Sources */,
@@ -792,6 +841,7 @@
 				16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */,
 				16E22C222A2DF7F9007F78A2 /* changingColor.cpp in Sources */,
 				16355B272A3DFAE0001BAF56 /* imgui_impl_glfw.cpp in Sources */,
+				16129D892AB01A8D005CB9AD /* blending_.cpp in Sources */,
 				16F4CC982AADF27000A8BD5A /* blending.cpp in Sources */,
 				160247912A684E2E0069EA77 /* mesh.cpp in Sources */,
 				16E22C1C2A2DD7E8007F78A2 /* triangle_2.cpp in Sources */,

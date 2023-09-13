@@ -100,7 +100,7 @@
 //    }
 //
 //    glEnable(GL_DEPTH_TEST);
-//    
+//
 //    ImGui::CreateContext();
 //    ImGuiIO& io=ImGui::GetIO();
 //    (void)io;
@@ -114,15 +114,15 @@
 //    bool show_demo_window=true;
 //    bool show_another_window=false;
 //    ImVec4 clear_color=ImVec4(0.45f,0.55f,0.60f,1.00f);
-//    
+//
 //    Shader *objshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Materials/materials.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Materials/materialsobj.fs");
 //    Shader *lightshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Materials/materialslight.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Materials/materialslight.fs");
-//    
+//
 //    unsigned int VBO,objVAO,lightVAO;
 //    glGenBuffers(1,&VBO);
 //    glGenVertexArrays(1,&objVAO);
 //    glGenVertexArrays(1,&lightVAO);
-//    
+//
 //    glBindVertexArray(objVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,VBO);
 //    glBufferData(GL_ARRAY_BUFFER,sizeof(vertices),vertices,GL_STATIC_DRAW);
@@ -130,30 +130,30 @@
 //    glEnableVertexAttribArray(0);
 //    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(GL_FLOAT),(void*)(3*sizeof(GL_FLOAT)));
 //    glEnableVertexAttribArray(1);
-//    
+//
 //    glBindVertexArray(lightVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,VBO);
 //    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,6*sizeof(GL_FLOAT),(void*)0);
 //    glEnableVertexAttribArray(0);
-//    
+//
 //    objshader->use();
 //    objshader->setVec3("light.position", lightPos);
-//    
+//
 //    glm::vec3 lightColor;
 //    glm::vec3 diffuseColor;
 //    glm::vec3 ambientColor;
-//    
+//
 //    while (!glfwWindowShouldClose(window)) {
 //        float currentTime=static_cast<float>(glfwGetTime());
 //        deltaTime=currentTime-lastTime;
 //        lastTime=currentTime;
-//        
+//
 //        processInput(window);
 //        processCameraWSAD(window, camera, deltaTime);
-//        
+//
 //        glClearColor(0.1f,0.1f,0.1f,1.0f);
 //        glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
-//        
+//
 //        ImGui_ImplOpenGL3_NewFrame();
 //        ImGui_ImplGlfw_NewFrame();
 //        ImGui::NewFrame();
@@ -183,15 +183,15 @@
 //                show_another_window=false;
 //            ImGui::End();
 //        }
-//        
+//
 //        lightColor.x=sin(glfwGetTime()*2.0f);
 //        lightColor.y=sin(glfwGetTime()*0.7f);
 //        lightColor.z=sin(glfwGetTime()*1.3f);
 //        diffuseColor=lightColor*glm::vec3(0.5f);
 //        ambientColor=diffuseColor*glm::vec3(0.2f);
-//        
+//
 //        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
-//        
+//
 //        objshader->use();
 //        objshader->setMat4("projection", projection);
 //        objshader->setVec3("viewPos", camera.Position);
@@ -208,23 +208,23 @@
 //        objshader->setMat4("model", objmodel);
 //        glm::mat3 normalMatrix=glm::mat3(glm::transpose(glm::inverse(objmodel)));
 //        objshader->setMat3("normalMatrix", normalMatrix);
-//        
+//
 //        glBindVertexArray(objVAO);
 //        glDrawArrays(GL_TRIANGLES,0,36);
-//        
+//
 //        lightshader->use();
 //        lightshader->setVec3("lightColor", lightColor);
 //        lightshader->setMat4("view", view);
 //        lightshader->setMat4("projection", projection);
 //        glm::mat4 lightmodel=glm::scale(glm::translate(glm::mat4(1.0f),lightPos),glm::vec3(0.2f));
 //        lightshader->setMat4("model", lightmodel);
-//        
+//
 //        glBindVertexArray(lightVAO);
 //        glDrawArrays(GL_TRIANGLES,0,36);
-//        
+//
 //        ImGui::Render();
 //        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-//        
+//
 //        glfwSwapBuffers(window);
 //        glfwPollEvents();
 //    }
@@ -232,13 +232,15 @@
 //    glDeleteVertexArrays(1,&objVAO);
 //    glDeleteVertexArrays(1,&lightVAO);
 //    delete objshader;
+//    objshader=nullptr;
 //    delete lightshader;
-//    
+//    lightshader=nullptr;
+//
 //    ImGui_ImplGlfw_Shutdown();
 //    ImGui_ImplOpenGL3_Shutdown();
 //    ImGui::DestroyContext();
 //
-//    
+//
 //    glfwTerminate();
 //    return 0;
 //}
@@ -246,18 +248,18 @@
 //void mouse_callback(GLFWwindow* window, double xposIn,double yposIn){
 //    float xpos=static_cast<float>(xposIn);
 //    float ypos=static_cast<float>(yposIn);
-//    
+//
 //    if(firstMouse){
 //        lastX=xpos;
 //        lastY=ypos;
 //        firstMouse=false;
 //    }
-//    
+//
 //    float xoffset=xpos-lastX;
 //    float yoffset=lastY-ypos;
 //    lastX=xpos;
 //    lastY=ypos;
-//    
+//
 //    camera.ProcessMouseMovement(xoffset, yoffset);
 //}
 //

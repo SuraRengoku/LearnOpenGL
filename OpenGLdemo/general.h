@@ -131,7 +131,7 @@ public:
 };
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
+void processInput(GLFWwindow* window, GLFWcursorposfun mouse_callback, GLFWscrollfun scroll_callback);
 int processInputUpDown(GLFWwindow* window);
 void processCameraWSAD(GLFWwindow* window,Camera &camera,float &deltaTime);
 //void mouse_callback(GLFWwindow* window,double &xpos,double &ypos,float &lastX,float &lastY,bool &firstMouse,float &yaw,float &pitch,glm::vec3 &cameraFront);

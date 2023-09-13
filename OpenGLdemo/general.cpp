@@ -50,10 +50,20 @@ void framebuffer_size_callback(GLFWwindow* window,int width, int height){
     glViewport(0,0,width,height);
 }
 
-void processInput(GLFWwindow* window){
+void processInput(GLFWwindow* window, GLFWcursorposfun mouse_callback, GLFWscrollfun scroll_callback){
     if(glfwGetKey(window,GLFW_KEY_ESCAPE)==GLFW_PRESS){
         //检测键盘输入，需要一个窗口和一个键盘键做参数，返回该键盘键是否被按下，如果没有被按下返回GLFW_RELEASE
         glfwSetWindowShouldClose(window, true);//使用函数将window的WindowShouldClose属性设置为true，该举动可以打破while循环
+    }
+    if(glfwGetKey(window, GLFW_KEY_O)==GLFW_PRESS){
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        glfwSetCursorPosCallback(window, NULL);
+        glfwSetScrollCallback(window, NULL);
+    }
+    if(glfwGetKey(window, GLFW_KEY_I)==GLFW_PRESS){
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        glfwSetCursorPosCallback(window, mouse_callback);
+        glfwSetScrollCallback(window, scroll_callback);
     }
 }
 
