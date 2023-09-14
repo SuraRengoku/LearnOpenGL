@@ -14,6 +14,7 @@
 		16129D892AB01A8D005CB9AD /* blending_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16129D872AB01A8D005CB9AD /* blending_.cpp */; };
 		16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16129D8C2AB04DFB005CB9AD /* faceculling.cpp */; };
 		16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16221FC92AB18D460010E439 /* framebuffers.cpp */; };
+		16221FD32AB2B7260010E439 /* cubemaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16221FD12AB2B7260010E439 /* cubemaps.cpp */; };
 		162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162357262AA6CB3C006B83A3 /* stenciltest.cpp */; };
 		162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162671BB2A9F06E4003F03E0 /* depthtest.cpp */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
@@ -130,6 +131,13 @@
 		16221FCA2AB18D460010E439 /* framebuffers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffers.hpp; sourceTree = "<group>"; };
 		16221FCC2AB1ABFE0010E439 /* framebuffers_screen.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_screen.vs; sourceTree = "<group>"; };
 		16221FCD2AB1AC0D0010E439 /* framebuffers_screen.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers_screen.fs; sourceTree = "<group>"; };
+		16221FCF2AB2B7110010E439 /* cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.vs; sourceTree = "<group>"; };
+		16221FD02AB2B71B0010E439 /* cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.fs; sourceTree = "<group>"; };
+		16221FD12AB2B7260010E439 /* cubemaps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cubemaps.cpp; sourceTree = "<group>"; };
+		16221FD22AB2B7260010E439 /* cubemaps.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = cubemaps.hpp; sourceTree = "<group>"; };
+		16221FD42AB31D0D0010E439 /* skybox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = skybox; sourceTree = "<group>"; };
+		16221FD52AB330030010E439 /* objects.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = objects.vs; sourceTree = "<group>"; };
+		16221FD62AB3300C0010E439 /* objects.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = objects.fs; sourceTree = "<group>"; };
 		162357202A9F4951006B83A3 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		162357212A9F4A86006B83A3 /* depthtest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.vs; sourceTree = "<group>"; };
 		162357222A9F4A96006B83A3 /* depthtest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.fs; sourceTree = "<group>"; };
@@ -386,6 +394,19 @@
 			path = Framebuffers;
 			sourceTree = "<group>";
 		};
+		16221FCE2AB2B67B0010E439 /* Cubemaps */ = {
+			isa = PBXGroup;
+			children = (
+				16221FCF2AB2B7110010E439 /* cubemaps.vs */,
+				16221FD02AB2B71B0010E439 /* cubemaps.fs */,
+				16221FD12AB2B7260010E439 /* cubemaps.cpp */,
+				16221FD22AB2B7260010E439 /* cubemaps.hpp */,
+				16221FD52AB330030010E439 /* objects.vs */,
+				16221FD62AB3300C0010E439 /* objects.fs */,
+			);
+			path = Cubemaps;
+			sourceTree = "<group>";
+		};
 		162357252AA1C14D006B83A3 /* StencilTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +422,7 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				16221FCE2AB2B67B0010E439 /* Cubemaps */,
 				16221FC62AB18D0E0010E439 /* Framebuffers */,
 				16129D8B2AB04DE0005CB9AD /* FaceCulling */,
 				16F4CC952AADF08300A8BD5A /* Blending */,
@@ -599,6 +621,7 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				16221FD42AB31D0D0010E439 /* skybox */,
 				16129D862AB01A3A005CB9AD /* blending_transparent_window.png */,
 				16129D852AAF4529005CB9AD /* grass.png */,
 				162357232AA1034D006B83A3 /* marble.jpg */,
@@ -814,6 +837,7 @@
 				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,
 				16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */,
 				DD9339032A12F1F900F4FCDD /* triangle_0.cpp in Sources */,
+				16221FD32AB2B7260010E439 /* cubemaps.cpp in Sources */,
 				16E22C192A2D4939007F78A2 /* main.cpp in Sources */,
 				16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */,
 				16355B1F2A3DFA88001BAF56 /* imgui_draw.cpp in Sources */,

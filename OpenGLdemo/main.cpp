@@ -37,8 +37,9 @@
 #include "blending_.hpp"
 #include "faceculling.hpp"
 #include "framebuffers.hpp"
+#include "cubemaps.hpp"
 
 int main(int argc, const char * argv[]){
-    framebuffers();
+    cubemaps();
     return 0;
 }

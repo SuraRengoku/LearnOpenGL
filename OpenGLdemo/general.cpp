@@ -261,6 +261,35 @@ unsigned int loadTexture(char const *filepath){
     return textureID;
 }
 
+unsigned int loadCubemap(vector<string> faces){
+    unsigned int textureID;
+    glGenTextures(1,&textureID);
+    glBindTexture(GL_TEXTURE_CUBE_MAP,textureID);
+    
+    int width,height,nrChannels;
+    for(unsigned int i=0;i<faces.size();i++){
+        unsigned char *data=stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+        try{
+            if(data){
+                glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,GL_RGB,width,height,0,GL_RGB,GL_UNSIGNED_BYTE,data);
+                stbi_image_free(data);
+            }else{
+                stbi_image_free(data);
+                throw std::runtime_error("Cubemap texture failed to load at path");
+            }
+        }catch(const std::runtime_error &err){
+            cerr<<err.what()<<faces[i]<<"\n";
+            throw;
+        }
+    }
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_EDGE);
+    return textureID;
+}
+
 unsigned int loadTextureFromAssimp(const aiTexture* aiTex, GLint wrapMode, GLint MagFilterMode, GLint MinFilterMode){
     if(aiTex==nullptr)
         return 0;
@@ -271,7 +300,7 @@ unsigned int loadTextureFromAssimp(const aiTexture* aiTex, GLint wrapMode, GLint
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,wrapMode);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,MagFilterMode);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,MinFilterMode);
-    
+
     int width, height, nrChannels;
     unsigned char* image_data=nullptr;
     if(aiTex->mHeight==0){
