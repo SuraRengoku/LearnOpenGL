@@ -205,25 +205,30 @@ int cubemaps(){
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         
-        glDepthMask(GL_FALSE);
-        cubeshader->use();
-        glm::mat4 view=glm::mat4(glm::mat3(camera.GetViewMatrix()));
-        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
-        cubeshader->setMat4("view", view);
-        cubeshader->setMat4("projection", projection);
-        glBindVertexArray(cubeVAO);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_CUBE_MAP,cubemapTexture);
-        glDrawArrays(GL_TRIANGLES,0,36);
-        
         glDepthMask(GL_TRUE);
+        glDepthFunc(GL_LEQUAL);//在深度值等于1.0f时也要通过深度测试，否则天空盒不现实
+        
+//        float depthValue;
+//        int viewport[4];
+//        glGetIntegerv(GL_VIEWPORT,viewport);
+//        glReadPixels(viewport[2]/2,viewport[3]/2,1,1,GL_DEPTH_COMPONENT,GL_FLOAT,&depthValue);
+//        cout<<depthValue<<"\n";
         objectshader->use();
-        view=camera.GetViewMatrix();
+        glm::mat4 view=camera.GetViewMatrix();
+        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
         objectshader->setMat4("view", view);
         objectshader->setMat4("projection", projection);
         objectshader->setMat4("model", glm::mat4(1.0f));
         glBindVertexArray(containerVAO);
         glBindTexture(GL_TEXTURE_2D,woodTexture);
+        glDrawArrays(GL_TRIANGLES,0,36);
+        
+        cubeshader->use();
+        cubeshader->setMat4("view", glm::mat4(glm::mat3(view)));//  去掉view矩阵的第三列，即位移列
+        cubeshader->setMat4("projection", projection);
+        glBindVertexArray(cubeVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_CUBE_MAP,cubemapTexture);
         glDrawArrays(GL_TRIANGLES,0,36);
         
         glBindVertexArray(0);
