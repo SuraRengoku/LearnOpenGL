@@ -55,6 +55,7 @@ public:
     Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<_Texture> _textures);
     // render the mesh
     void Draw(const Shader &shader) const;
+    void DrawWithTexture(const Shader &shader,unsigned int& texture) const;
 private:
     // render data
     unsigned int VBO, EBO;

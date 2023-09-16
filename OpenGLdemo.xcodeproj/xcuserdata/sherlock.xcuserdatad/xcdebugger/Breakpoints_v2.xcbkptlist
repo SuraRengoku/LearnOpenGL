@@ -142,8 +142,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "loadnanosuit()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -175,6 +175,22 @@
             startingLineNumber = "121"
             endingLineNumber = "121"
             landmarkName = "Model::loadMaterialTextures(material, type, typeName, scene)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66112218-9334-4F00-88CD-7948A0F97167"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OpenGLdemo/LoadModels/Mesh/mesh.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "Mesh::Draw(shader)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

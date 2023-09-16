@@ -40,6 +40,6 @@
 #include "cubemaps.hpp"
 
 int main(int argc, const char * argv[]){
-    cubemaps();
+    loadnanosuit();
     return 0;
 }

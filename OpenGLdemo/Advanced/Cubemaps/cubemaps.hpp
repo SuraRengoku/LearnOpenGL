@@ -9,6 +9,7 @@
 #define cubemaps_hpp
 
 #include "shader.hpp"
+#include "model.hpp"
 
 int cubemaps();
 

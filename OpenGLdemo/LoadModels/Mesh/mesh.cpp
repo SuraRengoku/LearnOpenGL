@@ -67,3 +67,7 @@ void Mesh::Draw(const Shader &shader) const{
     glBindVertexArray(0);
     glActiveTexture(GL_TEXTURE0);
 }
+
+void Mesh::DrawWithTexture(const Shader &shader, unsigned int &texture) const{
+    
+}

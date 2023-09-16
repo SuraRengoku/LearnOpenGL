@@ -138,6 +138,8 @@
 		16221FD42AB31D0D0010E439 /* skybox */ = {isa = PBXFileReference; lastKnownFileType = folder; path = skybox; sourceTree = "<group>"; };
 		16221FD52AB330030010E439 /* objects.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = objects.vs; sourceTree = "<group>"; };
 		16221FD62AB3300C0010E439 /* objects.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = objects.fs; sourceTree = "<group>"; };
+		16221FD72AB353760010E439 /* objectsreflect.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = objectsreflect.vs; sourceTree = "<group>"; };
+		16221FD82AB353840010E439 /* objectsreflect.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = objectsreflect.fs; sourceTree = "<group>"; };
 		162357202A9F4951006B83A3 /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		162357212A9F4A86006B83A3 /* depthtest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.vs; sourceTree = "<group>"; };
 		162357222A9F4A96006B83A3 /* depthtest.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = depthtest.fs; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		162357292AA6D068006B83A3 /* shaderSingleColor.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shaderSingleColor.fs; sourceTree = "<group>"; };
 		162671BB2A9F06E4003F03E0 /* depthtest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = depthtest.cpp; sourceTree = "<group>"; };
 		162671BC2A9F06E4003F03E0 /* depthtest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depthtest.hpp; sourceTree = "<group>"; };
+		16294BAC2AB5F81100F8CBAF /* nanosuit_reflection */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nanosuit_reflection; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
 		162BE6752A594C3000BD1A6E /* matrix.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matrix.jpg; sourceTree = "<group>"; };
 		1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlienSoldier.fbx; sourceTree = "<group>"; };
@@ -333,6 +336,7 @@
 		160247B12A6BCEAA0069EA77 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				16294BAC2AB5F81100F8CBAF /* nanosuit_reflection */,
 				1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */,
 				165B242C2A6DFA8F000B845C /* VampireALusth.fbx */,
 				163041502A6E733F00FB4C55 /* MawJLaygo.fbx */,
@@ -403,6 +407,8 @@
 				16221FD22AB2B7260010E439 /* cubemaps.hpp */,
 				16221FD52AB330030010E439 /* objects.vs */,
 				16221FD62AB3300C0010E439 /* objects.fs */,
+				16221FD72AB353760010E439 /* objectsreflect.vs */,
+				16221FD82AB353840010E439 /* objectsreflect.fs */,
 			);
 			path = Cubemaps;
 			sourceTree = "<group>";
