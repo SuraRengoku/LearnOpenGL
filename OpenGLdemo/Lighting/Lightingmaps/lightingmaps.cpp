@@ -77,7 +77,7 @@
 //    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 ////    const char* glsl_version="#version 330 core";
 //#endif
-//    
+//
 //    GLFWwindow *window=glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "learnOpenGL", NULL, NULL);
 //    if(window==nullptr){
 //        cout<<"fail to load GLFW window\n";
@@ -104,12 +104,12 @@
 //
 //    Shader *objshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Lightingmaps/lightingmapsobj.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Lightingmaps/lightingmapsobj.fs");
 //    Shader *lightshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Lightingmaps/lightingmapslight.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Lighting/Lightingmaps/lightingmapslight.fs");
-//    
+//
 //    unsigned int VBO,objVAO,lightVAO;
 //    glGenBuffers(1,&VBO);
 //    glGenVertexArrays(1,&objVAO);
 //    glGenVertexArrays(1,&lightVAO);
-//    
+//
 //    glBindVertexArray(objVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,VBO);
 //    glBufferData(GL_ARRAY_BUFFER,sizeof(vertices),vertices,GL_STATIC_DRAW);
@@ -119,40 +119,40 @@
 //    glEnableVertexAttribArray(1);
 //    glVertexAttribPointer(2,2,GL_FLOAT,GL_FALSE,8*sizeof(GL_FLOAT),(void*)(6*sizeof(GL_FLOAT)));
 //    glEnableVertexAttribArray(2);
-//                         
+//
 //    glBindVertexArray(lightVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,VBO);
 //    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,8*sizeof(GL_FLOAT),(void*)0);
 //    glEnableVertexAttribArray(0);
-//    
+//
 //    unsigned int diffuseMap=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/container2.png");
 //    unsigned int specularMap=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/container2_specular.png");
 //    unsigned int specularMapColor=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/lighting_maps_specular_color.png");//彩色镜面光贴图
 //    unsigned int emissionMap=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/matrix.jpg");
-//    
+//
 //    objshader->use();
 //    objshader->setVec3("light.position", lightPos);
 //    objshader->setInt("material.diffuse", 0);
 //    objshader->setInt("material.specular",1);
 //    objshader->setInt("material.emission",2);
-//    
+//
 //    glm::vec3 ambientColor=glm::vec3(0.5f,0.5f,0.5f);
 //    glm::vec3 diffuseColor=glm::vec3(0.8f,0.8f,0.8f);
 //    glm::vec3 specularColor=glm::vec3(1.0f,1.0f,1.0f);
-//    
+//
 //    while (!glfwWindowShouldClose(window)) {
 //        float currentTime=static_cast<float>(glfwGetTime());
 //        deltaTime=currentTime-lastTime;
 //        lastTime=currentTime;
-//        
-//        processInput(window);
+//
+//        processInput(window,mouse_callback,scroll_callback);
 //        processCameraWSAD(window, camera, deltaTime);
-//        
+//
 //        glClearColor(0.1f,0.1f,0.1f,1.0f);
 //        glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
-//        
+//
 //        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
-//        
+//
 //        objshader->use();
 //        objshader->setMat4("projection", projection);
 //        objshader->setVec3("viewPos",camera.Position);
@@ -167,33 +167,33 @@
 //        objshader->setMat4("model", objmodel);
 //        glm::mat3 normalMatrix=glm::mat3(glm::transpose(glm::inverse(objmodel)));
 //        objshader->setMat3("normalMatrix", normalMatrix);
-//        
+//
 //        glm::vec3 matrixlight=glm::vec3((sin(currentTime)*2)+1.0f);
 //        objshader->setVec3("light.emission", matrixlight);
 //        objshader->setFloat("ymove", currentTime);
-//        
+//
 //        glActiveTexture(GL_TEXTURE0);
 //        glBindTexture(GL_TEXTURE_2D,diffuseMap);
-//        
+//
 //        glActiveTexture(GL_TEXTURE1);
 //        glBindTexture(GL_TEXTURE_2D,specularMap);
-//        
+//
 //        glActiveTexture(GL_TEXTURE2);
 //        glBindTexture(GL_TEXTURE_2D,emissionMap);
-//        
+//
 //        glBindVertexArray(objVAO);
 //        glDrawArrays(GL_TRIANGLES,0,36);
-//        
+//
 //        lightshader->use();
 //        lightshader->setVec3("lightColor",specularColor);
 //        lightshader->setMat4("projection", projection);
 //        lightshader->setMat4("view", view);
 //        glm::mat4 lightmodel=glm::scale(glm::translate(glm::mat4(1.0f), lightPos), glm::vec3(0.2f));
 //        lightshader->setMat4("model", lightmodel);
-//        
+//
 //        glBindVertexArray(lightVAO);
 //        glDrawArrays(GL_TRIANGLES,0,36);
-//        
+//
 //        glfwSwapBuffers(window);
 //        glfwPollEvents();
 //    }
@@ -202,7 +202,7 @@
 //    glDeleteVertexArrays(1,&objVAO);
 //    delete objshader;
 //    delete lightshader;
-//    
+//
 //    glfwTerminate();
 //    return 0;
 //}
@@ -210,18 +210,18 @@
 //void mouse_callback(GLFWwindow* window,double xPosIn,double yposIn){
 //    float xpos=static_cast<float>(xPosIn);
 //    float ypos=static_cast<float>(yposIn);
-//    
+//
 //    if(firstMouse){
 //        lastX=xpos;
 //        lastY=ypos;
 //        firstMouse=false;
 //    }
-//    
+//
 //    float xoffset=xpos-lastX;
 //    float yoffset=lastY-ypos;
 //    lastX=xpos;
 //    lastY=ypos;
-//    
+//
 //    camera.ProcessMouseMovement(xoffset, yoffset);
 //}
 //void scroll_callback(GLFWwindow* window,double xoffset,double yoffset){

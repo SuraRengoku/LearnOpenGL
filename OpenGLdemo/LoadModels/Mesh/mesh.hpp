@@ -33,7 +33,8 @@ enum textureType{
     diffuse,
     specular,
     normal,
-    height
+    height,
+    ambient,
 };
 
 typedef std::map<textureType,std::string> TEXTURE_TYEP_MAP;

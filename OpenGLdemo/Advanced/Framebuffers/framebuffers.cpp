@@ -125,13 +125,13 @@
 //        glfwTerminate();
 //        return -1;
 //    }
-//    
+//
 //    Shader* shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/Framebuffers/framebuffers.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/Framebuffers/framebuffers.fs");
 //    Shader* screenshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/Framebuffers/framebuffers_screen.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/Framebuffers/framebuffers_screen.fs");
-//    
+//
 //    unsigned moodTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/container.jpg");
 //    unsigned metalTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metal.png");
-//    
+//
 //    unsigned int cubeVAO,cubeVBO,planeVAO,planeVBO,quadVAO,quadVBO;
 //    glGenVertexArrays(1,&cubeVAO);
 //    glGenVertexArrays(1,&planeVAO);
@@ -139,7 +139,7 @@
 //    glGenBuffers(1,&cubeVBO);
 //    glGenBuffers(1,&planeVBO);
 //    glGenBuffers(1,&quadVBO);
-//    
+//
 //    glBindVertexArray(cubeVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,cubeVBO);
 //    glBufferData(GL_ARRAY_BUFFER,sizeof(cubeVertices),&cubeVertices,GL_STATIC_DRAW);
@@ -155,7 +155,7 @@
 //    glEnableVertexAttribArray(0);
 //    glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(GL_FLOAT),(void*)(3*sizeof(GL_FLOAT)));
 //    glEnableVertexAttribArray(1);
-//    
+//
 //    glBindVertexArray(quadVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,quadVBO);
 //    glBufferData(GL_ARRAY_BUFFER,sizeof(quadVertices),&quadVertices,GL_STATIC_DRAW);
@@ -163,14 +163,14 @@
 //    glEnableVertexAttribArray(0);
 //    glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,4*sizeof(GL_FLOAT),(void*)(2*sizeof(GL_FLOAT)));
 //    glEnableVertexAttribArray(1);
-//    
+//
 //    glBindVertexArray(0);
-//    
+//
 //    shader->use();
 //    shader->setInt("texture1", 0);
 //    screenshader->use();
 //    screenshader->setInt("screenTexture", 0);
-//    
+//
 //    unsigned int framebuffer;
 //    glGenFramebuffers(1,&framebuffer);
 //    glBindFramebuffer(GL_FRAMEBUFFER,framebuffer);
@@ -188,7 +188,7 @@
 //    glBindRenderbuffer(GL_RENDERBUFFER,rbo);
 //    glRenderbufferStorage(GL_RENDERBUFFER,GL_DEPTH24_STENCIL8,SCR_WIDTH,SCR_HEIGHT);//rbo没有任何数据储存空间，必须要为它分配内存
 //    glFramebufferRenderbuffer(GL_FRAMEBUFFER,GL_DEPTH_STENCIL_ATTACHMENT,GL_RENDERBUFFER,rbo);
-//    
+//
 //    try{
 //        if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)
 //            throw std::runtime_error("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
@@ -196,9 +196,9 @@
 //        cerr<<err.what()<<"\n";
 //        throw;
 //    }
-//    
+//
 //    glBindFramebuffer(GL_FRAMEBUFFER,0);
-//    
+//
 //    const char* glsl_version="#version 330 core";
 //    ImGui::CreateContext();
 //    ImGuiIO& io=ImGui::GetIO();
@@ -212,9 +212,9 @@
 //    ImGui_ImplGlfw_InitForOpenGL(window, true);
 //    //使用OpenGL渲染
 //    ImGui_ImplOpenGL3_Init(glsl_version);
-//    
+//
 //    bool show_demo_window=false;
-//    
+//
 //    const std::map<char*, GLint> effectmap={
 //        {const_cast<char*>("default"),0},
 //        {const_cast<char*>("reverse"),1},
@@ -232,18 +232,18 @@
 //        float currentTime=static_cast<float>(glfwGetTime());
 //        deltaTime=currentTime-lastTime;
 //        lastTime=currentTime;
-//        
+//
 //        processInput(window, mouse_callback, scroll_callback);
 //        processCameraWSAD(window, camera, deltaTime);
-//        
+//
 //        //begin:
 //        //将所有对象绘制到帧缓冲中
 //        glBindFramebuffer(GL_FRAMEBUFFER,framebuffer);
 //        glEnable(GL_DEPTH_TEST);
-//        
+//
 //        glClearColor(0.1f,0.1f,0.1f,1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-//        
+//
 //        shader->use();
 //        glm::mat4 model = glm::mat4(1.0f);
 //        glm::mat4 view = camera.GetViewMatrix();
@@ -268,11 +268,11 @@
 //        glDrawArrays(GL_TRIANGLES, 0, 6);
 //        glBindVertexArray(0);
 //        //end
-//        
+//
 //        //begin
 //        //将帧缓冲中的内容（一个纹理）绘制到默认帧缓冲（屏幕空间）中
 //        glBindFramebuffer(GL_FRAMEBUFFER,0);
-//        
+//
 //        ImGui_ImplOpenGL3_NewFrame();
 //        ImGui_ImplGlfw_NewFrame();
 //        ImGui::NewFrame();
@@ -287,15 +287,15 @@
 //        //4 模糊
 //        //5 边缘检测
 //        ImGui::Combo("Effect", &current_effect, effectname, IM_ARRAYSIZE(effectname));
-//        
+//
 //        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",1000.0f/io.Framerate, io.Framerate);
 //        ImGui::End();
-//        
+//
 //        glDisable(GL_DEPTH_TEST);
 //        //此时只是绘制四边形，所以需要禁用深度测试
 //        glClearColor(1.0f,1.0f,1.0f,1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT);
-//        
+//
 //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);//按照线框模式绘制
 //        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);//默认模式绘制
 //        screenshader->use();
@@ -304,12 +304,12 @@
 //        glBindTexture(GL_TEXTURE_2D,textureColorbuffer);
 //        glDrawArrays(GL_TRIANGLES,0,6);
 //        //end
-//        
+//
 //        glBindVertexArray(0);
-//        
+//
 //        ImGui::Render();
 //        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-//        
+//
 //        glfwSwapBuffers(window);
 //        glfwPollEvents();
 //    }
@@ -325,7 +325,7 @@
 //    shader=nullptr;
 //    delete screenshader;
 //    screenshader=nullptr;
-//    
+//
 //    glfwTerminate();
 //    return 0;
 //}
