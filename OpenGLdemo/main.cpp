@@ -38,10 +38,9 @@
 #include "faceculling.hpp"
 #include "framebuffers.hpp"
 #include "cubemaps.hpp"
+#include "advancedglsl.hpp"
 
 int main(int argc, const char * argv[]){
-    cubemaps();
-//    loadnanosuit();
-    
+    advancedglsl();
     return 0;
 }

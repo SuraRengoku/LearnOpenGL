@@ -41,6 +41,7 @@
 		16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A92A4CD2B00000F354 /* materials.cpp */; };
 		16CE59B42A57713B0000F354 /* lightingmaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59B22A57713B0000F354 /* lightingmaps.cpp */; };
 		16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */; };
+		16D25C4A2ABA0A58007A0900 /* advancedglsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D25C482ABA0A58007A0900 /* advancedglsl.cpp */; };
 		16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B032A312536006B7C10 /* texture_1.cpp */; };
 		16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B072A313403006B7C10 /* texture_2.cpp */; };
 		16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B0D2A31D9F7006B7C10 /* transformation_0.cpp */; };
@@ -254,6 +255,13 @@
 		16CE59B72A57718E0000F354 /* lightingmapslight.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightingmapslight.vs; sourceTree = "<group>"; };
 		16CE59B82A57719D0000F354 /* lightingmapslight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightingmapslight.fs; sourceTree = "<group>"; };
 		16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.2.4.dylib; path = ../../../../../opt/homebrew/Cellar/assimp/5.2.5/lib/libassimp.5.2.4.dylib; sourceTree = "<group>"; };
+		16D25C482ABA0A58007A0900 /* advancedglsl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = advancedglsl.cpp; sourceTree = "<group>"; };
+		16D25C492ABA0A58007A0900 /* advancedglsl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = advancedglsl.hpp; sourceTree = "<group>"; };
+		16D25C4B2ABA0C88007A0900 /* advancedglsl.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = advancedglsl.vs; sourceTree = "<group>"; };
+		16D25C4C2ABA0C93007A0900 /* red.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = red.fs; sourceTree = "<group>"; };
+		16D25C4D2ABA0C9F007A0900 /* green.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = green.fs; sourceTree = "<group>"; };
+		16D25C4E2ABA0CA9007A0900 /* blue.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blue.fs; sourceTree = "<group>"; };
+		16D25C4F2ABA0CB2007A0900 /* yellow.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = yellow.fs; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -408,6 +416,7 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				16D25C472ABA0A39007A0900 /* AdvancedGLSL */,
 				16221FCE2AB2B67B0010E439 /* Cubemaps */,
 				16221FC62AB18D0E0010E439 /* Framebuffers */,
 				16129D8B2AB04DE0005CB9AD /* FaceCulling */,
@@ -621,6 +630,20 @@
 				16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		16D25C472ABA0A39007A0900 /* AdvancedGLSL */ = {
+			isa = PBXGroup;
+			children = (
+				16D25C482ABA0A58007A0900 /* advancedglsl.cpp */,
+				16D25C492ABA0A58007A0900 /* advancedglsl.hpp */,
+				16D25C4B2ABA0C88007A0900 /* advancedglsl.vs */,
+				16D25C4C2ABA0C93007A0900 /* red.fs */,
+				16D25C4D2ABA0C9F007A0900 /* green.fs */,
+				16D25C4E2ABA0CA9007A0900 /* blue.fs */,
+				16D25C4F2ABA0CB2007A0900 /* yellow.fs */,
+			);
+			path = AdvancedGLSL;
 			sourceTree = "<group>";
 		};
 		16D51B352A682CDA00A67222 /* LoadModels */ = {
@@ -881,6 +904,7 @@
 				16355B272A3DFAE0001BAF56 /* imgui_impl_glfw.cpp in Sources */,
 				16129D892AB01A8D005CB9AD /* blending_.cpp in Sources */,
 				16F4CC982AADF27000A8BD5A /* blending.cpp in Sources */,
+				16D25C4A2ABA0A58007A0900 /* advancedglsl.cpp in Sources */,
 				160247912A684E2E0069EA77 /* mesh.cpp in Sources */,
 				16E22C1C2A2DD7E8007F78A2 /* triangle_2.cpp in Sources */,
 				16E22C1F2A2DEAB9007F78A2 /* triangle_3.cpp in Sources */,
