@@ -12,11 +12,12 @@ Triangle::Triangle(GLint verticesNum){
 }
 
 void Test::ShaderTest(unsigned int Shader,int type){
-    if(type){
+    if(type==1){
         this->shaderType="VERTEX";
-    }
-    else{
+    }else if(type==0){
         this->shaderType="FRAGMENT";
+    }else if(type==2){
+        this->shaderType="GEOMETRY";
     }
     glGetShaderiv(Shader,GL_COMPILE_STATUS,&this->success);
     if(!this->success){

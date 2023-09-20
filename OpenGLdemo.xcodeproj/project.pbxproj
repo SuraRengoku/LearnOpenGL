@@ -42,6 +42,7 @@
 		16CE59B42A57713B0000F354 /* lightingmaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59B22A57713B0000F354 /* lightingmaps.cpp */; };
 		16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */; };
 		16D25C4A2ABA0A58007A0900 /* advancedglsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D25C482ABA0A58007A0900 /* advancedglsl.cpp */; };
+		16D25C532ABABDA5007A0900 /* geometryshader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D25C512ABABDA5007A0900 /* geometryshader.cpp */; };
 		16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B032A312536006B7C10 /* texture_1.cpp */; };
 		16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B072A313403006B7C10 /* texture_2.cpp */; };
 		16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B0D2A31D9F7006B7C10 /* transformation_0.cpp */; };
@@ -262,6 +263,15 @@
 		16D25C4D2ABA0C9F007A0900 /* green.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = green.fs; sourceTree = "<group>"; };
 		16D25C4E2ABA0CA9007A0900 /* blue.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blue.fs; sourceTree = "<group>"; };
 		16D25C4F2ABA0CB2007A0900 /* yellow.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = yellow.fs; sourceTree = "<group>"; };
+		16D25C512ABABDA5007A0900 /* geometryshader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = geometryshader.cpp; sourceTree = "<group>"; };
+		16D25C522ABABDA5007A0900 /* geometryshader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = geometryshader.hpp; sourceTree = "<group>"; };
+		16D25C542ABABDE9007A0900 /* vertex1.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex1.vs; sourceTree = "<group>"; };
+		16D25C552ABABDF3007A0900 /* geometry1.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = geometry1.gs; sourceTree = "<group>"; };
+		16D25C562ABABE00007A0900 /* fragment1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment1.fs; sourceTree = "<group>"; };
+		16D25C572ABAC9A2007A0900 /* geometry2.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = geometry2.gs; sourceTree = "<group>"; };
+		16D25C582ABAE00F007A0900 /* Explodegeometry.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Explodegeometry.gs; sourceTree = "<group>"; };
+		16D25C592ABAE2C3007A0900 /* Explodevertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Explodevertex.vs; sourceTree = "<group>"; };
+		16D25C5A2ABAE2D2007A0900 /* Explodefragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Explodefragment.fs; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -416,6 +426,7 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				16D25C502ABABD78007A0900 /* GeometryShader */,
 				16D25C472ABA0A39007A0900 /* AdvancedGLSL */,
 				16221FCE2AB2B67B0010E439 /* Cubemaps */,
 				16221FC62AB18D0E0010E439 /* Framebuffers */,
@@ -646,6 +657,22 @@
 			path = AdvancedGLSL;
 			sourceTree = "<group>";
 		};
+		16D25C502ABABD78007A0900 /* GeometryShader */ = {
+			isa = PBXGroup;
+			children = (
+				16D25C512ABABDA5007A0900 /* geometryshader.cpp */,
+				16D25C522ABABDA5007A0900 /* geometryshader.hpp */,
+				16D25C542ABABDE9007A0900 /* vertex1.vs */,
+				16D25C552ABABDF3007A0900 /* geometry1.gs */,
+				16D25C562ABABE00007A0900 /* fragment1.fs */,
+				16D25C572ABAC9A2007A0900 /* geometry2.gs */,
+				16D25C582ABAE00F007A0900 /* Explodegeometry.gs */,
+				16D25C592ABAE2C3007A0900 /* Explodevertex.vs */,
+				16D25C5A2ABAE2D2007A0900 /* Explodefragment.fs */,
+			);
+			path = GeometryShader;
+			sourceTree = "<group>";
+		};
 		16D51B352A682CDA00A67222 /* LoadModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -865,6 +892,7 @@
 			files = (
 				16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */,
 				169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */,
+				16D25C532ABABDA5007A0900 /* geometryshader.cpp in Sources */,
 				16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */,
 				16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */,
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,

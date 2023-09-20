@@ -52,6 +52,66 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath){
     glDeleteShader(fragment);
 }
 
+Shader::Shader(const char* vertexPath,const char* geometryPath, const char* fragmentPath){
+    std::string vertexCode;
+    std::string geometryCode;
+    std::string fragmentCode;
+    std::ifstream vShaderFile;
+    std::ifstream gShaderFile;
+    std::ifstream fShaderFile;
+    vShaderFile.exceptions(std::ifstream::failbit|std::ifstream::badbit);
+    gShaderFile.exceptions(std::ifstream::failbit|std::ifstream::badbit);
+    fShaderFile.exceptions(std::ifstream::failbit|std::ifstream::badbit);
+    try{
+        vShaderFile.open(vertexPath);
+        gShaderFile.open(geometryPath);
+        fShaderFile.open(fragmentPath);
+        std::stringstream vShaderStream,gShaderStream,fShaderStream;
+        vShaderStream<<vShaderFile.rdbuf();
+        gShaderStream<<gShaderFile.rdbuf();
+        fShaderStream<<fShaderFile.rdbuf();
+        vShaderFile.close();
+        gShaderFile.close();
+        fShaderFile.close();
+        vertexCode=vShaderStream.str();
+        geometryCode=gShaderStream.str();
+        fragmentCode=fShaderStream.str();
+    }
+    catch(std::ifstream::failure e){
+        std::cout<<"ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ"<<"\n";
+    }
+    const char* vShaderCode=vertexCode.c_str();
+    const char* gShaderCode=geometryCode.c_str();
+    const char* fShaderCode=fragmentCode.c_str();
+    
+    unsigned int vertex,geometry,fragment;
+    Test test;
+    vertex=glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertex,1,&vShaderCode,NULL);
+    glCompileShader(vertex);
+    test.ShaderTest(vertex, 1);
+    geometry=glCreateShader(GL_GEOMETRY_SHADER);
+    glShaderSource(geometry,1,&gShaderCode,NULL);
+    glCompileShader(geometry);
+    test.ShaderTest(geometry, 2);
+    fragment=glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragment,1,&fShaderCode,NULL);
+    glCompileShader(fragment);
+    test.ShaderTest(fragment, 0);
+    
+    this->ID=glCreateProgram();
+    glAttachShader(this->ID,vertex);
+    glAttachShader(this->ID,geometry);
+    glAttachShader(this->ID,fragment);
+    glLinkProgram(this->ID);
+    test.ProgramTest(this->ID);
+    
+    glDeleteShader(vertex);
+    glDeleteShader(geometry);
+    glDeleteShader(fragment);
+}
+
+
 void Shader::use() const{
     glUseProgram(this->ID);
 }

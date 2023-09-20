@@ -39,8 +39,9 @@
 #include "framebuffers.hpp"
 #include "cubemaps.hpp"
 #include "advancedglsl.hpp"
+#include "geometryshader.hpp"
 
 int main(int argc, const char * argv[]){
-    advancedglsl();
+    geometryshader();
     return 0;
 }
