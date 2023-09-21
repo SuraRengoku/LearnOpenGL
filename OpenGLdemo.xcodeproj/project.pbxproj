@@ -272,6 +272,11 @@
 		16D25C582ABAE00F007A0900 /* Explodegeometry.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Explodegeometry.gs; sourceTree = "<group>"; };
 		16D25C592ABAE2C3007A0900 /* Explodevertex.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Explodevertex.vs; sourceTree = "<group>"; };
 		16D25C5A2ABAE2D2007A0900 /* Explodefragment.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Explodefragment.fs; sourceTree = "<group>"; };
+		16D25C5B2ABC0EE0007A0900 /* normalDisplayshader.gs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = normalDisplayshader.gs; sourceTree = "<group>"; };
+		16D25C5C2ABC10A4007A0900 /* normalDisplayshader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = normalDisplayshader.vs; sourceTree = "<group>"; };
+		16D25C5D2ABC10B0007A0900 /* normalDisplayshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = normalDisplayshader.fs; sourceTree = "<group>"; };
+		16D25C5E2ABC143F007A0900 /* default.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = default.vs; sourceTree = "<group>"; };
+		16D25C5F2ABC1449007A0900 /* default.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = default.fs; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -669,6 +674,11 @@
 				16D25C582ABAE00F007A0900 /* Explodegeometry.gs */,
 				16D25C592ABAE2C3007A0900 /* Explodevertex.vs */,
 				16D25C5A2ABAE2D2007A0900 /* Explodefragment.fs */,
+				16D25C5B2ABC0EE0007A0900 /* normalDisplayshader.gs */,
+				16D25C5C2ABC10A4007A0900 /* normalDisplayshader.vs */,
+				16D25C5D2ABC10B0007A0900 /* normalDisplayshader.fs */,
+				16D25C5E2ABC143F007A0900 /* default.vs */,
+				16D25C5F2ABC1449007A0900 /* default.fs */,
 			);
 			path = GeometryShader;
 			sourceTree = "<group>";

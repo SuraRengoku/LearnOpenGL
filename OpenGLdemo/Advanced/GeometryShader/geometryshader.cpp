@@ -77,6 +77,10 @@ int geometryshader(){
     
     Shader *explodemodel=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/Explodevertex.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/Explodegeometry.gs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/Explodefragment.fs");
     
+    Shader *nanosuitshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/default.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/default.fs");
+    
+    Shader *normalDisplay=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/normalDisplayshader.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/normalDisplayshader.gs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/GeometryShader/normalDisplayshader.fs");
+    
     unsigned int uniformBlockIndex=glGetUniformBlockIndex(explodemodel->ID,"Matrices");
     glUniformBlockBinding(explodemodel->ID,uniformBlockIndex,0);
     unsigned int uboMatrices;
@@ -121,13 +125,27 @@ int geometryshader(){
         glBindBuffer(GL_UNIFORM_BUFFER,0);
         glm::mat4 view=camera.GetViewMatrix();
         glm::mat4 model=glm::mat4(1.0f);
+        glm::mat3 normalMatrix=glm::mat3(glm::transpose(glm::inverse(view*model)));
         
         explodemodel->use();
         explodemodel->setMat4("view", view);
         explodemodel->setMat4("model", model);
         explodemodel->setFloat("time", static_cast<float>(glfwGetTime()));
         
-        nanosuit->Draw(*explodemodel);
+//        nanosuit->Draw(*explodemodel);
+        
+        nanosuitshader->use();
+        nanosuitshader->setMat4("projection", projection);
+        nanosuitshader->setMat4("view", view);
+        nanosuitshader->setMat4("model", model);
+        nanosuit->Draw(*nanosuitshader);
+        
+        normalDisplay->use();
+        normalDisplay->setMat4("projection", projection);
+        normalDisplay->setMat4("view", view);
+        normalDisplay->setMat4("model", model);
+        normalDisplay->setMat3("normalMatrix", normalMatrix);
+        nanosuit->Draw(*normalDisplay);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
