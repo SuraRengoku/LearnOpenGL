@@ -43,6 +43,7 @@
 		16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CE79B02A683487004586BC /* libassimp.5.2.4.dylib */; };
 		16D25C4A2ABA0A58007A0900 /* advancedglsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D25C482ABA0A58007A0900 /* advancedglsl.cpp */; };
 		16D25C532ABABDA5007A0900 /* geometryshader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D25C512ABABDA5007A0900 /* geometryshader.cpp */; };
+		16D25C632ABC1EB9007A0900 /* instancing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16D25C612ABC1EB9007A0900 /* instancing.cpp */; };
 		16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B032A312536006B7C10 /* texture_1.cpp */; };
 		16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B072A313403006B7C10 /* texture_2.cpp */; };
 		16DE6B0F2A31D9F7006B7C10 /* transformation_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16DE6B0D2A31D9F7006B7C10 /* transformation_0.cpp */; };
@@ -277,6 +278,11 @@
 		16D25C5D2ABC10B0007A0900 /* normalDisplayshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = normalDisplayshader.fs; sourceTree = "<group>"; };
 		16D25C5E2ABC143F007A0900 /* default.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = default.vs; sourceTree = "<group>"; };
 		16D25C5F2ABC1449007A0900 /* default.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = default.fs; sourceTree = "<group>"; };
+		16D25C612ABC1EB9007A0900 /* instancing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = instancing.cpp; sourceTree = "<group>"; };
+		16D25C622ABC1EB9007A0900 /* instancing.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = instancing.hpp; sourceTree = "<group>"; };
+		16D25C642ABC1FBE007A0900 /* quad.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = quad.vs; sourceTree = "<group>"; };
+		16D25C652ABC1FC8007A0900 /* quad.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = quad.fs; sourceTree = "<group>"; };
+		16D25C662ABD63C6007A0900 /* quad2.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = quad2.vs; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -431,6 +437,7 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				16D25C602ABC1A75007A0900 /* Instancing */,
 				16D25C502ABABD78007A0900 /* GeometryShader */,
 				16D25C472ABA0A39007A0900 /* AdvancedGLSL */,
 				16221FCE2AB2B67B0010E439 /* Cubemaps */,
@@ -681,6 +688,18 @@
 				16D25C5F2ABC1449007A0900 /* default.fs */,
 			);
 			path = GeometryShader;
+			sourceTree = "<group>";
+		};
+		16D25C602ABC1A75007A0900 /* Instancing */ = {
+			isa = PBXGroup;
+			children = (
+				16D25C612ABC1EB9007A0900 /* instancing.cpp */,
+				16D25C622ABC1EB9007A0900 /* instancing.hpp */,
+				16D25C642ABC1FBE007A0900 /* quad.vs */,
+				16D25C652ABC1FC8007A0900 /* quad.fs */,
+				16D25C662ABD63C6007A0900 /* quad2.vs */,
+			);
+			path = Instancing;
 			sourceTree = "<group>";
 		};
 		16D51B352A682CDA00A67222 /* LoadModels */ = {
@@ -945,6 +964,7 @@
 				16D25C4A2ABA0A58007A0900 /* advancedglsl.cpp in Sources */,
 				160247912A684E2E0069EA77 /* mesh.cpp in Sources */,
 				16E22C1C2A2DD7E8007F78A2 /* triangle_2.cpp in Sources */,
+				16D25C632ABC1EB9007A0900 /* instancing.cpp in Sources */,
 				16E22C1F2A2DEAB9007F78A2 /* triangle_3.cpp in Sources */,
 				16355B202A3DFA88001BAF56 /* imgui_tables.cpp in Sources */,
 				16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */,

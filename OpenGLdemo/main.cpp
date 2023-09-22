@@ -40,8 +40,9 @@
 #include "cubemaps.hpp"
 #include "advancedglsl.hpp"
 #include "geometryshader.hpp"
+#include "instancing.hpp"
 
 int main(int argc, const char * argv[]){
-    geometryshader();
+    instancing();
     return 0;
 }
