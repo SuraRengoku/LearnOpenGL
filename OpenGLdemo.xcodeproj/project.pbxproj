@@ -29,6 +29,7 @@
 		16355B272A3DFAE0001BAF56 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B232A3DFAE0001BAF56 /* imgui_impl_glfw.cpp */; };
 		16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B252A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp */; };
 		16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B2A2A3E0D78001BAF56 /* basiclighting.cpp */; };
+		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
@@ -201,6 +202,11 @@
 		163D2A042AB604E60093E634 /* body_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_ddn.png; sourceTree = "<group>"; };
 		163D2A052AB604E60093E634 /* helmet_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_spec.png; sourceTree = "<group>"; };
 		163D2A062AB604E60093E634 /* helmet_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_ddn.png; sourceTree = "<group>"; };
+		163FCEB82ABDED5A00A96FDC /* starseries.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = starseries.cpp; sourceTree = "<group>"; };
+		163FCEB92ABDED5A00A96FDC /* starseries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = starseries.hpp; sourceTree = "<group>"; };
+		163FCEBB2ABDEDC200A96FDC /* starseries.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = starseries.vs; sourceTree = "<group>"; };
+		163FCEBC2ABDEDCC00A96FDC /* starseries.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = starseries.fs; sourceTree = "<group>"; };
+		163FCEBD2ABE024800A96FDC /* starseries2.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = starseries2.vs; sourceTree = "<group>"; };
 		164785202AB8A2E700E31A35 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
 		164785212AB8A2FB00E31A35 /* light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.fs; sourceTree = "<group>"; };
 		164785222AB962FA00E31A35 /* nanosuit.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuit.vs; sourceTree = "<group>"; };
@@ -283,6 +289,12 @@
 		16D25C642ABC1FBE007A0900 /* quad.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = quad.vs; sourceTree = "<group>"; };
 		16D25C652ABC1FC8007A0900 /* quad.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = quad.fs; sourceTree = "<group>"; };
 		16D25C662ABD63C6007A0900 /* quad2.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = quad2.vs; sourceTree = "<group>"; };
+		16D25C692ABD6CB6007A0900 /* planet.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = planet.obj; sourceTree = "<group>"; };
+		16D25C6A2ABD6CC2007A0900 /* planet.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = planet.mtl; sourceTree = "<group>"; };
+		16D25C6B2ABD6CC9007A0900 /* planet_Quom1200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_Quom1200.png; sourceTree = "<group>"; };
+		16D25C6D2ABD6CEB007A0900 /* rock.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = rock.obj; sourceTree = "<group>"; };
+		16D25C6E2ABD6CF2007A0900 /* Rock-Texture-Surface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Rock-Texture-Surface.jpg"; sourceTree = "<group>"; };
+		16D25C6F2ABD6CFA007A0900 /* rock.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = rock.mtl; sourceTree = "<group>"; };
 		16DE6B002A30BD2E006B7C10 /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
 		16DE6B012A30BD3B006B7C10 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		16DE6B022A3124F8006B7C10 /* shader_0_1.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader_0_1.fs; sourceTree = "<group>"; };
@@ -371,6 +383,8 @@
 		160247B12A6BCEAA0069EA77 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				16D25C6C2ABD6CE0007A0900 /* rock */,
+				16D25C682ABD6CA6007A0900 /* planet */,
 				163D29F12AB604B30093E634 /* nanosuit */,
 				16294BAC2AB5F81100F8CBAF /* nanosuit_reflection */,
 				1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */,
@@ -698,8 +712,33 @@
 				16D25C642ABC1FBE007A0900 /* quad.vs */,
 				16D25C652ABC1FC8007A0900 /* quad.fs */,
 				16D25C662ABD63C6007A0900 /* quad2.vs */,
+				163FCEB82ABDED5A00A96FDC /* starseries.cpp */,
+				163FCEB92ABDED5A00A96FDC /* starseries.hpp */,
+				163FCEBB2ABDEDC200A96FDC /* starseries.vs */,
+				163FCEBC2ABDEDCC00A96FDC /* starseries.fs */,
+				163FCEBD2ABE024800A96FDC /* starseries2.vs */,
 			);
 			path = Instancing;
+			sourceTree = "<group>";
+		};
+		16D25C682ABD6CA6007A0900 /* planet */ = {
+			isa = PBXGroup;
+			children = (
+				16D25C6B2ABD6CC9007A0900 /* planet_Quom1200.png */,
+				16D25C6A2ABD6CC2007A0900 /* planet.mtl */,
+				16D25C692ABD6CB6007A0900 /* planet.obj */,
+			);
+			path = planet;
+			sourceTree = "<group>";
+		};
+		16D25C6C2ABD6CE0007A0900 /* rock */ = {
+			isa = PBXGroup;
+			children = (
+				16D25C6F2ABD6CFA007A0900 /* rock.mtl */,
+				16D25C6E2ABD6CF2007A0900 /* Rock-Texture-Surface.jpg */,
+				16D25C6D2ABD6CEB007A0900 /* rock.obj */,
+			);
+			path = rock;
 			sourceTree = "<group>";
 		};
 		16D51B352A682CDA00A67222 /* LoadModels */ = {
@@ -922,6 +961,7 @@
 				16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */,
 				169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */,
 				16D25C532ABABDA5007A0900 /* geometryshader.cpp in Sources */,
+				163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */,
 				16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */,
 				16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */,
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,

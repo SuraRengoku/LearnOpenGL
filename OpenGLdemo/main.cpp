@@ -41,8 +41,9 @@
 #include "advancedglsl.hpp"
 #include "geometryshader.hpp"
 #include "instancing.hpp"
+#include "starseries.hpp"
 
 int main(int argc, const char * argv[]){
-    instancing();
+    starseries();
     return 0;
 }
