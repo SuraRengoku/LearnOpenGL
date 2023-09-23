@@ -30,6 +30,7 @@
 		16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B252A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp */; };
 		16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B2A2A3E0D78001BAF56 /* basiclighting.cpp */; };
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
+		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
@@ -207,6 +208,12 @@
 		163FCEBB2ABDEDC200A96FDC /* starseries.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = starseries.vs; sourceTree = "<group>"; };
 		163FCEBC2ABDEDCC00A96FDC /* starseries.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = starseries.fs; sourceTree = "<group>"; };
 		163FCEBD2ABE024800A96FDC /* starseries2.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = starseries2.vs; sourceTree = "<group>"; };
+		163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = antialiasing.cpp; sourceTree = "<group>"; };
+		163FCEC02ABEC26400A96FDC /* antialiasing.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = antialiasing.hpp; sourceTree = "<group>"; };
+		163FCEC22ABEC27300A96FDC /* antialiasing.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = antialiasing.vs; sourceTree = "<group>"; };
+		163FCEC32ABEC27E00A96FDC /* antialiasing.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = antialiasing.fs; sourceTree = "<group>"; };
+		163FCEC42ABEC58200A96FDC /* screenshader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = screenshader.vs; sourceTree = "<group>"; };
+		163FCEC52ABEC59300A96FDC /* screenshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = screenshader.fs; sourceTree = "<group>"; };
 		164785202AB8A2E700E31A35 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
 		164785212AB8A2FB00E31A35 /* light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.fs; sourceTree = "<group>"; };
 		164785222AB962FA00E31A35 /* nanosuit.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuit.vs; sourceTree = "<group>"; };
@@ -451,6 +458,7 @@
 		162671B92A9F026D003F03E0 /* Advanced */ = {
 			isa = PBXGroup;
 			children = (
+				163FCEBE2ABEB1C400A96FDC /* AntiAliasing */,
 				16D25C602ABC1A75007A0900 /* Instancing */,
 				16D25C502ABABD78007A0900 /* GeometryShader */,
 				16D25C472ABA0A39007A0900 /* AdvancedGLSL */,
@@ -595,6 +603,19 @@
 				163D29F32AB604E50093E634 /* nanosuit.obj */,
 			);
 			path = nanosuit;
+			sourceTree = "<group>";
+		};
+		163FCEBE2ABEB1C400A96FDC /* AntiAliasing */ = {
+			isa = PBXGroup;
+			children = (
+				163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */,
+				163FCEC02ABEC26400A96FDC /* antialiasing.hpp */,
+				163FCEC22ABEC27300A96FDC /* antialiasing.vs */,
+				163FCEC32ABEC27E00A96FDC /* antialiasing.fs */,
+				163FCEC42ABEC58200A96FDC /* screenshader.vs */,
+				163FCEC52ABEC59300A96FDC /* screenshader.fs */,
+			);
+			path = AntiAliasing;
 			sourceTree = "<group>";
 		};
 		169DEEC82A59BDE700F78236 /* lightcasters */ = {
@@ -979,6 +1000,7 @@
 				169DEED92A63E69400F78236 /* spotlight.cpp in Sources */,
 				16355B1E2A3DFA88001BAF56 /* imgui.cpp in Sources */,
 				16355B1D2A3DFA88001BAF56 /* imgui_demo.cpp in Sources */,
+				163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */,
 				16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */,
 				16E22C382A2E6CD4007F78A2 /* texture_0.cpp in Sources */,
 				16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */,

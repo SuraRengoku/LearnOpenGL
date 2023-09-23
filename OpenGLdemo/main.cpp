@@ -42,8 +42,9 @@
 #include "geometryshader.hpp"
 #include "instancing.hpp"
 #include "starseries.hpp"
+#include "antialiasing.hpp"
 
 int main(int argc, const char * argv[]){
-    starseries();
+    antialiasing();
     return 0;
 }
