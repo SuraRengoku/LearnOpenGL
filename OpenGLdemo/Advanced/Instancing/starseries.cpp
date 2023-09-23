@@ -28,6 +28,7 @@ int starseries(){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);//设置上下文主要版本号
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);//次要版本号
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GL_SAMPLES, 4);//四个采样点
     //GLFW_OPENGL_PROFILE宏用于指定OpenGL上下文的配置文件类型
     //GLFW_OPENGL_CORE_PROFILE宏用于表示使用核心配置文件
 #ifdef __APPLE__
@@ -61,6 +62,7 @@ int starseries(){
     }
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);//启用MSAA
     
     Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/Instancing/starseries.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Advanced/Instancing/starseries.fs");
         
