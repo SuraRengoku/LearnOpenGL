@@ -43,8 +43,9 @@
 #include "instancing.hpp"
 #include "starseries.hpp"
 #include "antialiasing.hpp"
+#include "blinnphong.hpp"
 
 int main(int argc, const char * argv[]){
-    antialiasing();
+    blinnphong();
     return 0;
 }

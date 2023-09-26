@@ -135,6 +135,7 @@ void processInput(GLFWwindow* window, GLFWcursorposfun mouse_callback, GLFWscrol
 int processInputUpDown(GLFWwindow* window);
 void processCameraWSAD(GLFWwindow* window,Camera &camera,float &deltaTime);
 //void mouse_callback(GLFWwindow* window,double &xpos,double &ypos,float &lastX,float &lastY,bool &firstMouse,float &yaw,float &pitch,glm::vec3 &cameraFront);
+void Lightshift(GLFWwindow *window,bool &blinn,bool &blinnkeyPressed);
 
 
 //使用Eigen计算

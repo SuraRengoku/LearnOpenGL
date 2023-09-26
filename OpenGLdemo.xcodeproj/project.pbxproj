@@ -31,6 +31,7 @@
 		16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B2A2A3E0D78001BAF56 /* basiclighting.cpp */; };
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
+		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
@@ -214,6 +215,11 @@
 		163FCEC32ABEC27E00A96FDC /* antialiasing.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = antialiasing.fs; sourceTree = "<group>"; };
 		163FCEC42ABEC58200A96FDC /* screenshader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = screenshader.vs; sourceTree = "<group>"; };
 		163FCEC52ABEC59300A96FDC /* screenshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = screenshader.fs; sourceTree = "<group>"; };
+		163FCEC72ABF156300A96FDC /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		163FCEC92ABF15B700A96FDC /* blinnphong.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blinnphong.vs; sourceTree = "<group>"; };
+		163FCECA2ABF15C400A96FDC /* blinnphong.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blinnphong.fs; sourceTree = "<group>"; };
+		163FCECB2ABF15D300A96FDC /* blinnphong.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blinnphong.cpp; sourceTree = "<group>"; };
+		163FCECC2ABF15D300A96FDC /* blinnphong.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blinnphong.hpp; sourceTree = "<group>"; };
 		164785202AB8A2E700E31A35 /* light.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.vs; sourceTree = "<group>"; };
 		164785212AB8A2FB00E31A35 /* light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.fs; sourceTree = "<group>"; };
 		164785222AB962FA00E31A35 /* nanosuit.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuit.vs; sourceTree = "<group>"; };
@@ -618,6 +624,25 @@
 			path = AntiAliasing;
 			sourceTree = "<group>";
 		};
+		163FCEC62ABF0E6000A96FDC /* AdvancedLighting */ = {
+			isa = PBXGroup;
+			children = (
+				163FCEC82ABF159200A96FDC /* BlinnPhong */,
+			);
+			path = AdvancedLighting;
+			sourceTree = "<group>";
+		};
+		163FCEC82ABF159200A96FDC /* BlinnPhong */ = {
+			isa = PBXGroup;
+			children = (
+				163FCEC92ABF15B700A96FDC /* blinnphong.vs */,
+				163FCECA2ABF15C400A96FDC /* blinnphong.fs */,
+				163FCECB2ABF15D300A96FDC /* blinnphong.cpp */,
+				163FCECC2ABF15D300A96FDC /* blinnphong.hpp */,
+			);
+			path = BlinnPhong;
+			sourceTree = "<group>";
+		};
 		169DEEC82A59BDE700F78236 /* lightcasters */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +799,7 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				163FCEC72ABF156300A96FDC /* wood.png */,
 				16221FD42AB31D0D0010E439 /* skybox */,
 				16129D862AB01A3A005CB9AD /* blending_transparent_window.png */,
 				16129D852AAF4529005CB9AD /* grass.png */,
@@ -816,8 +842,8 @@
 				16E22C212A2DF7F9007F78A2 /* changingColor.hpp */,
 				16E22C232A2E0102007F78A2 /* moreAttributes.cpp */,
 				16E22C242A2E0102007F78A2 /* moreAttributes.hpp */,
-				16E22C262A2E05A9007F78A2 /* shader.cpp */,
 				16E22C272A2E05A9007F78A2 /* shader.hpp */,
+				16E22C262A2E05A9007F78A2 /* shader.cpp */,
 				16E22C2C2A2E18A7007F78A2 /* shadersApplication.cpp */,
 				16E22C2D2A2E18A7007F78A2 /* shadersApplication.hpp */,
 				16E22C2A2A2E15E4007F78A2 /* shader.vs */,
@@ -893,6 +919,7 @@
 		DD9339012A12F1F900F4FCDD /* OpenGLdemo */ = {
 			isa = PBXGroup;
 			children = (
+				163FCEC62ABF0E6000A96FDC /* AdvancedLighting */,
 				162671B92A9F026D003F03E0 /* Advanced */,
 				16D51B352A682CDA00A67222 /* LoadModels */,
 				16355B112A3DF98D001BAF56 /* imgui */,
@@ -989,6 +1016,7 @@
 				169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */,
 				162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */,
 				16E22C252A2E0102007F78A2 /* moreAttributes.cpp in Sources */,
+				163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */,
 				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,
 				16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */,
 				DD9339032A12F1F900F4FCDD /* triangle_0.cpp in Sources */,

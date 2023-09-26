@@ -89,6 +89,15 @@ int processInputUpDown(GLFWwindow* window){
     }
 }
 
+void Lightshift(GLFWwindow *window,bool &blinn,bool &blinnkeyPressed){
+    if(glfwGetKey(window, GLFW_KEY_B)==GLFW_PRESS&&!blinnkeyPressed){
+        blinn=!blinn;
+        blinnkeyPressed=true;
+    }
+    if(glfwGetKey(window, GLFW_KEY_B)==GLFW_PRESS)
+        blinnkeyPressed=false;
+}
+
 /**
  * @param window 窗口指针
  * @param xpos 当前鼠标x位置
