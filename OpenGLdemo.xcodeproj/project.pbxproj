@@ -17,6 +17,8 @@
 		16221FD32AB2B7260010E439 /* cubemaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16221FD12AB2B7260010E439 /* cubemaps.cpp */; };
 		162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162357262AA6CB3C006B83A3 /* stenciltest.cpp */; };
 		162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162671BB2A9F06E4003F03E0 /* depthtest.cpp */; };
+		162968C42AC3D67B006768F9 /* shadowmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162968C22AC3D67B006768F9 /* shadowmapping.cpp */; };
+		162968C92AC3E11D006768F9 /* scene.fs in Sources */ = {isa = PBXBuildFile; fileRef = 162968C82AC3E11D006768F9 /* scene.fs */; };
 		16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AF52A32899E001BAF56 /* coord_0.cpp */; };
 		16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355AFA2A336CC9001BAF56 /* coord_1.cpp */; };
 		16355B022A3471CF001BAF56 /* camera_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B002A3471CF001BAF56 /* camera_0.cpp */; };
@@ -136,6 +138,12 @@
 		162671BB2A9F06E4003F03E0 /* depthtest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = depthtest.cpp; sourceTree = "<group>"; };
 		162671BC2A9F06E4003F03E0 /* depthtest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = depthtest.hpp; sourceTree = "<group>"; };
 		16294BAC2AB5F81100F8CBAF /* nanosuit_reflection */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nanosuit_reflection; sourceTree = "<group>"; };
+		162968C22AC3D67B006768F9 /* shadowmapping.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shadowmapping.cpp; sourceTree = "<group>"; };
+		162968C32AC3D67B006768F9 /* shadowmapping.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shadowmapping.hpp; sourceTree = "<group>"; };
+		162968C52AC3D689006768F9 /* shadowmapping.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowmapping.vs; sourceTree = "<group>"; };
+		162968C62AC3D691006768F9 /* shadowmapping.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowmapping.fs; sourceTree = "<group>"; };
+		162968C72AC3E114006768F9 /* scene.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.vs; sourceTree = "<group>"; };
+		162968C82AC3E11D006768F9 /* scene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.fs; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
 		162BE6752A594C3000BD1A6E /* matrix.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matrix.jpg; sourceTree = "<group>"; };
 		1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlienSoldier.fbx; sourceTree = "<group>"; };
@@ -490,6 +498,19 @@
 			path = DepthTest;
 			sourceTree = "<group>";
 		};
+		162968C12AC3D667006768F9 /* ShadowMapping */ = {
+			isa = PBXGroup;
+			children = (
+				162968C22AC3D67B006768F9 /* shadowmapping.cpp */,
+				162968C32AC3D67B006768F9 /* shadowmapping.hpp */,
+				162968C52AC3D689006768F9 /* shadowmapping.vs */,
+				162968C62AC3D691006768F9 /* shadowmapping.fs */,
+				162968C72AC3E114006768F9 /* scene.vs */,
+				162968C82AC3E11D006768F9 /* scene.fs */,
+			);
+			path = ShadowMapping;
+			sourceTree = "<group>";
+		};
 		16355AFF2A3471BA001BAF56 /* camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +648,7 @@
 		163FCEC62ABF0E6000A96FDC /* AdvancedLighting */ = {
 			isa = PBXGroup;
 			children = (
+				162968C12AC3D667006768F9 /* ShadowMapping */,
 				163FCEC82ABF159200A96FDC /* BlinnPhong */,
 			);
 			path = AdvancedLighting;
@@ -1054,10 +1076,12 @@
 				16D25C4A2ABA0A58007A0900 /* advancedglsl.cpp in Sources */,
 				160247912A684E2E0069EA77 /* mesh.cpp in Sources */,
 				16E22C1C2A2DD7E8007F78A2 /* triangle_2.cpp in Sources */,
+				162968C92AC3E11D006768F9 /* scene.fs in Sources */,
 				16D25C632ABC1EB9007A0900 /* instancing.cpp in Sources */,
 				16E22C1F2A2DEAB9007F78A2 /* triangle_3.cpp in Sources */,
 				16355B202A3DFA88001BAF56 /* imgui_tables.cpp in Sources */,
 				16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */,
+				162968C42AC3D67B006768F9 /* shadowmapping.cpp in Sources */,
 				16355B022A3471CF001BAF56 /* camera_0.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

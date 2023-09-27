@@ -44,8 +44,9 @@
 #include "starseries.hpp"
 #include "antialiasing.hpp"
 #include "blinnphong.hpp"
+#include "shadowmapping.hpp"
 
 int main(int argc, const char * argv[]){
-    blinnphong();
+    shadowmapping();
     return 0;
 }
