@@ -141,6 +141,8 @@
 //    shader->setVec3("light.diffuse", diffuseColor);
 //    shader->setVec3("light.specular", specularColor);
 //    
+////    glEnable(GL_FRAMEBUFFER_SRGB);
+//    
 //    while (!glfwWindowShouldClose(window)) {
 //        float currentTime=static_cast<float>(glfwGetTime());
 //        deltaTime=(currentTime-lastTime)*movingvelocity;

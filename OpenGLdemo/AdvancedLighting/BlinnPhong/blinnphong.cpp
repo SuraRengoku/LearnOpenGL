@@ -93,12 +93,15 @@ int blinnphong(){
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glBindVertexArray(0);
     
-    unsigned int floorTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/wood.png");
+    unsigned int floorTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/wood.png",true);
     
     glm::vec3 lightPos(0.0f,0.0f,0.0f);
     
     shader->use();
     shader->setInt("floorTexture", 0);
+    
+//    glEnable(GL_FRAMEBUFFER_SRGB);//gamma矫正 会提亮渲染
+//但是不必要对纹理文件也进行gamma矫正，因为它们已经被矫正过
     
     while(!glfwWindowShouldClose(window)){
         float currentTime=static_cast<float>(glfwGetTime());

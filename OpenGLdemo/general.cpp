@@ -271,6 +271,63 @@ unsigned int loadTexture(char const *filepath){
     return textureID;
 }
 
+unsigned int loadTexture(char const *filepath,bool sRGB){
+    unsigned int textureID;
+    glGenTextures(1,&textureID);
+
+    int width,height,nrChannels;
+//    stbi_set_flip_vertically_on_load(true);
+    unsigned char *data=stbi_load(filepath, &width, &height, &nrChannels, 0);
+    if(data){
+        GLenum format1,format2;
+        if(nrChannels==1){
+            format1=GL_RED;
+            format2=GL_RED;
+        }
+        if(sRGB){
+            if(nrChannels==3){
+                format1=GL_SRGB;
+                format2=GL_RGB;
+            }
+            else if(nrChannels==4){
+                format1=GL_SRGB_ALPHA;
+                format2=GL_RGBA;
+            }
+        }else{
+            if(nrChannels==3){
+                format1=GL_RGB;
+                format2=GL_RGB;
+            }
+            else if(nrChannels==4){
+                format1=GL_RGBA;
+                format2=GL_RGBA;
+            }
+        }
+
+        glBindTexture(GL_TEXTURE_2D,textureID);
+        glTexImage2D(GL_TEXTURE_2D,0,format1,width,height,0,format2,GL_UNSIGNED_BYTE,data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+        if(nrChannels==4){
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+        }
+        else{
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+        }
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+        stbi_image_free(data);
+    }
+    else{
+        cout<<"Failed to load texture at path"<<filepath<<"\n";
+        stbi_image_free(data);
+    }
+    return textureID;
+
+}
+
+
 unsigned int loadCubemap(vector<string> faces){
     unsigned int textureID;
     glGenTextures(1,&textureID);
