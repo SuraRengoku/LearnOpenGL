@@ -144,6 +144,8 @@
 		162968C62AC3D691006768F9 /* shadowmapping.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowmapping.fs; sourceTree = "<group>"; };
 		162968C72AC3E114006768F9 /* scene.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.vs; sourceTree = "<group>"; };
 		162968C82AC3E11D006768F9 /* scene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.fs; sourceTree = "<group>"; };
+		162968CA2AC47A49006768F9 /* shadow.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow.vs; sourceTree = "<group>"; };
+		162968CB2AC47A4E006768F9 /* shadow.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadow.fs; sourceTree = "<group>"; };
 		162BE6742A594B2B00BD1A6E /* lighting_maps_specular_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighting_maps_specular_color.png; sourceTree = "<group>"; };
 		162BE6752A594C3000BD1A6E /* matrix.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matrix.jpg; sourceTree = "<group>"; };
 		1630414E2A6E70CE00FB4C55 /* AlienSoldier.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlienSoldier.fbx; sourceTree = "<group>"; };
@@ -507,6 +509,8 @@
 				162968C62AC3D691006768F9 /* shadowmapping.fs */,
 				162968C72AC3E114006768F9 /* scene.vs */,
 				162968C82AC3E11D006768F9 /* scene.fs */,
+				162968CA2AC47A49006768F9 /* shadow.vs */,
+				162968CB2AC47A4E006768F9 /* shadow.fs */,
 			);
 			path = ShadowMapping;
 			sourceTree = "<group>";

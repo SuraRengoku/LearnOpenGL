@@ -6,8 +6,8 @@
 //
 
 #include "shadowmapping.hpp"
-#define Default_Width 800;
-#define Default_Height 600;
+#define Default_Width 1200;
+#define Default_Height 800;
 
 static unsigned const int SCR_WIDTH=Default_Width;
 static unsigned const int SCR_HEIGHT=Default_Height;
@@ -159,14 +159,20 @@ unsigned int loadPlaneBuffer(){
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2,2,GL_FLOAT,GL_FALSE,8*sizeof(GL_FLOAT),(void*)(6*sizeof(GL_FLOAT)));
 
-    glBindBuffer(GL_ARRAY_BUFFER,0);
-    glBindVertexArray(0);
+//    glBindBuffer(GL_ARRAY_BUFFER,0);
+//    glBindVertexArray(0);
     return planeVAO;
 }
 void renderPlane(unsigned int planeVAO){
     glBindVertexArray(planeVAO);
     glDrawArrays(GL_TRIANGLES,0,6);
-    glBindVertexArray(0);
+//    glBindVertexArray(0);
+}
+
+void renderScene(const Shader &shader){
+    glm::mat4 model=glm::mat4(1.0f);
+    shader.setMat4("model", model);
+    
 }
 
 int shadowmapping(){
@@ -208,13 +214,18 @@ int shadowmapping(){
     }
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_FRAMEBUFFER_SRGB);
+    glEnable(GL_CULL_FACE);
 
     unsigned int cubeVAO=loadCubeBuffer();
     unsigned int quadVAO=loadQuadBuffer();
     unsigned int planeVAO=loadPlaneBuffer();
+    
+    Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/shadow.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/shadow.fs");
 
     Shader *depthshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/shadowmapping.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/shadowmapping.fs");
-    Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/scene.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/scene.fs");
+    
+    Shader *quadshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/scene.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/ShadowMapping/scene.fs");
 
     unsigned int woodTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/wood.png", true);
 
@@ -226,8 +237,11 @@ int shadowmapping(){
     glTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH_COMPONENT,SHADOW_WIDTH,SHADOW_HEIGHT,0,GL_DEPTH_COMPONENT,GL_FLOAT,NULL);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+    //将超出深度贴图的坐标的深度范围设置为1.0f，这样超出的坐标将永远不在阴影之中
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_BORDER);
+    GLfloat borderColor[]={1.0f,1.0f,1.0f,1.0f};
+    glTexParameterfv(GL_TEXTURE_2D,GL_TEXTURE_BORDER_COLOR,borderColor);
 
     glBindFramebuffer(GL_FRAMEBUFFER,depthMapFBO);
     glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D,depthMap,0);
@@ -237,17 +251,20 @@ int shadowmapping(){
     glBindFramebuffer(GL_FRAMEBUFFER,0);
 
     shader->use();
-    shader->setInt("depthMap", 0);
+    shader->setInt("diffuseTexture", 0);
+    shader->setInt("shadowMap", 1);
+    quadshader->use();
+    quadshader->setInt("depthMap", 0);
 
-    float near_plane=1.0f,far_plane=7.5f;
     glm::vec3 lightPos(-2.0f,4.0f,-1.0f);
-    glm::mat4 lightProjection=glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f,near_plane,far_plane);
+    float near_plane=1.0f,far_plane=7.5f;
+    glm::mat4 lightProjectionOrtho=glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f,near_plane,far_plane);
+    glm::mat4 lightProjectionPersp=glm::perspective(30.0f, (float)SHADOW_WIDTH/(float)SHADOW_HEIGHT, near_plane, far_plane);
     glm::mat4 lightView=glm::lookAt(lightPos,glm::vec3(0.0f),glm::vec3(0.0f,1.0f,0.0f));
-    glm::mat4 lightSpaceMatrix=lightProjection*lightView;
-
+    glm::mat4 lightSpaceMatrixOrtho=lightProjectionOrtho*lightView;
+    glm::mat4 lightSpaceMatrixPersp=lightProjectionPersp*lightView;
     depthshader->use();
-    depthshader->setMat4("lightSpaceMatrix", lightSpaceMatrix);
-
+    depthshader->setMat4("lightSpaceMatrix", lightSpaceMatrixPersp);
 
     while (!glfwWindowShouldClose(window)) {
         float currentTime=static_cast<float>(glfwGetTime());
@@ -267,10 +284,11 @@ int shadowmapping(){
         glClear(GL_DEPTH_BUFFER_BIT);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,woodTexture);
-
+        
         glm::mat4 model=glm::mat4(1.0f);
         depthshader->setMat4("model", model);
         renderPlane(planeVAO);
+//        glCullFace(GL_FRONT);//为解决阴影悬浮问题，开启正面剔除
         depthshader->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,1.5f,0.0f)), glm::vec3(0.5f)));
         renderCube(cubeVAO);
         depthshader->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,0.0f,1.0f)), glm::vec3(0.5f)));
@@ -278,21 +296,58 @@ int shadowmapping(){
         depthshader->setMat4("model", glm::scale(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,0.0f,2.0f)),glm::radians(60.0f),glm::normalize(glm::vec3(1.0f,0.0f,1.0f))), glm::vec3(0.25f)));
         renderCube(cubeVAO);
 
-        shader->use();
-        glViewport(0,0,SCR_WIDTH,SCR_HEIGHT);
+        int framebuffersizeWidth,framebuffersizeHeight;
+        glfwGetFramebufferSize(window, &framebuffersizeWidth, &framebuffersizeHeight);
+        float scaleFactorX,scaleFactorY;//retina屏幕的缩放因子一般为2
+        glfwGetWindowContentScale(window, &scaleFactorX, &scaleFactorY);
+        int logicalWidth=static_cast<int>(framebuffersizeWidth/scaleFactorX);
+        int logicalHeight=static_cast<int>(framebuffersizeHeight/scaleFactorY);
         glBindFramebuffer(GL_FRAMEBUFFER,0);
+        glViewport(0,0,framebuffersizeWidth,framebuffersizeHeight);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-        shader->setFloat("near_plane", near_plane);
-        shader->setFloat("far_plane", far_plane);
+
+        
+        shader->use();
+        glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view=camera.GetViewMatrix();
+        shader->setMat4("projection", projection);
+        shader->setMat4("view", view);
+        shader->setVec3("viewPos", camera.Position);
+        shader->setVec3("lightPos", lightPos);
+        shader->setMat4("lightSpaceMatrix", lightSpaceMatrixPersp);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,woodTexture);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D,depthMap);
+        
+        glCullFace(GL_FRONT);
+        model=glm::mat4(1.0f);
+        shader->setMat4("model", model);
+        shader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+        renderPlane(planeVAO);
+        glCullFace(GL_BACK);//恢复到背面剔除
+        shader->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(0.0f,1.5f,0.0f)), glm::vec3(0.5f)));
+        shader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+        renderCube(cubeVAO);
+        shader->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(2.0f,0.0f,1.0f)), glm::vec3(0.5f)));
+        shader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+        renderCube(cubeVAO);
+        shader->setMat4("model", glm::scale(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(-1.0f,0.0f,2.0f)),glm::radians(60.0f),glm::normalize(glm::vec3(1.0f,0.0f,1.0f))), glm::vec3(0.25f)));
+        shader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+        renderCube(cubeVAO);
+        
+        quadshader->use();
+        quadshader->setFloat("near_plane", near_plane);
+        quadshader->setFloat("far_plane", far_plane);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,depthMap);
-        renderQuad(quadVAO);
-
+//        renderQuad(quadVAO);
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-    delete shader;
-    shader=nullptr;
+    delete quadshader;
+    quadshader=nullptr;
     delete depthshader;
     depthshader=nullptr;
 
