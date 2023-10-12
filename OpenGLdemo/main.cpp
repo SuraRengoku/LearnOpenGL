@@ -45,8 +45,9 @@
 #include "antialiasing.hpp"
 #include "blinnphong.hpp"
 #include "shadowmapping.hpp"
+#include "pointshadows.hpp"
 
 int main(int argc, const char * argv[]){
-    shadowmapping();
+    pointshadows();
     return 0;
 }
