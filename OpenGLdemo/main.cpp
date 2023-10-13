@@ -46,8 +46,9 @@
 #include "blinnphong.hpp"
 #include "shadowmapping.hpp"
 #include "pointshadows.hpp"
+#include "normalmapping.hpp"
 
 int main(int argc, const char * argv[]){
-    pointshadows();
+    normalmapping();
     return 0;
 }

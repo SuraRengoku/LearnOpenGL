@@ -32,6 +32,7 @@
 		16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B252A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp */; };
 		16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B2A2A3E0D78001BAF56 /* basiclighting.cpp */; };
 		163BDA2D2AD6E7D500F4C904 /* pointshadows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA2B2AD6E7D500F4C904 /* pointshadows.cpp */; };
+		163BDA362AD84AC100F4C904 /* normalmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA342AD84AC100F4C904 /* normalmapping.cpp */; };
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
@@ -201,6 +202,12 @@
 		163BDA302AD6FAF600F4C904 /* shadowdepth.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowdepth.fs; sourceTree = "<group>"; };
 		163BDA312AD6FBC100F4C904 /* scene.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.vs; sourceTree = "<group>"; };
 		163BDA322AD6FBCB00F4C904 /* scene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.fs; sourceTree = "<group>"; };
+		163BDA342AD84AC100F4C904 /* normalmapping.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = normalmapping.cpp; sourceTree = "<group>"; };
+		163BDA352AD84AC100F4C904 /* normalmapping.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = normalmapping.hpp; sourceTree = "<group>"; };
+		163BDA372AD84D9800F4C904 /* brickwall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall.jpg; sourceTree = "<group>"; };
+		163BDA382AD84DA000F4C904 /* brickwall_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall_normal.jpg; sourceTree = "<group>"; };
+		163BDA392AD9394D00F4C904 /* normalmapping.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = normalmapping.vs; sourceTree = "<group>"; };
+		163BDA3A2AD9395700F4C904 /* normalmapping.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = normalmapping.fs; sourceTree = "<group>"; };
 		163D29F22AB604E50093E634 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		163D29F32AB604E50093E634 /* nanosuit.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
 		163D29F42AB604E50093E634 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
@@ -630,6 +637,17 @@
 			path = PointShadows;
 			sourceTree = "<group>";
 		};
+		163BDA332AD84AAB00F4C904 /* NormalMapping */ = {
+			isa = PBXGroup;
+			children = (
+				163BDA342AD84AC100F4C904 /* normalmapping.cpp */,
+				163BDA352AD84AC100F4C904 /* normalmapping.hpp */,
+				163BDA392AD9394D00F4C904 /* normalmapping.vs */,
+				163BDA3A2AD9395700F4C904 /* normalmapping.fs */,
+			);
+			path = NormalMapping;
+			sourceTree = "<group>";
+		};
 		163D29F12AB604B30093E634 /* nanosuit */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +692,7 @@
 		163FCEC62ABF0E6000A96FDC /* AdvancedLighting */ = {
 			isa = PBXGroup;
 			children = (
+				163BDA332AD84AAB00F4C904 /* NormalMapping */,
 				163BDA2A2AD6E7B500F4C904 /* PointShadows */,
 				162968C12AC3D667006768F9 /* ShadowMapping */,
 				163FCEC82ABF159200A96FDC /* BlinnPhong */,
@@ -848,6 +867,8 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				163BDA382AD84DA000F4C904 /* brickwall_normal.jpg */,
+				163BDA372AD84D9800F4C904 /* brickwall.jpg */,
 				163FCEC72ABF156300A96FDC /* wood.png */,
 				16221FD42AB31D0D0010E439 /* skybox */,
 				16129D862AB01A3A005CB9AD /* blending_transparent_window.png */,
@@ -1074,6 +1095,7 @@
 				16E22C192A2D4939007F78A2 /* main.cpp in Sources */,
 				16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */,
 				16355B1F2A3DFA88001BAF56 /* imgui_draw.cpp in Sources */,
+				163BDA362AD84AC100F4C904 /* normalmapping.cpp in Sources */,
 				16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */,
 				169DEED92A63E69400F78236 /* spotlight.cpp in Sources */,
 				16355B1E2A3DFA88001BAF56 /* imgui.cpp in Sources */,
