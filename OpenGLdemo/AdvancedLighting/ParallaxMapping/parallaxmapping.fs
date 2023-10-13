@@ -13,18 +13,20 @@ uniform sampler2D diffuseMap;
 uniform sampler2D normalMap;
 uniform sampler2D displaceMap;
 
-uniform float height_scale;
+uniform float height_scale;//缩放参数，缺失该参数会导致时差过于强烈
 
 vec2 ParallaxMapping(vec2 texCoords,vec3 viewDir){
     float height=texture(displaceMap,texCoords).r;
     vec2 p=viewDir.xy/viewDir.z*(height*height_scale);
-    return texCoords-p;
+    return texCoords-p;//反向采样
 }
 
 void main(){
     //计算偏移后的纹理采样坐标
     vec3 viewDir=normalize(fs_in.TangentViewPos-fs_in.TangentFragPos);
     vec2 texCoords=ParallaxMapping(fs_in.TexCoords,viewDir);
+    if(texCoords.x>1.0f||texCoords.y>1.0f||texCoords.x<0.0f||texCoords.y<0.0f)
+        discard;//边缘的纹理坐标偏移会导致小范围的失真，直接丢弃
     
     vec3 normal=texture(normalMap,texCoords).rgb;
     normal=normalize(normal*2.0f-1.0f);
