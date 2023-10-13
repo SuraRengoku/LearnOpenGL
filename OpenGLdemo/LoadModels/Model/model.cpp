@@ -81,6 +81,15 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene){
         }
         else
             vertex.TexCoords=glm::vec2(0.0f,0.0f);
+        //获取切线空间
+        vector.x=mesh->mTangents[i].x;
+        vector.y=mesh->mTangents[i].y;
+        vector.z=mesh->mTangents[i].z;
+        vertex.Tangent=vector;
+        vector.x=mesh->mBitangents[i].x;
+        vector.y=mesh->mBitangents[i].y;
+        vector.z=mesh->mBitangents[i].z;
+        vertex.Bitangent=vector;
         vertices.push_back(vertex);
     }
     //处理索引
@@ -96,7 +105,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene){
         _textures.insert(_textures.end(), diffuseMaps.begin(),diffuseMaps.end());
         vector<_Texture> specularMaps=loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular",scene);
         _textures.insert(_textures.end(), specularMaps.begin(),specularMaps.end());
-        vector<_Texture> ambientMaps=loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_reflect", scene);
+        vector<_Texture> ambientMaps=loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_reflect",scene);
         _textures.insert(_textures.end(), ambientMaps.begin(),ambientMaps.end());
         vector<_Texture> normalMaps=loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal",scene);
         _textures.insert(_textures.end(), normalMaps.begin(),normalMaps.end());

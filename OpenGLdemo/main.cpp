@@ -47,8 +47,9 @@
 #include "shadowmapping.hpp"
 #include "pointshadows.hpp"
 #include "normalmapping.hpp"
+#include "parallaxmapping.hpp"
 
 int main(int argc, const char * argv[]){
-    normalmapping();
+    parallaxmapping();
     return 0;
 }
