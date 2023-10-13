@@ -14,7 +14,8 @@ uniform sampler2D normalMap;
 
 void main(){
     vec3 normal=texture(normalMap,fs_in.TexCoords).rgb;
-    normal=normalize(normal*2.0f-1.0f);
+    normal=normalize(normal*2.0f-1.0f);//将法线向量转变到[-1,1]，法线向量的范围本就在[-1,1]
+//    normal=normalize(normal);
     vec3 color=texture(diffuseMap,fs_in.TexCoords).rgb;
     vec3 ambient=0.1*color;
     vec3 lightDir=normalize(fs_in.TangentLightPos-fs_in.TangentFragPos);

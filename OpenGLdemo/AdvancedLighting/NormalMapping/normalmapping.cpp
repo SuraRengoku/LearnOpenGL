@@ -165,7 +165,6 @@ int normalmapping(){
         deltaTime = currentFrame - lastTime;
         lastTime = currentFrame;
         
-        
         processInput(window, mouse_callback, scroll_callback);
         processCameraWSAD(window, camera, deltaTime);
 
