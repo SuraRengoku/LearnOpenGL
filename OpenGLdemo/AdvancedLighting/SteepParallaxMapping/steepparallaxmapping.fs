@@ -16,7 +16,9 @@ uniform sampler2D displaceMap;
 uniform float height_scale;//缩放参数，缺失该参数会导致时差过于强烈
 
 vec2 ParallaxMapping(vec2 texCoords,vec3 viewDir){
-    const float numlayers=10;//分层数
+    const float minLayers=8;
+    const float maxLayers=32;
+    float numlayers=mix(maxLayers,minLayers,abs(dot(vec3(0.0f,0.0f,1.0f),viewDir)));//分层数,垂直观看时采用更少的样本
     float layerDepth=1.0f/numlayers;//每层深度
     float currentLayerDepth=0.0f;
     vec2 P=viewDir.xy*height_scale;
@@ -29,7 +31,13 @@ vec2 ParallaxMapping(vec2 texCoords,vec3 viewDir){
         currentTexCoords-=deltaTexCoords;
         currentDepthMapValue=texture(displaceMap,currentTexCoords).r;
     }
-    return currentTexCoords;
+    //Parallax Occlusion Mapping 视差遮蔽映射
+    vec2 preTexCoords=currentTexCoords+deltaTexCoords;
+    float afterDepth=currentLayerDepth-currentDepthMapValue;
+    float beforeDepth=texture(displaceMap,preTexCoords).r-currentLayerDepth+layerDepth;
+    float weight=afterDepth/(afterDepth+beforeDepth);
+    vec2 finalTexCoords=currentTexCoords*(1.0f-weight)+preTexCoords*weight;//大权重*小坐标
+    return finalTexCoords;
 }
 
 void main(){
