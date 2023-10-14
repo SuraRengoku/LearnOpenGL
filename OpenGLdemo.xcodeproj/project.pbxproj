@@ -35,6 +35,7 @@
 		163BDA362AD84AC100F4C904 /* normalmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA342AD84AC100F4C904 /* normalmapping.cpp */; };
 		163BDA3E2AD9742700F4C904 /* parallaxmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA3C2AD9742700F4C904 /* parallaxmapping.cpp */; };
 		163BDA472AD993A500F4C904 /* steepparallaxmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA452AD993A500F4C904 /* steepparallaxmapping.cpp */; };
+		163BDA502AD9BC0100F4C904 /* hdr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA4E2AD9BC0100F4C904 /* hdr.cpp */; };
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
@@ -224,6 +225,12 @@
 		163BDA4A2AD99E3F00F4C904 /* toy_box_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toy_box_diffuse.png; sourceTree = "<group>"; };
 		163BDA4B2AD99E4400F4C904 /* toy_box_disp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toy_box_disp.png; sourceTree = "<group>"; };
 		163BDA4C2AD99E4D00F4C904 /* toy_box_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toy_box_normal.png; sourceTree = "<group>"; };
+		163BDA4E2AD9BC0100F4C904 /* hdr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hdr.cpp; sourceTree = "<group>"; };
+		163BDA4F2AD9BC0100F4C904 /* hdr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hdr.hpp; sourceTree = "<group>"; };
+		163BDA512AD9BF3900F4C904 /* hdr.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = hdr.vs; sourceTree = "<group>"; };
+		163BDA522AD9BF4100F4C904 /* hdr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = hdr.fs; sourceTree = "<group>"; };
+		163BDA532AD9C6A300F4C904 /* scene.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.vs; sourceTree = "<group>"; };
+		163BDA542AD9C6AB00F4C904 /* scene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.fs; sourceTree = "<group>"; };
 		163D29F22AB604E50093E634 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		163D29F32AB604E50093E634 /* nanosuit.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
 		163D29F42AB604E50093E634 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
@@ -686,6 +693,19 @@
 			path = SteepParallaxMapping;
 			sourceTree = "<group>";
 		};
+		163BDA4D2AD9BBEF00F4C904 /* HDR */ = {
+			isa = PBXGroup;
+			children = (
+				163BDA4E2AD9BC0100F4C904 /* hdr.cpp */,
+				163BDA4F2AD9BC0100F4C904 /* hdr.hpp */,
+				163BDA512AD9BF3900F4C904 /* hdr.vs */,
+				163BDA522AD9BF4100F4C904 /* hdr.fs */,
+				163BDA532AD9C6A300F4C904 /* scene.vs */,
+				163BDA542AD9C6AB00F4C904 /* scene.fs */,
+			);
+			path = HDR;
+			sourceTree = "<group>";
+		};
 		163D29F12AB604B30093E634 /* nanosuit */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +750,7 @@
 		163FCEC62ABF0E6000A96FDC /* AdvancedLighting */ = {
 			isa = PBXGroup;
 			children = (
+				163BDA4D2AD9BBEF00F4C904 /* HDR */,
 				163BDA442AD9936F00F4C904 /* SteepParallaxMapping */,
 				163BDA3B2AD9740A00F4C904 /* ParallaxMapping */,
 				163BDA332AD84AAB00F4C904 /* NormalMapping */,
@@ -1152,6 +1173,7 @@
 				16E22C382A2E6CD4007F78A2 /* texture_0.cpp in Sources */,
 				16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */,
 				16E22C2E2A2E18A7007F78A2 /* shadersApplication.cpp in Sources */,
+				163BDA502AD9BC0100F4C904 /* hdr.cpp in Sources */,
 				162671BD2A9F06E4003F03E0 /* depthtest.cpp in Sources */,
 				16355AF72A32899E001BAF56 /* coord_0.cpp in Sources */,
 				16E22C152A2D4810007F78A2 /* triangle_1.cpp in Sources */,

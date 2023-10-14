@@ -49,8 +49,9 @@
 #include "normalmapping.hpp"
 #include "parallaxmapping.hpp"
 #include "steepparallaxmapping.hpp"
+#include "hdr.hpp"
 
 int main(int argc, const char * argv[]){
-    steepparallaxmapping();
+    hdr();
     return 0;
 }
