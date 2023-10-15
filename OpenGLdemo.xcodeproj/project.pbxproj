@@ -36,6 +36,7 @@
 		163BDA3E2AD9742700F4C904 /* parallaxmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA3C2AD9742700F4C904 /* parallaxmapping.cpp */; };
 		163BDA472AD993A500F4C904 /* steepparallaxmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA452AD993A500F4C904 /* steepparallaxmapping.cpp */; };
 		163BDA502AD9BC0100F4C904 /* hdr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA4E2AD9BC0100F4C904 /* hdr.cpp */; };
+		163BDA582ADAD49100F4C904 /* bloom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA562ADAD49100F4C904 /* bloom.cpp */; };
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
@@ -231,6 +232,15 @@
 		163BDA522AD9BF4100F4C904 /* hdr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = hdr.fs; sourceTree = "<group>"; };
 		163BDA532AD9C6A300F4C904 /* scene.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.vs; sourceTree = "<group>"; };
 		163BDA542AD9C6AB00F4C904 /* scene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.fs; sourceTree = "<group>"; };
+		163BDA562ADAD49100F4C904 /* bloom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bloom.cpp; sourceTree = "<group>"; };
+		163BDA572ADAD49100F4C904 /* bloom.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bloom.hpp; sourceTree = "<group>"; };
+		163BDA592ADAEDBE00F4C904 /* frame.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = frame.vs; sourceTree = "<group>"; };
+		163BDA5A2ADAEDC500F4C904 /* frame.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = frame.fs; sourceTree = "<group>"; };
+		163BDA5B2ADAF7F500F4C904 /* scene.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.vs; sourceTree = "<group>"; };
+		163BDA5C2ADAF7FC00F4C904 /* scene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scene.fs; sourceTree = "<group>"; };
+		163BDA5D2ADB01E700F4C904 /* blur.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.vs; sourceTree = "<group>"; };
+		163BDA5E2ADB01F000F4C904 /* blur.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.fs; sourceTree = "<group>"; };
+		163BDA5F2ADB023500F4C904 /* lightbox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightbox.fs; sourceTree = "<group>"; };
 		163D29F22AB604E50093E634 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		163D29F32AB604E50093E634 /* nanosuit.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
 		163D29F42AB604E50093E634 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
@@ -706,6 +716,22 @@
 			path = HDR;
 			sourceTree = "<group>";
 		};
+		163BDA552ADAD48400F4C904 /* Bloom */ = {
+			isa = PBXGroup;
+			children = (
+				163BDA562ADAD49100F4C904 /* bloom.cpp */,
+				163BDA572ADAD49100F4C904 /* bloom.hpp */,
+				163BDA592ADAEDBE00F4C904 /* frame.vs */,
+				163BDA5A2ADAEDC500F4C904 /* frame.fs */,
+				163BDA5B2ADAF7F500F4C904 /* scene.vs */,
+				163BDA5C2ADAF7FC00F4C904 /* scene.fs */,
+				163BDA5D2ADB01E700F4C904 /* blur.vs */,
+				163BDA5E2ADB01F000F4C904 /* blur.fs */,
+				163BDA5F2ADB023500F4C904 /* lightbox.fs */,
+			);
+			path = Bloom;
+			sourceTree = "<group>";
+		};
 		163D29F12AB604B30093E634 /* nanosuit */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +776,7 @@
 		163FCEC62ABF0E6000A96FDC /* AdvancedLighting */ = {
 			isa = PBXGroup;
 			children = (
+				163BDA552ADAD48400F4C904 /* Bloom */,
 				163BDA4D2AD9BBEF00F4C904 /* HDR */,
 				163BDA442AD9936F00F4C904 /* SteepParallaxMapping */,
 				163BDA3B2AD9740A00F4C904 /* ParallaxMapping */,
@@ -1145,6 +1172,7 @@
 			files = (
 				16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */,
 				169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */,
+				163BDA582ADAD49100F4C904 /* bloom.cpp in Sources */,
 				16D25C532ABABDA5007A0900 /* geometryshader.cpp in Sources */,
 				163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */,
 				163BDA2D2AD6E7D500F4C904 /* pointshadows.cpp in Sources */,

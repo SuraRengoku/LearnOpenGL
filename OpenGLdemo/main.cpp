@@ -50,8 +50,9 @@
 #include "parallaxmapping.hpp"
 #include "steepparallaxmapping.hpp"
 #include "hdr.hpp"
+#include "bloom.hpp"
 
 int main(int argc, const char * argv[]){
-    hdr();
+    bloom();
     return 0;
 }
