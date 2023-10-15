@@ -168,6 +168,7 @@ int bloom(){
     Shader *objectshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/frame.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/frame.fs");
     Shader *blurshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/blur.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/blur.fs");
     Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/scene.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/scene.fs");
+    Shader *subsceneshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/scene.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/subscene.fs");
     
     GLuint woodTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/wood.png", true);
     GLuint containerTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/container2.png", true);
@@ -245,6 +246,8 @@ int bloom(){
     shader->use();
     shader->setInt("rawscene", 0);
     shader->setInt("bloomscene", 1);
+    subsceneshader->use();
+    subsceneshader->setInt("subtexture", 0);
 
     while(!glfwWindowShouldClose(window)){
         GLfloat currentFrame = glfwGetTime();
@@ -255,6 +258,8 @@ int bloom(){
         processCameraWSAD(window, camera, deltaTime);
         lighting_control(window);
 
+        glEnable(GL_DEPTH_TEST);
+        
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
@@ -348,6 +353,15 @@ int bloom(){
         renderQuad(quadVAO);
         
         std::cout << "bloom: " << (bloom_ ? "on" : "off") << " | exposure: " << exposure << std::endl;
+        
+        glDisable(GL_DEPTH_TEST);
+        subsceneshader->use();
+        glViewport(0,0,(SCR_WIDTH*2)/4,(SCR_HEIGHT*2)/4);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,pingpongColorbuffer[!horizontal]);
+        renderQuad(quadVAO);
+        
+        glViewport(0,0,SCR_WIDTH*2,SCR_HEIGHT*2);
         
         glfwSwapBuffers(window);
         glfwPollEvents();

@@ -241,6 +241,7 @@
 		163BDA5D2ADB01E700F4C904 /* blur.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.vs; sourceTree = "<group>"; };
 		163BDA5E2ADB01F000F4C904 /* blur.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.fs; sourceTree = "<group>"; };
 		163BDA5F2ADB023500F4C904 /* lightbox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightbox.fs; sourceTree = "<group>"; };
+		163BDA602ADC728300F4C904 /* subscene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = subscene.fs; sourceTree = "<group>"; };
 		163D29F22AB604E50093E634 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		163D29F32AB604E50093E634 /* nanosuit.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
 		163D29F42AB604E50093E634 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
@@ -725,6 +726,7 @@
 				163BDA5A2ADAEDC500F4C904 /* frame.fs */,
 				163BDA5B2ADAF7F500F4C904 /* scene.vs */,
 				163BDA5C2ADAF7FC00F4C904 /* scene.fs */,
+				163BDA602ADC728300F4C904 /* subscene.fs */,
 				163BDA5D2ADB01E700F4C904 /* blur.vs */,
 				163BDA5E2ADB01F000F4C904 /* blur.fs */,
 				163BDA5F2ADB023500F4C904 /* lightbox.fs */,
