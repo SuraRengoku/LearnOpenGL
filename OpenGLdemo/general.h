@@ -151,3 +151,4 @@ unsigned int loadTextureFromAssimp(const aiTexture* aiTex, GLint wrapMode, GLint
 std::vector<std::string> multiuniform(std::string _main, std::string(elements) [], int num, int elenum);
 #endif
 
+auto glfw_Init(int SCR_WIDTH,int SCR_HEIGHT,GLFWcursorposfun mouse_callback, GLFWscrollfun scroll_callback)->GLFWwindow*;

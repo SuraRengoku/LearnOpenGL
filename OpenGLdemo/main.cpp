@@ -51,8 +51,9 @@
 #include "steepparallaxmapping.hpp"
 #include "hdr.hpp"
 #include "bloom.hpp"
+#include "deferredshading.hpp"
 
 int main(int argc, const char * argv[]){
-    bloom();
+    deferredshading();
     return 0;
 }

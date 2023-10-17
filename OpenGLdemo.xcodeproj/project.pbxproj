@@ -37,6 +37,7 @@
 		163BDA472AD993A500F4C904 /* steepparallaxmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA452AD993A500F4C904 /* steepparallaxmapping.cpp */; };
 		163BDA502AD9BC0100F4C904 /* hdr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA4E2AD9BC0100F4C904 /* hdr.cpp */; };
 		163BDA582ADAD49100F4C904 /* bloom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA562ADAD49100F4C904 /* bloom.cpp */; };
+		163BDA642ADC7BA500F4C904 /* deferredshading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA622ADC7BA500F4C904 /* deferredshading.cpp */; };
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
@@ -242,6 +243,14 @@
 		163BDA5E2ADB01F000F4C904 /* blur.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blur.fs; sourceTree = "<group>"; };
 		163BDA5F2ADB023500F4C904 /* lightbox.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightbox.fs; sourceTree = "<group>"; };
 		163BDA602ADC728300F4C904 /* subscene.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = subscene.fs; sourceTree = "<group>"; };
+		163BDA622ADC7BA500F4C904 /* deferredshading.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = deferredshading.cpp; sourceTree = "<group>"; };
+		163BDA632ADC7BA500F4C904 /* deferredshading.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = deferredshading.hpp; sourceTree = "<group>"; };
+		163BDA652ADD202200F4C904 /* gBuffershader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = gBuffershader.vs; sourceTree = "<group>"; };
+		163BDA662ADD202E00F4C904 /* gBuffershader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = gBuffershader.fs; sourceTree = "<group>"; };
+		163BDA672ADD203E00F4C904 /* lightPassshader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightPassshader.vs; sourceTree = "<group>"; };
+		163BDA682ADD204B00F4C904 /* lightPassshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightPassshader.fs; sourceTree = "<group>"; };
+		163BDA692ADE74F800F4C904 /* debug.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = debug.fs; sourceTree = "<group>"; };
+		163BDA6A2ADE8D6900F4C904 /* debugspec.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = debugspec.fs; sourceTree = "<group>"; };
 		163D29F22AB604E50093E634 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		163D29F32AB604E50093E634 /* nanosuit.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
 		163D29F42AB604E50093E634 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
@@ -734,6 +743,21 @@
 			path = Bloom;
 			sourceTree = "<group>";
 		};
+		163BDA612ADC7B8400F4C904 /* DeferredShading */ = {
+			isa = PBXGroup;
+			children = (
+				163BDA622ADC7BA500F4C904 /* deferredshading.cpp */,
+				163BDA632ADC7BA500F4C904 /* deferredshading.hpp */,
+				163BDA652ADD202200F4C904 /* gBuffershader.vs */,
+				163BDA662ADD202E00F4C904 /* gBuffershader.fs */,
+				163BDA672ADD203E00F4C904 /* lightPassshader.vs */,
+				163BDA682ADD204B00F4C904 /* lightPassshader.fs */,
+				163BDA692ADE74F800F4C904 /* debug.fs */,
+				163BDA6A2ADE8D6900F4C904 /* debugspec.fs */,
+			);
+			path = DeferredShading;
+			sourceTree = "<group>";
+		};
 		163D29F12AB604B30093E634 /* nanosuit */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +802,7 @@
 		163FCEC62ABF0E6000A96FDC /* AdvancedLighting */ = {
 			isa = PBXGroup;
 			children = (
+				163BDA612ADC7B8400F4C904 /* DeferredShading */,
 				163BDA552ADAD48400F4C904 /* Bloom */,
 				163BDA4D2AD9BBEF00F4C904 /* HDR */,
 				163BDA442AD9936F00F4C904 /* SteepParallaxMapping */,
@@ -1173,6 +1198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16CE59AB2A4CD2B00000F354 /* materials.cpp in Sources */,
+				163BDA642ADC7BA500F4C904 /* deferredshading.cpp in Sources */,
 				169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */,
 				163BDA582ADAD49100F4C904 /* bloom.cpp in Sources */,
 				16D25C532ABABDA5007A0900 /* geometryshader.cpp in Sources */,
