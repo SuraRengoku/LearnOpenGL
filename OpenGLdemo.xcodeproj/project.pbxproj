@@ -251,6 +251,8 @@
 		163BDA682ADD204B00F4C904 /* lightPassshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightPassshader.fs; sourceTree = "<group>"; };
 		163BDA692ADE74F800F4C904 /* debug.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = debug.fs; sourceTree = "<group>"; };
 		163BDA6A2ADE8D6900F4C904 /* debugspec.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = debugspec.fs; sourceTree = "<group>"; };
+		163BDA6B2ADEAB6500F4C904 /* lightboxshader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightboxshader.vs; sourceTree = "<group>"; };
+		163BDA6C2ADEAB7000F4C904 /* lightboxshader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = lightboxshader.fs; sourceTree = "<group>"; };
 		163D29F22AB604E50093E634 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		163D29F32AB604E50093E634 /* nanosuit.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
 		163D29F42AB604E50093E634 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
@@ -754,6 +756,8 @@
 				163BDA682ADD204B00F4C904 /* lightPassshader.fs */,
 				163BDA692ADE74F800F4C904 /* debug.fs */,
 				163BDA6A2ADE8D6900F4C904 /* debugspec.fs */,
+				163BDA6B2ADEAB6500F4C904 /* lightboxshader.vs */,
+				163BDA6C2ADEAB7000F4C904 /* lightboxshader.fs */,
 			);
 			path = DeferredShading;
 			sourceTree = "<group>";
