@@ -138,10 +138,16 @@ int deferredshading()
     // -------------------------
     Shader *gBuffershader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/gBuffershader.vs", "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/gBuffershader.fs");
     Shader *lightPassshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightPassshader.vs", "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightPassshader.fs");
-    Shader *lightshader=new Shader ("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightboxshader.vs", "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightboxshader.fs");
+//    Shader *lightshader=new Shader ("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightboxshader.vs", "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightboxshader.fs");
+    Shader *lightshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/frame.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/lightbox.fs");
     Shader *debugshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightPassshader.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/debug.fs");
     Shader *debugspecshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/lightPassshader.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/debugspec.fs");
-
+    
+    //尝试实现立方体光源的泛光
+    Shader *blurshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/blur.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/Bloom/blur.fs");
+    
+    Shader *forwardshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/forwardscene.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/DeferredShading/forwardscene.fs");
+    
     // load models
     // -----------
     Model *backpack=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/nanosuit/nanosuit.obj");
@@ -165,9 +171,9 @@ int deferredshading()
         GLfloat yPos=((rand()%100)/100.0f)*6.0f-4.0f;
         GLfloat zPos=((rand()%100)/100.0f)*6.0f-3.0f;
         lightPositions.push_back(glm::vec3(xPos,yPos,zPos));
-        GLfloat rColor=((rand()%100)/200.0f)+0.5f; // Between 0.5 and 1.0
-        GLfloat gColor=((rand()%100)/200.0f)+0.5f; // Between 0.5 and 1.0
-        GLfloat bColor=((rand()%100)/200.0f)+0.5f; // Between 0.5 and 1.0
+        GLfloat rColor=((rand()%100)/50.0f); // Between 0.0 and 2.0
+        GLfloat gColor=((rand()%100)/50.0f); // Between 0.0 and 2.0
+        GLfloat bColor=((rand()%100)/50.0f); // Between 0.0 and 2.0
         lightColors.push_back(glm::vec3(rColor,gColor,bColor));
     }
 
@@ -213,6 +219,80 @@ int deferredshading()
         std::cout << "Framebuffer not complete!" << std::endl;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+    
+    //FOR BLOOM
+    GLuint bloomframe,colorBuffers[2],bloomrboDepth;
+    glGenFramebuffers(1,&bloomframe);
+    glGenTextures(2,colorBuffers);
+    glBindFramebuffer(GL_FRAMEBUFFER,bloomframe);
+    for(GLuint i=0;i<2;i++){
+        glBindTexture(GL_TEXTURE_2D,*(colorBuffers+i));
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGB16F,SCR_WIDTH*2,SCR_HEIGHT*2,0,GL_RGBA,GL_FLOAT,NULL);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+        glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0+i,GL_TEXTURE_2D,(*colorBuffers+i),0);
+    }
+    glGenRenderbuffers(1,&bloomrboDepth);
+    glBindRenderbuffer(GL_RENDERBUFFER,bloomrboDepth);
+    glRenderbufferStorage(GL_RENDERBUFFER,GL_DEPTH_COMPONENT,SCR_WIDTH*2,SCR_HEIGHT*2);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_RENDERBUFFER,bloomrboDepth);
+    //渲染到两个纹理上
+    GLuint bloomattachments[2]={GL_COLOR_ATTACHMENT0,GL_COLOR_ATTACHMENT1};
+    glDrawBuffers(2,bloomattachments);
+
+    try{
+        if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)
+            throw std::runtime_error("ERROR::FRAMEBUFFER::Framebuffer is not complete!");
+    }catch(const std::runtime_error &err){
+        cerr<<err.what()<<"\n";
+        throw;
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER,0);
+
+    GLuint pingpongFramebuffer[2],pingpongColorbuffer[2];
+    glGenFramebuffers(2,pingpongFramebuffer);
+    glGenTextures(2,pingpongColorbuffer);
+    for(int i=0;i<2;i++){
+        glBindFramebuffer(GL_FRAMEBUFFER,*(pingpongFramebuffer+i));
+        glBindTexture(GL_TEXTURE_2D,*(pingpongColorbuffer+i));
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGB16F,SCR_WIDTH*2,SCR_HEIGHT*2,0,GL_RGBA,GL_FLOAT,NULL);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+        glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,*(pingpongColorbuffer+i),0);
+
+        try{
+            if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)
+                throw std::runtime_error("ERROR::FRAMEBUFFER::Framebuffer is not complete!");
+        }catch(const std::runtime_error &err){
+            cerr<<err.what()<<"\n";
+            throw;
+        }
+    }
+    
+    GLuint defersceneframe,deferscenecolor;
+    glGenFramebuffers(1,&defersceneframe);
+    glGenTextures(1,&deferscenecolor);
+    glBindFramebuffer(GL_FRAMEBUFFER,defersceneframe);
+    glBindTexture(GL_TEXTURE_2D,deferscenecolor);
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB16F,SCR_WIDTH*2,SCR_HEIGHT*2,0,GL_RGBA,GL_FLOAT,NULL);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,deferscenecolor,0);
+    
+    try{
+        if(glCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)
+            throw std::runtime_error("ERROR::FRAMEBUFFER::Framebuffer is not complete!");
+    }catch(const std::runtime_error &err){
+        cerr<<err.what()<<"\n";
+        throw;
+    }
+    
     GLuint cubeVAO=loadCubeBuffer();
     GLuint quadVAO=loadQuadBuffer();
     
@@ -227,6 +307,12 @@ int deferredshading()
     debugshader->setInt("debugtexture", 0);
     debugspecshader->use();
     debugspecshader->setInt("debugtexture", 0);
+    blurshader->use();
+    blurshader->setInt("image", 0);
+    forwardshader->use();
+    forwardshader->setInt("rawscene", 0);
+    forwardshader->setInt("bloomscene", 1);
+    forwardshader->setInt("deferscene", 2);
 
     //imgui
     const char *glsl_version="#version 330 core";
@@ -257,10 +343,6 @@ int deferredshading()
         
         glEnable(GL_DEPTH_TEST);
 
-        // render
-        // ------
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -269,15 +351,6 @@ int deferredshading()
             ImGui::ShowDemoWindow(&show_demo_window);
         ImGui::Begin("Tool Panel");
         ImGui::Checkbox("Demo Window", &show_demo_window);
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",1000.0f/io.Framerate,io.Framerate);
-        ImGui::End();
-        if(show_another_window){
-            ImGui::Begin("Another Window",&show_another_window);
-            ImGui::Text("Hello from another window!");
-            if(ImGui::Button("Close Me"))
-                show_another_window=false;
-            ImGui::End();
-        }
         
         // 1. geometry pass: render scene's geometry/color data into gbuffer
         // -----------------------------------------------------------------
@@ -300,7 +373,7 @@ int deferredshading()
 
         // 2. lighting pass: calculate lighting by iterating over a screen filled quad pixel-by-pixel using the gbuffer's content.
         // -----------------------------------------------------------------------------------------------------------------------
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, defersceneframe);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         lightPassshader->use();
         glActiveTexture(GL_TEXTURE0);
@@ -310,8 +383,7 @@ int deferredshading()
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, gAlbedoSpec);
         // send light relevant uniforms
-        for (unsigned int i = 0; i < lightPositions.size(); i++)
-        {
+        for (unsigned int i = 0; i < lightPositions.size(); i++){
             lightPassshader->setVec3("lights[" + std::to_string(i) + "].Position", lightPositions[i]);
             lightPassshader->setVec3("lights[" + std::to_string(i) + "].Color", lightColors[i]);
             // update attenuation parameters and calculate radius
@@ -326,12 +398,13 @@ int deferredshading()
         // 2.5. copy content of geometry's depth buffer to default framebuffer's depth buffer
         // ----------------------------------------------------------------------------------
         glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer);
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0); // write to default framebuffer
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, bloomframe); // write to default framebuffer
         // blit to default framebuffer. Note that this may or may not work as the internal formats of both the FBO and default framebuffer have to match.
         // the internal formats are implementation defined. This works on all of my systems, but if it doesn't on yours you'll likely have to write to the
         // depth buffer in another shader stage (or somehow see to match the default framebuffer's internal format with the FBO's internal format).
         glBlitFramebuffer(0, 0, SCR_WIDTH*2, SCR_HEIGHT*2, 0, 0, SCR_WIDTH*2, SCR_HEIGHT*2, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, bloomframe);
+        glClear(GL_COLOR_BUFFER_BIT);
 
         // 3. render lights on top of scene
         // --------------------------------
@@ -347,6 +420,34 @@ int deferredshading()
             renderCube(cubeVAO);
         }
         
+        blurshader->use();
+        bool horizontal=true, first_iteration=true;
+        unsigned int amount=32;
+        glActiveTexture(GL_TEXTURE0);
+        for(int i=0;i<amount;i++){
+            glBindFramebuffer(GL_FRAMEBUFFER,pingpongFramebuffer[horizontal]);
+            blurshader->setBool("horizontal", horizontal);
+            glBindTexture(GL_TEXTURE_2D,first_iteration?colorBuffers[1]:pingpongColorbuffer[!horizontal]);
+            renderQuad(quadVAO);
+            horizontal=!horizontal;
+            if(first_iteration)
+                first_iteration=false;
+        }
+        
+        glBindFramebuffer(GL_FRAMEBUFFER,0);
+        forwardshader->use();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,colorBuffers[0]);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D,pingpongColorbuffer[!horizontal]);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D,deferscenecolor);
+        forwardshader->setInt("bloom", bloom_);
+        forwardshader->setFloat("exposure", exposure);
+        renderQuad(quadVAO);
+        
+        std::cout << "bloom: " << (bloom_ ? "on" : "off") << " | exposure: " << exposure << std::endl;
+        
         //debug
         glDisable(GL_DEPTH_TEST);
         glBindFramebuffer(GL_FRAMEBUFFER,0);
@@ -361,12 +462,28 @@ int deferredshading()
         glViewport(0,(SCR_HEIGHT*2)/2,(SCR_WIDTH*2)/4,(SCR_HEIGHT*2)/4);
         glBindTexture(GL_TEXTURE_2D,gAlbedoSpec);
         renderQuad(quadVAO);
+        glViewport((SCR_WIDTH*2)/2,0,(SCR_WIDTH*2)/4,(SCR_HEIGHT*2)/4);
+        glBindTexture(GL_TEXTURE_2D,pingpongColorbuffer[!horizontal]);
+        renderQuad(quadVAO);
+        glViewport((SCR_WIDTH*2)/4,(SCR_HEIGHT*2)/4,(SCR_WIDTH*2)/4,(SCR_HEIGHT*2)/4);
+        glBindTexture(GL_TEXTURE_2D,deferscenecolor);
+        renderQuad(quadVAO);
         debugspecshader->use();
         glViewport((SCR_WIDTH*2)/4,0,(SCR_WIDTH*2)/4,(SCR_HEIGHT*2)/4);
         glBindTexture(GL_TEXTURE_2D,gAlbedoSpec);
         renderQuad(quadVAO);
 
         glViewport(0,0,SCR_WIDTH*2,SCR_HEIGHT*2);
+        
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",1000.0f/io.Framerate,io.Framerate);
+        ImGui::End();
+        if(show_another_window){
+            ImGui::Begin("Another Window",&show_another_window);
+            ImGui::Text("Hello from another window!");
+            if(ImGui::Button("Close Me"))
+                show_another_window=false;
+            ImGui::End();
+        }
         
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
