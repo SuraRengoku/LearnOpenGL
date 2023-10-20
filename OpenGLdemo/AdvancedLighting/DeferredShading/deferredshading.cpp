@@ -386,10 +386,14 @@ int deferredshading()
             lightPassshader->setVec3("lights[" + std::to_string(i) + "].Position", lightPositions[i]);
             lightPassshader->setVec3("lights[" + std::to_string(i) + "].Color", lightColors[i]);
             // update attenuation parameters and calculate radius
+            const float constant=1.0f;
             const float linear = 0.7f;
             const float quadratic = 1.8f;
+            const float lightMax=std::fmaxf(std::fmaxf(lightColors[i].r, lightColors[i].g), lightColors[i].b);
+            const float radius=(-linear+std::sqrtf(linear*linear-4*quadratic*(constant-(256.0f/5.0f)*lightMax)))/(2*quadratic);
             lightPassshader->setFloat("lights[" + std::to_string(i) + "].Linear", linear);
             lightPassshader->setFloat("lights[" + std::to_string(i) + "].Quadratic", quadratic);
+            lightPassshader->setFloat("lights[" + std::to_string(i) + "].Radius", radius);
         }
         lightPassshader->setVec3("viewPos", camera.Position);
         renderQuad(quadVAO);
