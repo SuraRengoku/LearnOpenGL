@@ -133,6 +133,7 @@ int deferredshading()
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
+//    glEnable(GL_FRAMEBUFFER_SRGB);
 
     // build and compile shaders
     // -------------------------
@@ -331,8 +332,7 @@ int deferredshading()
     
     // render loop
     // -----------
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)){
         auto currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastTime;
         lastTime = currentFrame;
@@ -342,7 +342,6 @@ int deferredshading()
         lighting_control(window);
         
         glEnable(GL_DEPTH_TEST);
-
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -435,6 +434,7 @@ int deferredshading()
         }
         
         glBindFramebuffer(GL_FRAMEBUFFER,0);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         forwardshader->use();
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,colorBuffers[0]);
