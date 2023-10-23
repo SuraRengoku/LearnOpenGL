@@ -128,6 +128,8 @@
 ////    Model *MawJLaygo=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/MawJLaygo.fbx");
 //    Model *AlienSoldier=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/AlienSoldier.fbx");
 //    Model *Paladin=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Paladin.fbx");
+//    
+//    Model *room=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/0817.fbx");
 //
 //    float movingvelocity=4.0f;
 //
@@ -170,7 +172,8 @@
 //        shader->setVec3("viewPos", camera.Position);
 //        shader->setVec3("light.position", lightPos);
 //
-//        nanosuit->Draw(*shader);
+////        nanosuit->Draw(*shader);
+//        room->Draw(*shader);
 ////        nanosuit_reflection->Draw(*shader);
 ////        Paladin->Draw(*shader);
 //        

@@ -52,8 +52,9 @@
 #include "hdr.hpp"
 #include "bloom.hpp"
 #include "deferredshading.hpp"
+#include "ssao.hpp"
 
 int main(int argc, const char * argv[]){
-    deferredshading();
+    ssao();
     return 0;
 }
