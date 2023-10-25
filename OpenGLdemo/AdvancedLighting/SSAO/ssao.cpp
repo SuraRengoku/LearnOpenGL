@@ -166,7 +166,7 @@ int ssao(){
     }
     
     glm::vec3 lightPos = glm::vec3(2.0, 4.0, -2.0);
-    glm::vec3 lightColor = glm::vec3(1.0, 1.0, 1.0);
+    glm::vec3 lightColor = glm::vec3(15.0, 15.0, 15.0);
 
     
     shaderGeometryPass->use();
@@ -176,7 +176,7 @@ int ssao(){
     shaderLightingPass->setInt("gPosition", 0);
     shaderLightingPass->setInt("gNormal", 1);
     shaderLightingPass->setInt("gAlbedoSpec", 2);
-    shaderLightingPass->setInt("ssao", 3);
+    shaderLightingPass->setInt("ssaoblur", 3);
     shaderSSAO->use();
     shaderSSAO->setInt("gPosition", 0);
     shaderSSAO->setInt("gNormal", 1);
@@ -253,8 +253,9 @@ int ssao(){
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shaderLightingPass->use();
-        shaderLightingPass->setVec3("viewPos",camera.Position);
-        shaderLightingPass->setVec3("light.Position", lightPos);
+        glm::vec3 lightPosView=glm::vec3(camera.GetViewMatrix()*glm::vec4(lightPos,1.0f));
+//        shaderLightingPass->setVec3("viewPos",camera.Position);
+        shaderLightingPass->setVec3("light.Position", lightPosView);
         shaderLightingPass->setVec3("light.Color", lightColor);
         const float linear    = 0.09f;
         const float quadratic = 0.032f;
