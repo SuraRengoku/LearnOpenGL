@@ -44,6 +44,8 @@ int ssao(){
     Shader* shaderSSAOBlur=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/SSAO/common.vs", "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/AdvancedLighting/SSAO/blur.fs");
     
     Model* nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/nanosuit/nanosuit.obj");
+    
+    GLuint marbleTexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/marble.jpg", false);
 
     unsigned int gBuffer;
     glGenFramebuffers(1,&gBuffer);
@@ -213,6 +215,8 @@ int ssao(){
         shaderGeometryPass->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(view*model))));
         shaderGeometryPass->setInt("invertedNormals", 0); // invert normals as we're inside the cube
         shaderGeometryPass->setInt("suit", 0);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,marbleTexture);
         cube->render();
         shaderGeometryPass->setInt("invertedNormals", 0);
         shaderGeometryPass->setInt("suit", 1);

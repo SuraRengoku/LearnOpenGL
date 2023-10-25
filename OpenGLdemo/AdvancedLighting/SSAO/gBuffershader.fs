@@ -9,6 +9,7 @@ in vec3 Normal;
 
 uniform sampler2D texture_diffuse1;
 uniform sampler2D texture_specular1;
+//由于没有给立方体添加高光贴图，导致这里的贴图被设置为float0
 uniform bool suit;
 
 const float NEAR=0.1;
@@ -30,6 +31,7 @@ void main(){
         gAlbedoSpec.rgb=texture(texture_diffuse1,TexCoords).rgb;
         gAlbedoSpec.a=texture(texture_specular1,TexCoords).r;
     }else{
-        gAlbedoSpec.rgb=vec3(0.95f);
+//        gAlbedoSpec.rgb=vec3(0.95f);
+        gAlbedoSpec.rgb=texture(texture_diffuse1,TexCoords).rgb;
     }
 }
