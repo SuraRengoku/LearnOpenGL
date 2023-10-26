@@ -309,6 +309,12 @@
 		164785212AB8A2FB00E31A35 /* light.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = light.fs; sourceTree = "<group>"; };
 		164785222AB962FA00E31A35 /* nanosuit.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuit.vs; sourceTree = "<group>"; };
 		164785232AB9630500E31A35 /* nanosuit.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = nanosuit.fs; sourceTree = "<group>"; };
+		1648DC132AEAC31B006F322C /* rustediron1-alt2-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "rustediron1-alt2-bl"; sourceTree = "<group>"; };
+		1648DC142AEAC331006F322C /* greasy-metal-pan1-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "greasy-metal-pan1-bl"; sourceTree = "<group>"; };
+		1648DC152AEAC339006F322C /* Iron-Scuffed_bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Iron-Scuffed_bl"; sourceTree = "<group>"; };
+		1648DC162AEAC340006F322C /* metalgrid1-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "metalgrid1-bl"; sourceTree = "<group>"; };
+		1648DC172AEAC347006F322C /* metal-slpotchy-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "metal-slpotchy-bl"; sourceTree = "<group>"; };
+		1648DC182AEAC34D006F322C /* rusty-panel-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "rusty-panel-bl"; sourceTree = "<group>"; };
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
@@ -491,6 +497,13 @@
 				163041512A6E73BE00FB4C55 /* Paladin.fbx */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		160A55FD2AE978D3007171EB /* PBR */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PBR;
 			sourceTree = "<group>";
 		};
 		16129D8B2AB04DE0005CB9AD /* FaceCulling */ = {
@@ -1019,6 +1032,12 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				1648DC182AEAC34D006F322C /* rusty-panel-bl */,
+				1648DC172AEAC347006F322C /* metal-slpotchy-bl */,
+				1648DC162AEAC340006F322C /* metalgrid1-bl */,
+				1648DC152AEAC339006F322C /* Iron-Scuffed_bl */,
+				1648DC142AEAC331006F322C /* greasy-metal-pan1-bl */,
+				1648DC132AEAC31B006F322C /* rustediron1-alt2-bl */,
 				160A55F52AE52F99007171EB /* 0817.fbx */,
 				163BDA4C2AD99E4D00F4C904 /* toy_box_normal.png */,
 				163BDA4B2AD99E4400F4C904 /* toy_box_disp.png */,
@@ -1148,6 +1167,7 @@
 		DD9339012A12F1F900F4FCDD /* OpenGLdemo */ = {
 			isa = PBXGroup;
 			children = (
+				160A55FD2AE978D3007171EB /* PBR */,
 				163FCEC62ABF0E6000A96FDC /* AdvancedLighting */,
 				162671B92A9F026D003F03E0 /* Advanced */,
 				16D51B352A682CDA00A67222 /* LoadModels */,
