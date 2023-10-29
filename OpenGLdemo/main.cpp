@@ -53,8 +53,9 @@
 #include "bloom.hpp"
 #include "deferredshading.hpp"
 #include "ssao.hpp"
+#include "directpbr.hpp"
 
 int main(int argc, const char * argv[]){
-    ssao();
+    directpbr();
     return 0;
 }

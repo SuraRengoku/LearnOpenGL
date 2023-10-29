@@ -43,6 +43,7 @@
 		163FCEBA2ABDED5A00A96FDC /* starseries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEB82ABDED5A00A96FDC /* starseries.cpp */; };
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
+		1648DC1F2AEC520F006F322C /* directpbr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC1D2AEC520F006F322C /* directpbr.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
@@ -316,6 +317,11 @@
 		1648DC172AEAC347006F322C /* metal-slpotchy-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "metal-slpotchy-bl"; sourceTree = "<group>"; };
 		1648DC182AEAC34D006F322C /* rusty-panel-bl */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "rusty-panel-bl"; sourceTree = "<group>"; };
 		1648DC192AEAC3BF006F322C /* texturewebsite */ = {isa = PBXFileReference; lastKnownFileType = text; path = texturewebsite; sourceTree = "<group>"; };
+		1648DC1B2AEAC669006F322C /* directpbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = directpbr.fs; sourceTree = "<group>"; };
+		1648DC1C2AEC5136006F322C /* directpbr.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = directpbr.vs; sourceTree = "<group>"; };
+		1648DC1D2AEC520F006F322C /* directpbr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = directpbr.cpp; sourceTree = "<group>"; };
+		1648DC1E2AEC520F006F322C /* directpbr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = directpbr.hpp; sourceTree = "<group>"; };
+		1648DC202AEEFDEA006F322C /* texturepbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = texturepbr.fs; sourceTree = "<group>"; };
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
@@ -503,6 +509,7 @@
 		160A55FD2AE978D3007171EB /* PBR */ = {
 			isa = PBXGroup;
 			children = (
+				1648DC1A2AEAC64C006F322C /* lighting */,
 			);
 			path = PBR;
 			sourceTree = "<group>";
@@ -875,6 +882,18 @@
 				163FCECC2ABF15D300A96FDC /* blinnphong.hpp */,
 			);
 			path = BlinnPhong;
+			sourceTree = "<group>";
+		};
+		1648DC1A2AEAC64C006F322C /* lighting */ = {
+			isa = PBXGroup;
+			children = (
+				1648DC1B2AEAC669006F322C /* directpbr.fs */,
+				1648DC1C2AEC5136006F322C /* directpbr.vs */,
+				1648DC1D2AEC520F006F322C /* directpbr.cpp */,
+				1648DC1E2AEC520F006F322C /* directpbr.hpp */,
+				1648DC202AEEFDEA006F322C /* texturepbr.fs */,
+			);
+			path = lighting;
 			sourceTree = "<group>";
 		};
 		169DEEC82A59BDE700F78236 /* lightcasters */ = {
@@ -1271,6 +1290,7 @@
 				16E22C282A2E05A9007F78A2 /* shader.cpp in Sources */,
 				169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */,
 				162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */,
+				1648DC1F2AEC520F006F322C /* directpbr.cpp in Sources */,
 				16E22C252A2E0102007F78A2 /* moreAttributes.cpp in Sources */,
 				163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */,
 				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,

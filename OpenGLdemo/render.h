@@ -81,4 +81,12 @@ public:
     QuadRender();
     void render() override;
 };
+
+class SphereRender:public Render{
+private:
+    unsigned int indexCount;
+public:
+    SphereRender(int slice);
+    void render() override;
+};
 #endif /* render_hpp */
