@@ -889,9 +889,9 @@
 			children = (
 				1648DC1B2AEAC669006F322C /* directpbr.fs */,
 				1648DC1C2AEC5136006F322C /* directpbr.vs */,
+				1648DC202AEEFDEA006F322C /* texturepbr.fs */,
 				1648DC1D2AEC520F006F322C /* directpbr.cpp */,
 				1648DC1E2AEC520F006F322C /* directpbr.hpp */,
-				1648DC202AEEFDEA006F322C /* texturepbr.fs */,
 			);
 			path = lighting;
 			sourceTree = "<group>";
