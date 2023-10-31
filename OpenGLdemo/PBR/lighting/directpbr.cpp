@@ -34,24 +34,24 @@
 //
 //int directpbr(){
 //    GLFWwindow* window=glfw_Init(SCR_WIDTH, SCR_HEIGHT, mouse_callback, scroll_callback);
-//    
+//
 //    glEnable(GL_DEPTH_TEST);
-//    
+//
 //    Shader *directshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.fs");
-//    
+//
 //    Shader* textureshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/texturepbr.fs");
-//    
+//
 //    directshader->use();
 //    directshader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
 //    directshader->setFloat("ao", 1.0f);
-//    
+//
 //    textureshader->use();
 //    textureshader->setInt("albedoMap", 0);
 //    textureshader->setInt("normalMap", 1);
 //    textureshader->setInt("metallicMap", 2);
 //    textureshader->setInt("roughnessMap", 3);
 //    textureshader->setInt("aoMap", 4);
-//    
+//
 //    GLuint whitetexture;
 //    glGenTextures(1,&whitetexture);
 //    glBindTexture(GL_TEXTURE_2D,whitetexture);
@@ -62,13 +62,13 @@
 //    unsigned char whitePixel[] = { 255, 255, 255 };
 //    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,1,1,0,GL_RGB,GL_UNSIGNED_BYTE,whitePixel);
 //    glBindTexture(GL_TEXTURE_2D,0);
-//    
+//
 //    GLuint albedotexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_basecolor.png",false);
 //    GLuint aotexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/Iron-Scuffed_bl/Iron-Scuffed_metallic.png",false);
 //    GLuint metallictexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_metallic.png",false);
 //    GLuint normaltexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_normal.png",false);
 //    GLuint roughnesstexture=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_roughness.png",false);
-//    
+//
 //    glm::vec3 lightPositions[] = {
 //        glm::vec3(-10.0f,  10.0f, 10.0f),
 //        glm::vec3( 10.0f,  10.0f, 10.0f),
@@ -81,19 +81,19 @@
 //        glm::vec3(300.0f, 300.0f, 300.0f),
 //        glm::vec3(300.0f, 300.0f, 300.0f)
 //    };
-//    
+//
 //    glm::vec3 texturelightPositions[]={
 //        glm::vec3(0.0f,0.0f,10.0f),
 //    };
 //    glm::vec3 texturelightColors[]={
 //        glm::vec3(150.0f,150.0f,150.0f),
 //    };
-//    
+//
 //    int nrRows=7;
 //    int nrColumns=7;
 //    float spacing=2.5f;
 //    SphereRender* sphere=new SphereRender(64);
-//    
+//
 //    while (!glfwWindowShouldClose(window)) {
 //        float currentTime = static_cast<float>(glfwGetTime());
 //        deltaTime = currentTime - lastTime;
@@ -104,7 +104,7 @@
 //
 //        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        
+//
 ////        directshader->use();
 //        textureshader->use();
 //        glActiveTexture(GL_TEXTURE0);
@@ -126,7 +126,7 @@
 //        textureshader->setMat4("projection", projection);
 //        textureshader->setMat4("view", view);
 //        textureshader->setVec3("camPos", camera.Position);
-//        
+//
 //        glm::mat4 model=glm::mat4(1.0f);
 //
 //        for(unsigned int i=0;i<sizeof(lightPositions)/sizeof(lightPositions[0]);i++){
@@ -139,7 +139,7 @@
 //            directshader->setMat3("normalMatrix",glm::transpose(glm::inverse(glm::mat3(model))));
 ////            sphere->render();
 //        }
-//        
+//
 //        for(unsigned int i=0;i<sizeof(texturelightPositions)/sizeof(texturelightPositions[0]);i++){
 //            glm::vec3 newPos=texturelightPositions[i]+glm::vec3(sin(glfwGetTime()*5.0f)*5.0f,0.0f,0.0f);
 //            newPos=texturelightPositions[i];
@@ -150,7 +150,7 @@
 //            textureshader->setMat3("normalMatrix",glm::transpose(glm::inverse(glm::mat3(model))));
 //            sphere->render();
 //        }
-//        
+//
 //        for(int row=0;row<nrRows;row++){
 //            directshader->setFloat("metallic", (float)row/(float)nrRows);
 //            for(int col=0;col<nrColumns;col++){
@@ -162,7 +162,7 @@
 ////                sphere->render();
 //            }
 //        }
-//        
+//
 //        for(int row=0;row<nrRows;row++){
 //            for(int col=0;col<nrColumns;col++){
 //                model=glm::mat4(1.0f);
@@ -172,7 +172,7 @@
 //                sphere->render();
 //            }
 //        }
-//        
+//
 //        glfwSwapBuffers(window);
 //        glfwPollEvents();
 //    }
@@ -180,7 +180,7 @@
 //    directshader=nullptr;
 //    delete textureshader;
 //    textureshader=nullptr;
-//    
+//
 //    glfwTerminate();
 //    return 0;
 //}

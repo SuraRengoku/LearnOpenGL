@@ -93,6 +93,8 @@ int diffuseirradiance(){
     
     Shader* cubeMap=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.fs");
     
+    Shader* sphereShader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.fs");
+    
     cubeMap->use();
     cubeMap->setInt("environmentMap", 0);
     
@@ -116,6 +118,10 @@ int diffuseirradiance(){
     glfwGetFramebufferSize(window, &scrWidth, &scrHeight);
     glViewport(0,0,scrWidth,scrHeight);
     
+    sphereShader->use();
+    sphereShader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
+    sphereShader->setFloat("ao", 1.0f);
+    
     while (!glfwWindowShouldClose(window)) {
         float currentTime = static_cast<float>(glfwGetTime());
         deltaTime = currentTime - lastTime;
@@ -135,6 +141,35 @@ int diffuseirradiance(){
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP,envCubemap);
         cube->render();
+
+        sphereShader->use();
+        sphereShader->setVec3("camPos", camera.Position);
+        sphereShader->setMat4("projection", projection);
+        sphereShader->setMat4("view", view);
+        glm::mat4 model=glm::mat4(1.0f);
+        
+        for(unsigned int i=0;i<sizeof(lightPositions)/sizeof(lightPositions[0]);i++){
+            glm::vec3 newPos=lightPositions[i]+glm::vec3(sin(glfwGetTime()*5.0f)*5.0f,0.0f,0.0f);
+            newPos=lightPositions[i];
+            sphereShader->setVec3("lightPositions["+std::to_string(i)+"]", newPos);
+            sphereShader->setVec3("lightColors["+std::to_string(i)+"]", lightColors[i]);
+            model=glm::scale(glm::translate(glm::mat4(1.0f), newPos),glm::vec3(0.5f));
+            sphereShader->setMat4("model", model);
+            sphereShader->setMat3("normalMatrix",glm::transpose(glm::inverse(glm::mat3(model))));
+            sphere->render();
+        }
+        
+        for(int row=0;row<nrRows;row++){
+            sphereShader->setFloat("metallic", (float)row/(float)nrRows);
+            for(int col=0;col<nrColumns;col++){
+                sphereShader->setFloat("roughness", glm::clamp((float)col/(float)nrColumns, 0.05f, 1.0f));
+                model=glm::mat4(1.0f);
+                model=glm::translate(model, glm::vec3((col-(nrColumns/2))*spacing,(row-(nrRows/2))*spacing,0.0f));
+                sphereShader->setMat4("model", model);
+                sphereShader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+                sphere->render();
+            }
+        }
         
         glfwSwapBuffers(window);
         glfwPollEvents();
