@@ -54,8 +54,9 @@
 #include "deferredshading.hpp"
 #include "ssao.hpp"
 #include "directpbr.hpp"
+#include "diffuseirradiance.hpp"
 
 int main(int argc, const char * argv[]){
-    directpbr();
+    diffuseirradiance();
     return 0;
 }

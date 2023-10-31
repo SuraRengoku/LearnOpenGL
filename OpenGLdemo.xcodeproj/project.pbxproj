@@ -44,6 +44,7 @@
 		163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCEBF2ABEC26400A96FDC /* antialiasing.cpp */; };
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
 		1648DC1F2AEC520F006F322C /* directpbr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC1D2AEC520F006F322C /* directpbr.cpp */; };
+		1648DC242AF05C1D006F322C /* diffuseirradiance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC222AF05C1D006F322C /* diffuseirradiance.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
@@ -322,6 +323,13 @@
 		1648DC1D2AEC520F006F322C /* directpbr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = directpbr.cpp; sourceTree = "<group>"; };
 		1648DC1E2AEC520F006F322C /* directpbr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = directpbr.hpp; sourceTree = "<group>"; };
 		1648DC202AEEFDEA006F322C /* texturepbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = texturepbr.fs; sourceTree = "<group>"; };
+		1648DC222AF05C1D006F322C /* diffuseirradiance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = diffuseirradiance.cpp; sourceTree = "<group>"; };
+		1648DC232AF05C1D006F322C /* diffuseirradiance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = diffuseirradiance.hpp; sourceTree = "<group>"; };
+		1648DC252AF0ED8E006F322C /* newport_loft.hdr */ = {isa = PBXFileReference; lastKnownFileType = file; path = newport_loft.hdr; sourceTree = "<group>"; };
+		1648DC262AF0EFED006F322C /* toCubeMap.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = toCubeMap.vs; sourceTree = "<group>"; };
+		1648DC272AF0EFF8006F322C /* toCubeMap.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = toCubeMap.fs; sourceTree = "<group>"; };
+		1648DC282AF1147D006F322C /* cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.vs; sourceTree = "<group>"; };
+		1648DC292AF11487006F322C /* cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.fs; sourceTree = "<group>"; };
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
@@ -509,6 +517,7 @@
 		160A55FD2AE978D3007171EB /* PBR */ = {
 			isa = PBXGroup;
 			children = (
+				1648DC212AF05BDB006F322C /* DiffuseIrradiance */,
 				1648DC1A2AEAC64C006F322C /* lighting */,
 			);
 			path = PBR;
@@ -896,6 +905,19 @@
 			path = lighting;
 			sourceTree = "<group>";
 		};
+		1648DC212AF05BDB006F322C /* DiffuseIrradiance */ = {
+			isa = PBXGroup;
+			children = (
+				1648DC222AF05C1D006F322C /* diffuseirradiance.cpp */,
+				1648DC232AF05C1D006F322C /* diffuseirradiance.hpp */,
+				1648DC262AF0EFED006F322C /* toCubeMap.vs */,
+				1648DC272AF0EFF8006F322C /* toCubeMap.fs */,
+				1648DC282AF1147D006F322C /* cubemaps.vs */,
+				1648DC292AF11487006F322C /* cubemaps.fs */,
+			);
+			path = DiffuseIrradiance;
+			sourceTree = "<group>";
+		};
 		169DEEC82A59BDE700F78236 /* lightcasters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1052,6 +1074,7 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				1648DC252AF0ED8E006F322C /* newport_loft.hdr */,
 				1648DC182AEAC34D006F322C /* rusty-panel-bl */,
 				1648DC172AEAC347006F322C /* metal-slpotchy-bl */,
 				1648DC162AEAC340006F322C /* metalgrid1-bl */,
@@ -1292,6 +1315,7 @@
 				162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */,
 				1648DC1F2AEC520F006F322C /* directpbr.cpp in Sources */,
 				16E22C252A2E0102007F78A2 /* moreAttributes.cpp in Sources */,
+				1648DC242AF05C1D006F322C /* diffuseirradiance.cpp in Sources */,
 				163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */,
 				169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */,
 				16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */,

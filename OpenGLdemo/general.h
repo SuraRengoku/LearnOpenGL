@@ -145,6 +145,7 @@ glm::mat4 inverse_mat4(glm::mat4 &mat);
 //加载材质
 unsigned int loadTexture(char const *filepath);
 unsigned int loadTexture(char const *filepath,bool sRGB);
+unsigned int loadTextureHDR(char const *filepath);
 unsigned int loadCubemap(vector<string> faces);
 unsigned int loadTextureFromAssimp(const aiTexture* aiTex, GLint wrapMode, GLint MagFilterMode, GLint MinFilterMode);
 
