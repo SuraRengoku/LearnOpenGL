@@ -45,6 +45,7 @@
 		163FCECD2ABF15D300A96FDC /* blinnphong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163FCECB2ABF15D300A96FDC /* blinnphong.cpp */; };
 		1648DC1F2AEC520F006F322C /* directpbr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC1D2AEC520F006F322C /* directpbr.cpp */; };
 		1648DC242AF05C1D006F322C /* diffuseirradiance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC222AF05C1D006F322C /* diffuseirradiance.cpp */; };
+		1648DC2F2AF16C03006F322C /* specularibl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC2D2AF16C03006F322C /* specularibl.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
@@ -332,6 +333,9 @@
 		1648DC292AF11487006F322C /* cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.fs; sourceTree = "<group>"; };
 		1648DC2A2AF13F7F006F322C /* irradianceMap.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = irradianceMap.fs; sourceTree = "<group>"; };
 		1648DC2B2AF15EB6006F322C /* irradiancePBR.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = irradiancePBR.fs; sourceTree = "<group>"; };
+		1648DC2D2AF16C03006F322C /* specularibl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = specularibl.cpp; sourceTree = "<group>"; };
+		1648DC2E2AF16C03006F322C /* specularibl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = specularibl.hpp; sourceTree = "<group>"; };
+		1648DC302AF1B66E006F322C /* Cerberus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cerberus; sourceTree = "<group>"; };
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
@@ -504,6 +508,7 @@
 		160247B12A6BCEAA0069EA77 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				1648DC302AF1B66E006F322C /* Cerberus */,
 				16D25C6C2ABD6CE0007A0900 /* rock */,
 				16D25C682ABD6CA6007A0900 /* planet */,
 				163D29F12AB604B30093E634 /* nanosuit */,
@@ -519,6 +524,7 @@
 		160A55FD2AE978D3007171EB /* PBR */ = {
 			isa = PBXGroup;
 			children = (
+				1648DC2C2AF16BEA006F322C /* SpecularIBL */,
 				1648DC212AF05BDB006F322C /* DiffuseIrradiance */,
 				1648DC1A2AEAC64C006F322C /* lighting */,
 			);
@@ -920,6 +926,15 @@
 				1648DC2B2AF15EB6006F322C /* irradiancePBR.fs */,
 			);
 			path = DiffuseIrradiance;
+			sourceTree = "<group>";
+		};
+		1648DC2C2AF16BEA006F322C /* SpecularIBL */ = {
+			isa = PBXGroup;
+			children = (
+				1648DC2D2AF16C03006F322C /* specularibl.cpp */,
+				1648DC2E2AF16C03006F322C /* specularibl.hpp */,
+			);
+			path = SpecularIBL;
 			sourceTree = "<group>";
 		};
 		169DEEC82A59BDE700F78236 /* lightcasters */ = {
@@ -1337,6 +1352,7 @@
 				163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */,
 				16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */,
 				16E22C382A2E6CD4007F78A2 /* texture_0.cpp in Sources */,
+				1648DC2F2AF16C03006F322C /* specularibl.cpp in Sources */,
 				16355AFC2A336CC9001BAF56 /* coord_1.cpp in Sources */,
 				16E22C2E2A2E18A7007F78A2 /* shadersApplication.cpp in Sources */,
 				163BDA502AD9BC0100F4C904 /* hdr.cpp in Sources */,
