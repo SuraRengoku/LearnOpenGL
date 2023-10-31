@@ -93,7 +93,12 @@ int diffuseirradiance(){
     
     Shader* cubeMap=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.fs");
     
-    Shader* sphereShader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.fs");
+    Shader* sphereShader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/lighting/directpbr.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/irradiancePBR.fs");
+    
+    sphereShader->use();
+    sphereShader->setInt("irradianceMap", 0);
+    
+    Shader* irradianceShader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/irradianceMap.fs");
     
     cubeMap->use();
     cubeMap->setInt("environmentMap", 0);
@@ -113,14 +118,47 @@ int diffuseirradiance(){
         cube->render();
     }
     glBindFramebuffer(GL_FRAMEBUFFER,0);
+        
+    sphereShader->use();
+    sphereShader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
+    sphereShader->setFloat("ao", 1.0f);
+    
+    
+    glBindFramebuffer(GL_FRAMEBUFFER,captureFBO);
+    glBindRenderbuffer(GL_RENDERBUFFER,captureRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER,GL_DEPTH_COMPONENT24,32,32);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_RENDERBUFFER,captureRBO);
+
+    unsigned int irradianceMap;
+    glGenTextures(1,&irradianceMap);
+    glBindTexture(GL_TEXTURE_CUBE_MAP,irradianceMap);
+    for(unsigned int i=0;i<6;i++){
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,GL_RGB16F,32,32,0,GL_RGB,GL_FLOAT,nullptr);
+    }
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    
+    irradianceShader->use();
+    irradianceShader->setMat4("projection", captureProjection);
+    irradianceShader->setInt("environmentMap", 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP,envCubemap);
+    
+    glViewport(0,0,32,32);
+    for(unsigned int i=0;i<6;i++){
+        irradianceShader->setMat4("view", captureViews[i]);
+        glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,irradianceMap,0);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        cube->render();
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER,0);
     
     int scrWidth,scrHeight;
     glfwGetFramebufferSize(window, &scrWidth, &scrHeight);
     glViewport(0,0,scrWidth,scrHeight);
-    
-    sphereShader->use();
-    sphereShader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
-    sphereShader->setFloat("ao", 1.0f);
     
     while (!glfwWindowShouldClose(window)) {
         float currentTime = static_cast<float>(glfwGetTime());
@@ -140,12 +178,17 @@ int diffuseirradiance(){
         cubeMap->setMat4("view", view);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP,envCubemap);
+//        glBindTexture(GL_TEXTURE_CUBE_MAP,irradianceMap);//debug辐照贴图
         cube->render();
 
         sphereShader->use();
         sphereShader->setVec3("camPos", camera.Position);
         sphereShader->setMat4("projection", projection);
         sphereShader->setMat4("view", view);
+        
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_CUBE_MAP,irradianceMap);
+        
         glm::mat4 model=glm::mat4(1.0f);
         
         for(unsigned int i=0;i<sizeof(lightPositions)/sizeof(lightPositions[0]);i++){

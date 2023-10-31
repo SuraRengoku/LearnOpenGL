@@ -330,6 +330,8 @@
 		1648DC272AF0EFF8006F322C /* toCubeMap.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = toCubeMap.fs; sourceTree = "<group>"; };
 		1648DC282AF1147D006F322C /* cubemaps.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.vs; sourceTree = "<group>"; };
 		1648DC292AF11487006F322C /* cubemaps.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cubemaps.fs; sourceTree = "<group>"; };
+		1648DC2A2AF13F7F006F322C /* irradianceMap.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = irradianceMap.fs; sourceTree = "<group>"; };
+		1648DC2B2AF15EB6006F322C /* irradiancePBR.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = irradiancePBR.fs; sourceTree = "<group>"; };
 		16540E7B2A1AA0D5004648E8 /* general.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = general.h; sourceTree = "<group>"; };
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
@@ -914,6 +916,8 @@
 				1648DC272AF0EFF8006F322C /* toCubeMap.fs */,
 				1648DC282AF1147D006F322C /* cubemaps.vs */,
 				1648DC292AF11487006F322C /* cubemaps.fs */,
+				1648DC2A2AF13F7F006F322C /* irradianceMap.fs */,
+				1648DC2B2AF15EB6006F322C /* irradiancePBR.fs */,
 			);
 			path = DiffuseIrradiance;
 			sourceTree = "<group>";
