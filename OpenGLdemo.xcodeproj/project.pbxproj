@@ -216,6 +216,7 @@
 		16355B2E2A3E0E17001BAF56 /* basicobject.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = basicobject.fs; sourceTree = "<group>"; };
 		16355B2F2A3E1ED0001BAF56 /* basiclight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = basiclight.fs; sourceTree = "<group>"; };
 		1636D6A72A58BE1300EC8D4D /* container2_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container2_specular.png; sourceTree = "<group>"; };
+		1639342D2AF2AF560020C5E9 /* prefilter.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = prefilter.fs; sourceTree = "<group>"; };
 		163BDA2B2AD6E7D500F4C904 /* pointshadows.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pointshadows.cpp; sourceTree = "<group>"; };
 		163BDA2C2AD6E7D500F4C904 /* pointshadows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pointshadows.hpp; sourceTree = "<group>"; };
 		163BDA2E2AD6FAD800F4C904 /* shadowdepth.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowdepth.vs; sourceTree = "<group>"; };
@@ -933,6 +934,7 @@
 			children = (
 				1648DC2D2AF16C03006F322C /* specularibl.cpp */,
 				1648DC2E2AF16C03006F322C /* specularibl.hpp */,
+				1639342D2AF2AF560020C5E9 /* prefilter.fs */,
 			);
 			path = SpecularIBL;
 			sourceTree = "<group>";

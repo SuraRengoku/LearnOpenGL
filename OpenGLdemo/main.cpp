@@ -55,8 +55,9 @@
 #include "ssao.hpp"
 #include "directpbr.hpp"
 #include "diffuseirradiance.hpp"
+#include "specularibl.hpp"
 
 int main(int argc, const char * argv[]){
-    diffuseirradiance();
+    specularibl();
     return 0;
 }
