@@ -129,6 +129,8 @@
 		16129D8D2AB04DFB005CB9AD /* faceculling.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = faceculling.hpp; sourceTree = "<group>"; };
 		16129D8F2AB08730005CB9AD /* faceculling.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.vs; sourceTree = "<group>"; };
 		16129D902AB0873D005CB9AD /* faceculling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.fs; sourceTree = "<group>"; };
+		161D7D642B02AF500075D440 /* pbr.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.vs; sourceTree = "<group>"; };
+		161D7D652B02AF580075D440 /* pbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.fs; sourceTree = "<group>"; };
 		16221FC72AB18D2E0010E439 /* framebuffers.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.vs; sourceTree = "<group>"; };
 		16221FC82AB18D390010E439 /* framebuffers.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.fs; sourceTree = "<group>"; };
 		16221FC92AB18D460010E439 /* framebuffers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framebuffers.cpp; sourceTree = "<group>"; };
@@ -217,6 +219,8 @@
 		16355B2F2A3E1ED0001BAF56 /* basiclight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = basiclight.fs; sourceTree = "<group>"; };
 		1636D6A72A58BE1300EC8D4D /* container2_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = container2_specular.png; sourceTree = "<group>"; };
 		1639342D2AF2AF560020C5E9 /* prefilter.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = prefilter.fs; sourceTree = "<group>"; };
+		1639342E2AF5AE390020C5E9 /* BRDF.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = BRDF.fs; sourceTree = "<group>"; };
+		1639342F2AF649FF0020C5E9 /* BRDF.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = BRDF.vs; sourceTree = "<group>"; };
 		163BDA2B2AD6E7D500F4C904 /* pointshadows.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pointshadows.cpp; sourceTree = "<group>"; };
 		163BDA2C2AD6E7D500F4C904 /* pointshadows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pointshadows.hpp; sourceTree = "<group>"; };
 		163BDA2E2AD6FAD800F4C904 /* shadowdepth.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowdepth.vs; sourceTree = "<group>"; };
@@ -935,6 +939,10 @@
 				1648DC2D2AF16C03006F322C /* specularibl.cpp */,
 				1648DC2E2AF16C03006F322C /* specularibl.hpp */,
 				1639342D2AF2AF560020C5E9 /* prefilter.fs */,
+				1639342E2AF5AE390020C5E9 /* BRDF.fs */,
+				1639342F2AF649FF0020C5E9 /* BRDF.vs */,
+				161D7D642B02AF500075D440 /* pbr.vs */,
+				161D7D652B02AF580075D440 /* pbr.fs */,
 			);
 			path = SpecularIBL;
 			sourceTree = "<group>";

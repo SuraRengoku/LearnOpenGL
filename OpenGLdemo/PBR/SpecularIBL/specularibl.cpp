@@ -170,8 +170,8 @@ int specularibl(){
     toCubeMap=nullptr;
     delete cubeMap;
     cubeMap=nullptr;
-    delete prefilterMap;
-    prefilterMap=nullptr;
+    delete prefilterShader;
+    prefilterShader=nullptr;
     
     glfwTerminate();
     return 0;
