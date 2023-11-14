@@ -40,6 +40,7 @@ int specularibl(){
     glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);//立方体贴图面之间的过滤，消除低分辨率下的接缝感
     
     CubeRender* cube=new CubeRender();
+    QuadRender* quad=new QuadRender();
     SphereRender* sphere=new SphereRender(64);
     
     GLuint hdrMap=loadTextureHDR("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/newport_loft.hdr");
@@ -51,6 +52,35 @@ int specularibl(){
     cubeMap->setInt("environmentMap", 0);
     
     Shader* prefilterShader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/SpecularIBL/prefilter.fs");
+    
+    Shader* BRDFshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/SpecularIBL/BRDF.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/SpecularIBL/BRDF.fs");
+    
+    Shader* pbrShader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/SpecularIBL/pbr.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/SpecularIBL/pbr.fs");
+    pbrShader->use();
+    pbrShader->setInt("irradianceMap", 0);
+    pbrShader->setInt("prefilterMap", 1);
+    pbrShader->setInt("brdfLUT", 2);
+    pbrShader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
+    pbrShader->setFloat("ao", 1.0f);
+    
+    Shader* irradiance=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/irradianceMap.fs");
+    
+    //lights
+    glm::vec3 lightPositions[] = {
+        glm::vec3(-10.0f,  10.0f, 10.0f),
+        glm::vec3( 10.0f,  10.0f, 10.0f),
+        glm::vec3(-10.0f, -10.0f, 10.0f),
+        glm::vec3( 10.0f, -10.0f, 10.0f),
+    };
+    glm::vec3 lightColors[] = {
+        glm::vec3(300.0f, 300.0f, 300.0f),
+        glm::vec3(300.0f, 300.0f, 300.0f),
+        glm::vec3(300.0f, 300.0f, 300.0f),
+        glm::vec3(300.0f, 300.0f, 300.0f)
+    };
+    int nrRows=7;
+    int nrColumns=7;
+    float spacing=2.5;
     
     //将等距柱状投影图转换成立方体贴图
     unsigned int captureFBO,captureRBO,envCubemap;
@@ -98,6 +128,37 @@ int specularibl(){
     glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
     glBindFramebuffer(GL_FRAMEBUFFER,0);//envCubemap里目前存储有天空盒
     
+    unsigned int irradianceMap;
+    glGenTextures(1,&irradianceMap);
+    glBindTexture(GL_TEXTURE_CUBE_MAP,irradianceMap);
+    for(unsigned int i=0;i<6;i++)
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,0,GL_RGB16F,32,32,0,GL_RGB,GL_FLOAT,nullptr);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
+    
+    irradiance->use();
+    irradiance->setInt("environmentMap", 0);
+    irradiance->setMat4("projection", captureProjection);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP,envCubemap);
+    
+    glViewport(0,0,32,32);
+    glBindFramebuffer(GL_FRAMEBUFFER,captureFBO);
+    for(unsigned int i=0;i<6;i++){
+        irradiance->setMat4("view", captureViews[i]);
+        glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_CUBE_MAP_POSITIVE_X+i,irradianceMap,0);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        cube->render();
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER,0);
+    
     //生成预过滤环境贴图
     unsigned int prefilterMap;
     glGenTextures(1,&prefilterMap);
@@ -138,6 +199,26 @@ int specularibl(){
     }
     glBindFramebuffer(GL_FRAMEBUFFER,0);//prefilterMap目前存储有预过滤环境贴图
     
+    unsigned int brdfLUTTexture;
+    glGenTextures(1,&brdfLUTTexture);
+    glBindTexture(GL_TEXTURE_2D,brdfLUTTexture);
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RG16F,512,512,0,GL_RG,GL_FLOAT,0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glBindFramebuffer(GL_FRAMEBUFFER,captureFBO);
+    glBindRenderbuffer(GL_RENDERBUFFER,captureRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER,GL_DEPTH_COMPONENT24,512,512);
+    glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,brdfLUTTexture,0);
+    
+    glViewport(0,0,512,512);
+    BRDFshader->use();
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    quad->render();
+    glBindFramebuffer(GL_FRAMEBUFFER,0);
+    
     int scrWidth,scrHeight;
     glfwGetFramebufferSize(window, &scrWidth, &scrHeight);
     glViewport(0,0,scrWidth,scrHeight);
@@ -155,6 +236,7 @@ int specularibl(){
 
         glm::mat4 projection=glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH/(float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view=camera.GetViewMatrix();
+        
         //天空盒
         cubeMap->use();
         cubeMap->setMat4("projection", projection);
@@ -162,6 +244,42 @@ int specularibl(){
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP,prefilterMap);
         cube->render();
+        
+        pbrShader->use();
+        pbrShader->setMat4("projection", projection);
+        pbrShader->setMat4("view", view);
+        pbrShader->setVec3("camPos", camera.Position);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_CUBE_MAP,irradianceMap);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_CUBE_MAP,prefilterMap);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D,brdfLUTTexture);
+        
+        glm::mat4 model=glm::mat4(1.0f);
+        for(int row=0;row<nrRows;row++){
+            pbrShader->setFloat("metallic", (float)row/(float)nrRows);
+            for(int col=0;col<nrColumns;col++){
+                pbrShader->setFloat("roughness", glm::clamp((float)col/(float)nrColumns, 0.05f, 1.0f));
+                model=glm::mat4(1.0f);
+                model=glm::translate(model, glm::vec3((float)(col-(nrColumns/2))*spacing,(float)(row-(nrRows/2))*spacing,-2.0f));
+                pbrShader->setMat4("model", model);
+                pbrShader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+                sphere->render();
+            }
+        }
+        
+        //光源
+        for(unsigned int i=0;i<sizeof(lightPositions)/sizeof(lightPositions[0]);i++){
+            glm::vec3 newPos=lightPositions[i]+glm::vec3(sin(glfwGetTime()*5.0f)*5.0f,0.0f,0.0f);
+            newPos=lightPositions[i];
+            pbrShader->setVec3("lightPositions["+std::to_string(i)+"]", newPos);
+            pbrShader->setVec3("lightColors["+std::to_string(i)+"]", lightColors[i]);
+            model=glm::scale(glm::translate(glm::mat4(1.0f),newPos), glm::vec3(0.5f));
+            pbrShader->setMat4("model", model);
+            pbrShader->setMat4("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+            sphere->render();
+        }
         
         glfwSwapBuffers(window);
         glfwPollEvents();

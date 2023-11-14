@@ -1,4 +1,4 @@
-#verison 330 core
+#version 330 core
 out vec4 FragColor;
 in vec2 TexCoords;
 in vec3 WorldPos;
@@ -25,7 +25,7 @@ uniform vec3 camPos;
 const float PI=3.14159265359;
 
 float DistributionGGX(vec3 N,vec3 H,float roughness);
-float GeometrySchlickGGX(float NdotV,float roughness);
+float GeometrySchlickGGX(float value,float roughness);
 float GeometrySmith(vec3 N,vec3 V,vec3 L,float roughness);
 vec3 fresnelSchlick(float cosTheta,vec3 F0);
 vec3 fresnelSchlickRoughness(float cosTheta,vec3 F0,float roughness);
@@ -40,9 +40,9 @@ void main(){
     
     vec3 Lo=vec3(0.0f);
     for(int i=0;i<4;i++){
-        vec3 L=normalize(lightPosition[i]-WorldPos);//光照方向
+        vec3 L=normalize(lightPositions[i]-WorldPos);//光照方向
         vec3 H=normalize(L+V);
-        float distance=length(lightPosition[i]-WorldPos);
+        float distance=length(lightPositions[i]-WorldPos);
         float attenuation=1.0f/(distance*distance);//衰减项
         vec3 radiance=lightColors[i]*attenuation;
         
@@ -63,7 +63,7 @@ void main(){
         Lo+=(kD*albedo/PI+specular)*radiance*NdotL;
     }
     
-    vec3 F=fresnelSchlickRoughnes(max(dot(N,V),0.0f),F0,roughness);
+    vec3 F=fresnelSchlickRoughness(max(dot(N,V),0.0f),F0,roughness);
     vec3 kS=F;
     vec3 kD=vec3(1.0f)-kS;
     kD*=1.0f-metallic;
@@ -73,8 +73,8 @@ void main(){
     
     const float MAX_REFLECTION_LOD=6.0f;
     vec3 prefilteredColor=textureLod(prefilterMap,R,roughness*MAX_REFLECTION_LOD).rgb;//纹理，坐标，层级
-    vec2 brdf=texture(brdfLUT,vec2(max(dot(N,V),0.0f),roughneee)).rg;
-    vec3 specular=prefilterColor*(F*brdf.x+brdf.y);
+    vec2 brdf=texture(brdfLUT,vec2(max(dot(N,V),0.0f),roughness)).rg;
+    vec3 specular=prefilteredColor*(F*brdf.x+brdf.y);
     
     vec3 ambient=(kD*diffuse+specular)*ao;
     vec3 color=ambient+Lo;
@@ -92,7 +92,7 @@ float DistributionGGX(vec3 N,vec3 H,float roughness){
     
     return a2/(PI*pow((NdotH2*(a2-1.0f)+1.0f),2.0f));
 }
-float GeometrySchlickGGX(float NdotV,float roughness){
+float GeometrySchlickGGX(float value,float roughness){
     float r=(roughness+1.0f);
     float k=(r*r)/8.0f;
     

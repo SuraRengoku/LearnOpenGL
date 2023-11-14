@@ -9,7 +9,7 @@ const float PI=3.1415925359f;
 
 float RadicalInverse_VdC(uint bits);
 vec2 Hammersley(uint i,uint N);
-vec3 ImportanceSampleGGX(vec2 Xi,vec3 N, roughness);
+vec3 ImportanceSampleGGX(vec2 Xi,vec3 N,float roughness);
 
 vec2 IntegrateBRDF(float NdotV,float roughness);
 float GeometrySchlickGGX(float NdotV,float roughness);
@@ -31,7 +31,7 @@ float RadicalInverse_VdC(uint bits){
 vec2 Hammersley(uint i,uint N){
     return vec2(float(i)/float(N),RadicalInverse_VdC(i));
 }
-vec3 ImportanceSampleGGX(vec2 Xi,vec3 N, roughness){
+vec3 ImportanceSampleGGX(vec2 Xi,vec3 N,float roughness){
     float a=roughness*roughness;
     float phi=2.0f*PI*Xi.x;
     float cosTheta=sqrt((1.0f-Xi.y)/(1.0f+(a*a-1.0f)*Xi.y));
@@ -39,13 +39,13 @@ vec3 ImportanceSampleGGX(vec2 Xi,vec3 N, roughness){
     vec3 H=vec3(cos(phi)*sinTheta,sin(phi)*sinTheta,cosTheta);
     vec3 up=abs(N.z)<0.999?vec3(0.0f,0.0f,1.0f):vec3(1.0f,0.0f,0.0f);
     vec3 tangent=normalize(cross(up,N));
-    vec3 bitangen=cross(N,tangent);
+    vec3 bitangent=cross(N,tangent);
     
     vec3 sampleVec=tangent*H.x+bitangent*H.y+N*H.z;
     return normalize(sampleVec);
 }
 
-void IntegrateBRDF(float NdotV,float roughness){
+vec2 IntegrateBRDF(float NdotV,float roughness){
     vec3 V=vec3(sqrt(1.0f-NdotV*NdotV),0.0f,NdotV);
     
     float A=0.0f;
@@ -64,7 +64,7 @@ void IntegrateBRDF(float NdotV,float roughness){
         float VdotH=max(dot(V,H),0.0f);
         
         if(NdotL>0.0f){
-            float G=GeometrySmith(N,V,L,roughness);
+            float G=GeometrySchlickSmith(N,V,L,roughness);
             float G_Vis=(G*VdotH)/(NdotH*NdotV);
             float Fc=pow(1.0f-VdotH,5.0f);
             
@@ -78,7 +78,7 @@ void IntegrateBRDF(float NdotV,float roughness){
 }
 float GeometrySchlickGGX(float NdotV,float roughness){
     float a=roughness;
-    float k=(a*a)/2.0f
+    float k=(a*a)/2.0f;
     
     float nom=NdotV;
     float denom=NdotV*(1.0f-k)+k;
