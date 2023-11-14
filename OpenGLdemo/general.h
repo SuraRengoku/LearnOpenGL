@@ -31,6 +31,10 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+
 using std::cout,std::cin,std::endl,std::cerr;
 using std::string,std::vector,std::map;
 

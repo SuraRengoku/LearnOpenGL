@@ -48,6 +48,8 @@
 		1648DC2F2AF16C03006F322C /* specularibl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1648DC2D2AF16C03006F322C /* specularibl.cpp */; };
 		16540E7C2A1AA0D5004648E8 /* general.h in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7B2A1AA0D5004648E8 /* general.h */; };
 		16540E7E2A1AA4E8004648E8 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16540E7D2A1AA4E8004648E8 /* general.cpp */; };
+		16869BF02B03D570008BBA43 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16869BEF2B03D570008BBA43 /* libfreetype.6.dylib */; };
+		16869BF22B03D57C008BBA43 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16869BF12B03D57C008BBA43 /* libfreetype.a */; };
 		169DEECB2A59BDFD00F78236 /* parallellights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEC92A59BDFD00F78236 /* parallellights.cpp */; };
 		169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED02A5FFF2200F78236 /* pointlight.cpp */; };
 		169DEED92A63E69400F78236 /* spotlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED72A63E69400F78236 /* spotlight.cpp */; };
@@ -351,6 +353,8 @@
 		16540E7D2A1AA4E8004648E8 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		165A20B22A31F1BD00F0443F /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		165B242C2A6DFA8F000B845C /* VampireALusth.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = VampireALusth.fbx; sourceTree = "<group>"; };
+		16869BEF2B03D570008BBA43 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libfreetype.6.dylib; sourceTree = "<group>"; };
+		16869BF12B03D57C008BBA43 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetype.a; sourceTree = "<group>"; };
 		169DEEC92A59BDFD00F78236 /* parallellights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = parallellights.cpp; sourceTree = "<group>"; };
 		169DEECA2A59BDFD00F78236 /* parallellights.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = parallellights.hpp; sourceTree = "<group>"; };
 		169DEECC2A5F511D00F78236 /* parallelobj.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = parallelobj.vs; sourceTree = "<group>"; };
@@ -484,8 +488,10 @@
 			files = (
 				1602478B2A6842F30069EA77 /* libassimp.5.2.4.dylib in Frameworks */,
 				16CE79B12A683487004586BC /* libassimp.5.2.4.dylib in Frameworks */,
+				16869BF02B03D570008BBA43 /* libfreetype.6.dylib in Frameworks */,
 				DD15A1AA2A12F512003FF486 /* libglfw.3.dylib in Frameworks */,
 				DD15A1AB2A12F512003FF486 /* libglfw3.a in Frameworks */,
+				16869BF22B03D57C008BBA43 /* libfreetype.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,6 +1289,8 @@
 		DD9339092A12F39700F4FCDD /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				16869BEF2B03D570008BBA43 /* libfreetype.6.dylib */,
+				16869BF12B03D57C008BBA43 /* libfreetype.a */,
 				1602478C2A6842FD0069EA77 /* libassimp.dylib */,
 				1602478A2A6842F30069EA77 /* libassimp.5.2.4.dylib */,
 				DD15A1A82A12F512003FF486 /* libglfw.3.dylib */,
@@ -1551,11 +1559,16 @@
 					Dependencies/glad/include,
 					Dependencies/glfw/include,
 					/opt/homebrew/Cellar/assimp/5.2.5/include,
+					/opt/homebrew/Cellar/freetype/2.13.1/include/freetype2,
 				);
+				LD_RUNPATH_SEARCH_PATHS = /opt/homebrew/Celler/freetype/2.13.1/lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					/opt/homebrew/Celler/freetyep/2.13.1/lib,
 					/opt/homebrew/Cellar/assimp/5.2.5/lib,
+					"Dependencies/freetype-2.13.2/objs",
+					"$(PROJECT_DIR)/Dependencies/freetype-2.13.2/objs/.libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1570,11 +1583,16 @@
 					Dependencies/glad/include,
 					Dependencies/glfw/include,
 					/opt/homebrew/Cellar/assimp/5.2.5/include,
+					/opt/homebrew/Cellar/freetype/2.13.1/include/freetype2,
 				);
+				LD_RUNPATH_SEARCH_PATHS = /opt/homebrew/Celler/freetype/2.13.1/lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					/opt/homebrew/Celler/freetyep/2.13.1/lib,
 					/opt/homebrew/Cellar/assimp/5.2.5/lib,
+					"Dependencies/freetype-2.13.2/objs",
+					"$(PROJECT_DIR)/Dependencies/freetype-2.13.2/objs/.libs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
