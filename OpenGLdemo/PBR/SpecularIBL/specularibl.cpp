@@ -43,6 +43,52 @@ int specularibl(){
     QuadRender* quad=new QuadRender();
     SphereRender* sphere=new SphereRender(64);
     
+    Model* Cerberus=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Cerberus/Cerberus_LP.FBX");
+    unsigned int cerberusAlbedo=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Cerberus/Textures/Cerberus_A.tga");
+    unsigned int cerberusNormal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Cerberus/Textures/Cerberus_N.tga");
+    unsigned int cerberusMetal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Cerberus/Textures/Cerberus_M.tga");
+    unsigned int cerberusRoughness=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Cerberus/Textures/Cerberus_R.tga");
+
+    
+    //materials
+    //rusted iron
+    unsigned int ironAlbedo=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_basecolor.png");
+    unsigned int ironNormal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_normal.png");
+    unsigned int ironMetal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_metallic.png");
+    unsigned int ironRoughness=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rustediron1-alt2-bl/rustediron2_roughness.png");
+    unsigned char aoTexture[512*512*3];
+    for(int i=0;i<512*512*3;i+=3){
+        aoTexture[i]=255;
+        aoTexture[i+1]=255;
+        aoTexture[i+2]=255;
+    }
+    unsigned int ironAO;
+    glGenTextures(1,&ironAO);
+    glBindTexture(GL_TEXTURE_2D,ironAO);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,512,512,0,GL_RGB,GL_UNSIGNED_BYTE,aoTexture);
+    //grass
+    unsigned int grassAlbedo=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/mossy-ground1-bl/mossy-ground1-albedo.png");
+    unsigned int grassNormal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/mossy-ground1-bl/mossy-groundnormal.png");
+    unsigned int grassMetal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/mossy-ground1-bl/mossy-ground1-metal.png");
+    unsigned int grassRoughness=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/mossy-ground1-bl/mossy-ground1-roughness.png");
+    unsigned int grassAO=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/mossy-ground1-bl/mossy-ground1-ao.png");
+    //grid
+    unsigned int gridAlbedo=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metalgrid1-bl/metalgrid1_basecolor.png");
+    unsigned int gridNormal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metalgrid1-bl/metalgrid1_normal-ogl.png");
+    unsigned int gridMetal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metalgrid1-bl/metalgrid1_metallic.png");
+    unsigned int gridRoughness=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metalgrid1-bl/metalgrid1_roughness.png");
+    unsigned int gridAO=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/metalgrid1-bl/metalgrid1_AO.png");
+    //rusted panel
+    unsigned int panelAlbedo=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rusty-panel-bl/rusty-panel-albedo3b.png");
+    unsigned int panelNormal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rusty-panel-bl/rusty-panel-norma-ogl.png");
+    unsigned int panelMetal=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rusty-panel-bl/rusty-panel-metalness3b.png");
+    unsigned int panelRoughness=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rusty-panel-bl/rusty-panel-roughness3b.png");
+    unsigned int panelAO=loadTexture("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/rusty-panel-bl/rusty-panel-ao3.png");
+    
     GLuint hdrMap=loadTextureHDR("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/newport_loft.hdr");
     
     Shader* toCubeMap=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/toCubeMap.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/toCubeMap.fs");
@@ -60,8 +106,13 @@ int specularibl(){
     pbrShader->setInt("irradianceMap", 0);
     pbrShader->setInt("prefilterMap", 1);
     pbrShader->setInt("brdfLUT", 2);
-    pbrShader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
-    pbrShader->setFloat("ao", 1.0f);
+    pbrShader->setInt("albedoMap", 3);
+    pbrShader->setInt("normalMap", 4);
+    pbrShader->setInt("metallicMap", 5);
+    pbrShader->setInt("roughnessMap", 6);
+    pbrShader->setInt("aoMap", 7);
+//    pbrShader->setVec3("albedo", 0.5f, 0.0f, 0.0f);
+//    pbrShader->setFloat("ao", 1.0f);
     
     Shader* irradiance=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/cubemaps.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/PBR/DiffuseIrradiance/irradianceMap.fs");
     
@@ -256,11 +307,63 @@ int specularibl(){
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D,brdfLUTTexture);
         
+        int random=0;
         glm::mat4 model=glm::mat4(1.0f);
         for(int row=0;row<nrRows;row++){
-            pbrShader->setFloat("metallic", (float)row/(float)nrRows);
+//            pbrShader->setFloat("metallic", (float)row/(float)nrRows);
             for(int col=0;col<nrColumns;col++){
-                pbrShader->setFloat("roughness", glm::clamp((float)col/(float)nrColumns, 0.05f, 1.0f));
+//                pbrShader->setFloat("roughness", glm::clamp((float)col/(float)nrColumns, 0.05f, 1.0f));
+                switch (random%4) {
+                    case 0:
+                        glActiveTexture(GL_TEXTURE3);
+                        glBindTexture(GL_TEXTURE_2D,ironAlbedo);
+                        glActiveTexture(GL_TEXTURE4);
+                        glBindTexture(GL_TEXTURE_2D,ironNormal);
+                        glActiveTexture(GL_TEXTURE5);
+                        glBindTexture(GL_TEXTURE_2D,ironMetal);
+                        glActiveTexture(GL_TEXTURE6);
+                        glBindTexture(GL_TEXTURE_2D,ironRoughness);
+                        glActiveTexture(GL_TEXTURE7);
+                        glBindTexture(GL_TEXTURE_2D,ironAO);
+                        break;
+                    case 1:
+                        glActiveTexture(GL_TEXTURE3);
+                        glBindTexture(GL_TEXTURE_2D,grassAlbedo);
+                        glActiveTexture(GL_TEXTURE4);
+                        glBindTexture(GL_TEXTURE_2D,grassNormal);
+                        glActiveTexture(GL_TEXTURE5);
+                        glBindTexture(GL_TEXTURE_2D,grassMetal);
+                        glActiveTexture(GL_TEXTURE6);
+                        glBindTexture(GL_TEXTURE_2D,grassRoughness);
+                        glActiveTexture(GL_TEXTURE7);
+                        glBindTexture(GL_TEXTURE_2D,grassAO);
+                        break;
+                    case 2:
+                        glActiveTexture(GL_TEXTURE3);
+                        glBindTexture(GL_TEXTURE_2D,gridAlbedo);
+                        glActiveTexture(GL_TEXTURE4);
+                        glBindTexture(GL_TEXTURE_2D,gridNormal);
+                        glActiveTexture(GL_TEXTURE5);
+                        glBindTexture(GL_TEXTURE_2D,gridMetal);
+                        glActiveTexture(GL_TEXTURE6);
+                        glBindTexture(GL_TEXTURE_2D,gridRoughness);
+                        glActiveTexture(GL_TEXTURE7);
+                        glBindTexture(GL_TEXTURE_2D,gridAO);
+                        break;
+                    case 3:
+                        glActiveTexture(GL_TEXTURE3);
+                        glBindTexture(GL_TEXTURE_2D,panelAlbedo);
+                        glActiveTexture(GL_TEXTURE4);
+                        glBindTexture(GL_TEXTURE_2D,panelNormal);
+                        glActiveTexture(GL_TEXTURE5);
+                        glBindTexture(GL_TEXTURE_2D,panelMetal);
+                        glActiveTexture(GL_TEXTURE6);
+                        glBindTexture(GL_TEXTURE_2D,panelRoughness);
+                        glActiveTexture(GL_TEXTURE7);
+                        glBindTexture(GL_TEXTURE_2D,panelAO);
+                        break;
+                }
+                random+=1;
                 model=glm::mat4(1.0f);
                 model=glm::translate(model, glm::vec3((float)(col-(nrColumns/2))*spacing,(float)(row-(nrRows/2))*spacing,-2.0f));
                 pbrShader->setMat4("model", model);
@@ -268,6 +371,7 @@ int specularibl(){
                 sphere->render();
             }
         }
+        
         
         //光源
         for(unsigned int i=0;i<sizeof(lightPositions)/sizeof(lightPositions[0]);i++){
@@ -280,6 +384,22 @@ int specularibl(){
             pbrShader->setMat4("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
             sphere->render();
         }
+        
+        model=glm::rotate(glm::rotate(glm::scale(glm::translate(glm::mat4(1.0f),glm::vec3(0.0f,0.0f,6.0f)),glm::vec3(0.05f,0.05f,0.05f)),glm::radians(90.0f),glm::vec3(1.0f,0.0f,0.0f)),glm::radians(180.0f),glm::vec3(0.0f,1.0f,0.0f));
+        pbrShader->setMat4("model", model);
+        pbrShader->setMat3("normalMatrix", glm::transpose(glm::inverse(glm::mat3(model))));
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D,cerberusAlbedo);
+        glActiveTexture(GL_TEXTURE4);
+        glBindTexture(GL_TEXTURE_2D,cerberusNormal);
+        glActiveTexture(GL_TEXTURE5);
+        glBindTexture(GL_TEXTURE_2D,cerberusMetal);
+        glActiveTexture(GL_TEXTURE6);
+        glBindTexture(GL_TEXTURE_2D,cerberusRoughness);
+        glActiveTexture(GL_TEXTURE7);
+        glBindTexture(GL_TEXTURE_2D,ironAO);
+        Cerberus->Draw(*pbrShader);
+
         
         glfwSwapBuffers(window);
         glfwPollEvents();

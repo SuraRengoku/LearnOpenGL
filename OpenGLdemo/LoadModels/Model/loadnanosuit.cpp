@@ -109,13 +109,13 @@
 //    glEnable(GL_DEPTH_TEST);
 //
 //    Shader *shader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/nanosuitobj.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/nanosuitobj.fs");
-//    
+//
 //    Shader *lightshader=new Shader("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/light.vs","/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/Model/light.fs");
-//    
+//
 //    unsigned int lightVAO, lightVBO;
 //    glGenVertexArrays(1,&lightVAO);
 //    glGenBuffers(1,&lightVBO);
-//    
+//
 //    glBindVertexArray(lightVAO);
 //    glBindBuffer(GL_ARRAY_BUFFER,lightVBO);
 //    glBufferData(GL_ARRAY_BUFFER,sizeof(vertices),vertices,GL_STATIC_DRAW);
@@ -123,12 +123,12 @@
 //    glEnableVertexAttribArray(0);
 //
 //    Model *nanosuit=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/nanosuit/nanosuit.obj");
-//    
+//
 //    Model *nanosuit_reflection=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/nanosuit_reflection/nanosuit.obj");
 ////    Model *MawJLaygo=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/LoadModels/models/MawJLaygo.fbx");
 //    Model *AlienSoldier=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/AlienSoldier.fbx");
 //    Model *Paladin=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/models/Paladin.fbx");
-//    
+//
 //    Model *room=new Model("/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/0817.fbx");
 //
 //    float movingvelocity=4.0f;
@@ -136,15 +136,15 @@
 //    glm::vec3 specularColor=glm::vec3(1.0f,1.0f,1.0f);
 //    glm::vec3 ambientColor=glm::vec3(0.5f,0.5f,0.5f);
 //    glm::vec3 diffuseColor=glm::vec3(0.8f,0.8f,0.8f);
-//    
+//
 //    shader->use();
 //    shader->setFloat("shininess", 64.0f);
 //    shader->setVec3("light.ambient", ambientColor);
 //    shader->setVec3("light.diffuse", diffuseColor);
 //    shader->setVec3("light.specular", specularColor);
-//    
+//
 ////    glEnable(GL_FRAMEBUFFER_SRGB);
-//    
+//
 //    while (!glfwWindowShouldClose(window)) {
 //        float currentTime=static_cast<float>(glfwGetTime());
 //        deltaTime=(currentTime-lastTime)*movingvelocity;
@@ -155,7 +155,7 @@
 //
 //        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        
+//
 //        float x=cos(currentTime)*4;
 //        float y=13;
 //        float z=sin(currentTime)*4;
@@ -176,7 +176,7 @@
 //        room->Draw(*shader);
 ////        nanosuit_reflection->Draw(*shader);
 ////        Paladin->Draw(*shader);
-//        
+//
 //        lightshader->use();
 //        lightshader->setVec3("lightColor", specularColor);
 //        lightshader->setMat4("projection", projection);
@@ -186,7 +186,7 @@
 //
 //        glBindVertexArray(lightVAO);
 //        glDrawArrays(GL_TRIANGLES,0,36);
-//        
+//
 //        glfwSwapBuffers(window);
 //        glfwPollEvents();
 //    }

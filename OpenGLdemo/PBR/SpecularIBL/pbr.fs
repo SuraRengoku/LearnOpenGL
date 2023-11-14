@@ -5,10 +5,16 @@ in vec3 WorldPos;
 in vec3 Normal;
 
 //材质
-uniform vec3 albedo;
-uniform float metallic;
-uniform float roughness;
-uniform float ao;
+//uniform vec3 albedo;
+//uniform float metallic;
+//uniform float roughness;
+//uniform float ao;
+
+uniform sampler2D albedoMap;
+uniform sampler2D normalMap;
+uniform sampler2D metallicMap;
+uniform sampler2D roughnessMap;
+uniform sampler2D aoMap;
 
 //IBL
 uniform samplerCube irradianceMap;
@@ -24,6 +30,7 @@ uniform vec3 camPos;
 
 const float PI=3.14159265359;
 
+vec3 getNormalFromMap();
 float DistributionGGX(vec3 N,vec3 H,float roughness);
 float GeometrySchlickGGX(float value,float roughness);
 float GeometrySmith(vec3 N,vec3 V,vec3 L,float roughness);
@@ -31,7 +38,13 @@ vec3 fresnelSchlick(float cosTheta,vec3 F0);
 vec3 fresnelSchlickRoughness(float cosTheta,vec3 F0,float roughness);
 
 void main(){
-    vec3 N=Normal;
+    vec3 albedo=pow(texture(albedoMap,TexCoords).rgb,vec3(2.2));
+    float metallic=texture(metallicMap,TexCoords).r;
+    float roughness=texture(roughnessMap,TexCoords).r;
+    float ao=texture(aoMap,TexCoords).r;
+    
+//    vec3 N=Normal;
+    vec3 N=getNormalFromMap();
     vec3 V=normalize(camPos-WorldPos);//观察方向
     vec3 R=reflect(-V,N);
     
@@ -82,6 +95,21 @@ void main(){
     color=color/(color+vec3(1.0f));
     color=pow(color,vec3(1.0f/2.2f));
     FragColor=vec4(color,1.0f);
+}
+
+vec3 getNormalFromMap(){
+    vec3 tangentNormal=texture(normalMap,TexCoords).xyz*2.0f-1.0f;//map to [-1,1]
+    vec3 Q1=dFdx(WorldPos);
+    vec3 Q2=dFdy(WorldPos);
+    vec2 st1=dFdx(TexCoords);
+    vec2 st2=dFdy(TexCoords);
+    
+    vec3 N=normalize(Normal);
+    vec3 T=normalize(Q1*st2.t-Q2*st1.t);
+    vec3 B=-normalize(cross(N,T));
+    mat3 TBN=mat3(T,B,N);
+    
+    return normalize(TBN*tangentNormal);
 }
 
 float DistributionGGX(vec3 N,vec3 H,float roughness){

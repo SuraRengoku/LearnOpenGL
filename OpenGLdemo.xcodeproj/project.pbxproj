@@ -131,6 +131,12 @@
 		16129D902AB0873D005CB9AD /* faceculling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.fs; sourceTree = "<group>"; };
 		161D7D642B02AF500075D440 /* pbr.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.vs; sourceTree = "<group>"; };
 		161D7D652B02AF580075D440 /* pbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.fs; sourceTree = "<group>"; };
+		161D7D6F2B038D160075D440 /* mossy-ground1-metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-metal.png"; sourceTree = "<group>"; };
+		161D7D702B038D160075D440 /* mossy-groundnormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-groundnormal.png"; sourceTree = "<group>"; };
+		161D7D712B038D160075D440 /* mossy-ground1-ao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-ao.png"; sourceTree = "<group>"; };
+		161D7D722B038D160075D440 /* mossy-ground1-height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-height.png"; sourceTree = "<group>"; };
+		161D7D732B038D160075D440 /* mossy-ground1-roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-roughness.png"; sourceTree = "<group>"; };
+		161D7D742B038D160075D440 /* mossy-ground1-albedo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-albedo.png"; sourceTree = "<group>"; };
 		16221FC72AB18D2E0010E439 /* framebuffers.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.vs; sourceTree = "<group>"; };
 		16221FC82AB18D390010E439 /* framebuffers.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = framebuffers.fs; sourceTree = "<group>"; };
 		16221FC92AB18D460010E439 /* framebuffers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framebuffers.cpp; sourceTree = "<group>"; };
@@ -545,6 +551,19 @@
 				16129D902AB0873D005CB9AD /* faceculling.fs */,
 			);
 			path = FaceCulling;
+			sourceTree = "<group>";
+		};
+		161D7D6E2B038D160075D440 /* mossy-ground1-bl */ = {
+			isa = PBXGroup;
+			children = (
+				161D7D6F2B038D160075D440 /* mossy-ground1-metal.png */,
+				161D7D702B038D160075D440 /* mossy-groundnormal.png */,
+				161D7D712B038D160075D440 /* mossy-ground1-ao.png */,
+				161D7D722B038D160075D440 /* mossy-ground1-height.png */,
+				161D7D732B038D160075D440 /* mossy-ground1-roughness.png */,
+				161D7D742B038D160075D440 /* mossy-ground1-albedo.png */,
+			);
+			path = "mossy-ground1-bl";
 			sourceTree = "<group>";
 		};
 		16221FC62AB18D0E0010E439 /* Framebuffers */ = {
@@ -1104,6 +1123,7 @@
 			isa = PBXGroup;
 			children = (
 				1648DC252AF0ED8E006F322C /* newport_loft.hdr */,
+				161D7D6E2B038D160075D440 /* mossy-ground1-bl */,
 				1648DC182AEAC34D006F322C /* rusty-panel-bl */,
 				1648DC172AEAC347006F322C /* metal-slpotchy-bl */,
 				1648DC162AEAC340006F322C /* metalgrid1-bl */,
