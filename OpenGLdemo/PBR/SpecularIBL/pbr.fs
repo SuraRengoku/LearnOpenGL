@@ -76,7 +76,7 @@ void main(){
         Lo+=(kD*albedo/PI+specular)*radiance*NdotL;
     }
     
-    vec3 F=fresnelSchlickRoughness(max(dot(N,V),0.0f),F0,roughness);
+    vec3 F=fresnelSchlickRoughness(max(dot(N,V),0.0f),F0,roughness);//F0恒定
     vec3 kS=F;
     vec3 kD=vec3(1.0f)-kS;
     kD*=1.0f-metallic;
@@ -88,6 +88,7 @@ void main(){
     vec3 prefilteredColor=textureLod(prefilterMap,R,roughness*MAX_REFLECTION_LOD).rgb;//纹理，坐标，层级
     vec2 brdf=texture(brdfLUT,vec2(max(dot(N,V),0.0f),roughness)).rg;
     vec3 specular=prefilteredColor*(F*brdf.x+brdf.y);
+    //BRDF积分贴图生成F0*x+y
     
     vec3 ambient=(kD*diffuse+specular)*ao;
     vec3 color=ambient+Lo;

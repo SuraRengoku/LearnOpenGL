@@ -61,12 +61,13 @@ vec2 IntegrateBRDF(float NdotV,float roughness){
         
         float NdotL=max(L.z,0.0f);
         float NdotH=max(H.z,0.0f);
+        //N(0,0,1)本就是一个竖直指向屏幕外的向量
         float VdotH=max(dot(V,H),0.0f);
         
         if(NdotL>0.0f){
             float G=GeometrySchlickSmith(N,V,L,roughness);
-            float G_Vis=(G*VdotH)/(NdotH*NdotV);
-            float Fc=pow(1.0f-VdotH,5.0f);
+            float G_Vis=(G*VdotH)/(NdotH*NdotV);//G_Vis
+            float Fc=pow(1.0f-VdotH,5.0f);//(1-w_0*h)^5
             
             A+=(1.0f-Fc)*G_Vis;
             B+=Fc*G_Vis;
