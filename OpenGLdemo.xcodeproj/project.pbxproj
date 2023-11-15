@@ -54,6 +54,7 @@
 		169DEED22A5FFF2200F78236 /* pointlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED02A5FFF2200F78236 /* pointlight.cpp */; };
 		169DEED92A63E69400F78236 /* spotlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEED72A63E69400F78236 /* spotlight.cpp */; };
 		169DEEE52A64395C00F78236 /* multiplelights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169DEEE32A64395C00F78236 /* multiplelights.cpp */; };
+		16CB1F322B03D87E00E7485C /* 2dtext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CB1F302B03D87E00E7485C /* 2dtext.cpp */; };
 		16CE599D2A4994F20000F354 /* movelight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE599B2A4994F20000F354 /* movelight.cpp */; };
 		16CE59A22A4CC6B30000F354 /* viewlighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A02A4CC6B30000F354 /* viewlighting.cpp */; };
 		16CE59A72A4CCCBB0000F354 /* Gouraudshading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16CE59A52A4CCCBB0000F354 /* Gouraudshading.cpp */; };
@@ -379,6 +380,10 @@
 		169DEEE22A64394500F78236 /* multiplelight.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = multiplelight.fs; sourceTree = "<group>"; };
 		169DEEE32A64395C00F78236 /* multiplelights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = multiplelights.cpp; sourceTree = "<group>"; };
 		169DEEE42A64395C00F78236 /* multiplelights.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = multiplelights.hpp; sourceTree = "<group>"; };
+		16CB1F302B03D87E00E7485C /* 2dtext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 2dtext.cpp; sourceTree = "<group>"; };
+		16CB1F312B03D87E00E7485C /* 2dtext.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 2dtext.hpp; sourceTree = "<group>"; };
+		16CB1F332B03D95E00E7485C /* 2dtext.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 2dtext.vs; sourceTree = "<group>"; };
+		16CB1F342B03D96C00E7485C /* 2dtext.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 2dtext.fs; sourceTree = "<group>"; };
 		16CE599B2A4994F20000F354 /* movelight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movelight.cpp; sourceTree = "<group>"; };
 		16CE599C2A4994F20000F354 /* movelight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movelight.hpp; sourceTree = "<group>"; };
 		16CE599E2A4CC18C0000F354 /* viewlighting.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = viewlighting.vs; sourceTree = "<group>"; };
@@ -1010,6 +1015,25 @@
 			path = multiplelights;
 			sourceTree = "<group>";
 		};
+		16CB1F2D2B03D82E00E7485C /* Practices */ = {
+			isa = PBXGroup;
+			children = (
+				16CB1F2F2B03D84300E7485C /* 2DtextRendering */,
+			);
+			path = Practices;
+			sourceTree = "<group>";
+		};
+		16CB1F2F2B03D84300E7485C /* 2DtextRendering */ = {
+			isa = PBXGroup;
+			children = (
+				16CB1F302B03D87E00E7485C /* 2dtext.cpp */,
+				16CB1F312B03D87E00E7485C /* 2dtext.hpp */,
+				16CB1F332B03D95E00E7485C /* 2dtext.vs */,
+				16CB1F342B03D96C00E7485C /* 2dtext.fs */,
+			);
+			path = 2DtextRendering;
+			sourceTree = "<group>";
+		};
 		16CE59A82A4CD1B50000F354 /* Materials */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1290,7 @@
 		DD9339012A12F1F900F4FCDD /* OpenGLdemo */ = {
 			isa = PBXGroup;
 			children = (
+				16CB1F2D2B03D82E00E7485C /* Practices */,
 				160A55FD2AE978D3007171EB /* PBR */,
 				163FCEC62ABF0E6000A96FDC /* AdvancedLighting */,
 				162671B92A9F026D003F03E0 /* Advanced */,
@@ -1388,6 +1413,7 @@
 				163BDA472AD993A500F4C904 /* steepparallaxmapping.cpp in Sources */,
 				16355B1D2A3DFA88001BAF56 /* imgui_demo.cpp in Sources */,
 				163FCEC12ABEC26400A96FDC /* antialiasing.cpp in Sources */,
+				16CB1F322B03D87E00E7485C /* 2dtext.cpp in Sources */,
 				16DE6B052A312536006B7C10 /* texture_1.cpp in Sources */,
 				16E22C382A2E6CD4007F78A2 /* texture_0.cpp in Sources */,
 				1648DC2F2AF16C03006F322C /* specularibl.cpp in Sources */,

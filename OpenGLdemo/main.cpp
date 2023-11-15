@@ -56,8 +56,9 @@
 #include "directpbr.hpp"
 #include "diffuseirradiance.hpp"
 #include "specularibl.hpp"
+#include "2dtext.hpp"
 
 int main(int argc, const char * argv[]){
-    specularibl();
+    _2dtext();
     return 0;
 }
