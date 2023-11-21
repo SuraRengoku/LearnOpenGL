@@ -384,6 +384,9 @@
 		16CB1F312B03D87E00E7485C /* 2dtext.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 2dtext.hpp; sourceTree = "<group>"; };
 		16CB1F332B03D95E00E7485C /* 2dtext.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 2dtext.vs; sourceTree = "<group>"; };
 		16CB1F342B03D96C00E7485C /* 2dtext.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 2dtext.fs; sourceTree = "<group>"; };
+		16CB1F362B064AF900E7485C /* NotoSansHK-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHK-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		16CB1F372B064C0600E7485C /* NotoSansHK-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHK-Regular.ttf"; sourceTree = "<group>"; };
+		16CB1F382B064C1D00E7485C /* NotoSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerif-Regular.ttf"; sourceTree = "<group>"; };
 		16CE599B2A4994F20000F354 /* movelight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = movelight.cpp; sourceTree = "<group>"; };
 		16CE599C2A4994F20000F354 /* movelight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = movelight.hpp; sourceTree = "<group>"; };
 		16CE599E2A4CC18C0000F354 /* viewlighting.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = viewlighting.vs; sourceTree = "<group>"; };
@@ -1034,6 +1037,16 @@
 			path = 2DtextRendering;
 			sourceTree = "<group>";
 		};
+		16CB1F352B064ACD00E7485C /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				16CB1F382B064C1D00E7485C /* NotoSerif-Regular.ttf */,
+				16CB1F372B064C0600E7485C /* NotoSansHK-Regular.ttf */,
+				16CB1F362B064AF900E7485C /* NotoSansHK-VariableFont_wght.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		16CE59A82A4CD1B50000F354 /* Materials */ = {
 			isa = PBXGroup;
 			children = (
@@ -1152,6 +1165,7 @@
 		16DE6AFF2A30BCF6006B7C10 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				16CB1F352B064ACD00E7485C /* fonts */,
 				1648DC252AF0ED8E006F322C /* newport_loft.hdr */,
 				161D7D6E2B038D160075D440 /* mossy-ground1-bl */,
 				1648DC182AEAC34D006F322C /* rusty-panel-bl */,
