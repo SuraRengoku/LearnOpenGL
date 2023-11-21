@@ -27,6 +27,18 @@ struct Character{
     FT_Long Advance;
 };
 
+vector<string> font_paths={
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/HarmonyOS_Sans_SC_Medium.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSans-ExtraBold.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansArabic-Medium.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansCanadianAboriginal-Medium.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansCuneiform-Regular.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansSymbols2-Regular.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSerif-Regular.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansHK-Regular.ttf",
+    "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansHK-VariableFont_wght.ttf"
+};
+
 static std::map<FT_ULong,Character> Characters;
 
 static GLuint VAO,VBO;
@@ -43,16 +55,17 @@ int RenderText(Shader &shader,T text,GLfloat x,GLfloat y,GLfloat scale,glm::vec3
         return -1;
     }
     
-    FT_Face charface;
-    if(FT_New_Face(charft, "/Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/resource/fonts/NotoSansHK-Regular.ttf", 0, &charface)){
-        cout<<"ERROR::FREETYPE: Failed to load font\n";
-        return -1;
+    vector<FT_Face> charfaces;
+    glPixelStorei(GL_UNPACK_ALIGNMENT,1);
+    for(const string &font_path:font_paths){
+        FT_Face charface;
+        if(FT_New_Face(charft, font_path.c_str(), 0, &charface)){
+            cout<<"ERROR:FREETYPE:Failed to load font\n";
+            return -1;
+        }
+        FT_Set_Pixel_Sizes(charface, 0, 60);
+        charfaces.push_back(charface);
     }
-    
-    FT_Set_Pixel_Sizes(charface, 0, 48);
-    
-    GLuint chartexture;
-    glGenTextures(1,&chartexture);
     
     shader.use();
     shader.setVec3("textColor", color);
@@ -62,43 +75,47 @@ int RenderText(Shader &shader,T text,GLfloat x,GLfloat y,GLfloat scale,glm::vec3
 //    if constexpr(std::is_same_v<T, std::wstring>)
 //        std::wstring::const_iterator wch;
     for(auto wch=text.begin();wch!=text.end();wch++){
-        if(FT_Load_Char(charface, *wch, FT_LOAD_RENDER)){
-            cout<<"ERROR::getCharFromFreeType:Failed to load Glyph\n";
-            return -1;
+        for(auto charface:charfaces){
+            if(FT_Load_Char(charface, *wch, FT_LOAD_RENDER)){
+                cout<<"ERROR::getCharFromFreeType:Failed to load Glyph\n";
+                return -1;
+            }
+            GLuint chartexture;
+            glGenTextures(1,&chartexture);
+            glBindTexture(GL_TEXTURE_2D,chartexture);
+            glTexImage2D(GL_TEXTURE_2D,0,GL_RED,charface->glyph->bitmap.width,charface->glyph->bitmap.rows,0,GL_RED,GL_UNSIGNED_BYTE,charface->glyph->bitmap.buffer);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            Character character={
+                chartexture,
+                glm::ivec2(charface->glyph->bitmap.width,charface->glyph->bitmap.rows),
+                glm::ivec2(charface->glyph->bitmap_left,charface->glyph->bitmap_top),
+                charface->glyph->advance.x
+            };
+            Characters.insert(std::pair<FT_ULong,Character>(*wch,character));
+            Character ch=Characters[*wch];
+            GLfloat xpos=x+ch.Bearing.x*scale;
+            GLfloat ypos=y-(ch.Size.y-ch.Bearing.y)*scale;
+            GLfloat w=ch.Size.x*scale;
+            GLfloat h=ch.Size.y*scale;
+            
+            GLfloat vertices[6][4]={
+                {xpos,ypos+h,0.0f,0.0f},
+                {xpos,ypos,0.0f,1.0f},
+                {xpos+w,ypos,1.0f,1.0f},
+                {xpos,ypos+h,0.0f,0.0f},
+                {xpos+w,ypos,1.0f,1.0f},
+                {xpos+w,ypos+h,1.0f,0.0f}
+            };
+            glBindTexture(GL_TEXTURE_2D,ch.TextureID);
+            glBindBuffer(GL_ARRAY_BUFFER,VBO);
+            glBufferSubData(GL_ARRAY_BUFFER,0,sizeof(vertices),vertices);
+            
+            glDrawArrays(GL_TRIANGLES,0,6);
+            x+=(ch.Advance>>6)*scale;
         }
-        glBindTexture(GL_TEXTURE_2D,chartexture);
-        glTexImage2D(GL_TEXTURE_2D,0,GL_RED,charface->glyph->bitmap.width,charface->glyph->bitmap.rows,0,GL_RED,GL_UNSIGNED_BYTE,charface->glyph->bitmap.buffer);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-        Character character={
-            chartexture,
-            glm::ivec2(charface->glyph->bitmap.width,charface->glyph->bitmap.rows),
-            glm::ivec2(charface->glyph->bitmap_left,charface->glyph->bitmap_top),
-            charface->glyph->advance.x
-        };
-        Characters.insert(std::pair<FT_ULong,Character>(*wch,character));
-        Character ch=Characters[*wch];
-        GLfloat xpos=x+ch.Bearing.x*scale;
-        GLfloat ypos=y-(ch.Size.y-ch.Bearing.y)*scale;
-        GLfloat w=ch.Size.x*scale;
-        GLfloat h=ch.Size.y*scale;
-        
-        GLfloat vertices[6][4]={
-            {xpos,ypos+h,0.0f,0.0f},
-            {xpos,ypos,0.0f,1.0f},
-            {xpos+w,ypos,1.0f,1.0f},
-            {xpos,ypos+h,0.0f,0.0f},
-            {xpos+w,ypos,1.0f,1.0f},
-            {xpos+w,ypos+h,1.0f,0.0f}
-        };
-        glBindTexture(GL_TEXTURE_2D,ch.TextureID);
-        glBindBuffer(GL_ARRAY_BUFFER,VBO);
-        glBufferSubData(GL_ARRAY_BUFFER,0,sizeof(vertices),vertices);
-        
-        glDrawArrays(GL_TRIANGLES,0,6);
-        x+=(ch.Advance>>6)*scale;
     }
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D,0);
@@ -171,9 +188,9 @@ int _2dtext(){
     glBindBuffer(GL_ARRAY_BUFFER,0);
     glBindVertexArray(0);
         
-    std::wstring s1=L"this is a text: 你好，世界!";
+    std::wstring s1=L"你好，世界!";
     std::wstring s2=L"(C) LearnOpenGL.com";
-    std::wstring s3=L"this ia a text: äöüß !";
+    std::wstring s3=L"äöüß !";
     
     while(!glfwWindowShouldClose(window)){
         processInput(window, mouse_callback, scroll_callback);
@@ -183,6 +200,7 @@ int _2dtext(){
         
         RenderText<std::wstring>(*shader, s1, 25.0f,25.0f,1.0f, glm::vec3(0.5f,0.8f,0.2f));
         RenderText<std::string>(*shader, "(C) LearnOpenGL.com", 500.0f, 570.0f, 0.5f, glm::vec3(0.3f,0.7f,0.9f));
+        RenderText<std::wstring>(*shader, s3, 200.0f, 250.0f, 1.0f, glm::vec3(0.4f,0.1f,0.8f));
         
         glfwPollEvents();
         glfwSwapBuffers(window);

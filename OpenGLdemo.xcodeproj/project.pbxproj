@@ -230,6 +230,12 @@
 		1639342D2AF2AF560020C5E9 /* prefilter.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = prefilter.fs; sourceTree = "<group>"; };
 		1639342E2AF5AE390020C5E9 /* BRDF.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = BRDF.fs; sourceTree = "<group>"; };
 		1639342F2AF649FF0020C5E9 /* BRDF.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = BRDF.vs; sourceTree = "<group>"; };
+		163A0C4C2B0CC746004723C2 /* NotoSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		163A0C4D2B0CC746004723C2 /* NotoSansCuneiform-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCuneiform-Regular.ttf"; sourceTree = "<group>"; };
+		163A0C4E2B0CC746004723C2 /* NotoSansSymbols2-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansSymbols2-Regular.ttf"; sourceTree = "<group>"; };
+		163A0C4F2B0CC746004723C2 /* NotoSansCanadianAboriginal-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCanadianAboriginal-Medium.ttf"; sourceTree = "<group>"; };
+		163A0C502B0CC746004723C2 /* NotoSansArabic-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansArabic-Medium.ttf"; sourceTree = "<group>"; };
+		163A0C512B0CC746004723C2 /* HarmonyOS_Sans_SC_Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HarmonyOS_Sans_SC_Medium.ttf; sourceTree = "<group>"; };
 		163BDA2B2AD6E7D500F4C904 /* pointshadows.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pointshadows.cpp; sourceTree = "<group>"; };
 		163BDA2C2AD6E7D500F4C904 /* pointshadows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pointshadows.hpp; sourceTree = "<group>"; };
 		163BDA2E2AD6FAD800F4C904 /* shadowdepth.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowdepth.vs; sourceTree = "<group>"; };
@@ -1040,6 +1046,12 @@
 		16CB1F352B064ACD00E7485C /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				163A0C512B0CC746004723C2 /* HarmonyOS_Sans_SC_Medium.ttf */,
+				163A0C4C2B0CC746004723C2 /* NotoSans-ExtraBold.ttf */,
+				163A0C502B0CC746004723C2 /* NotoSansArabic-Medium.ttf */,
+				163A0C4F2B0CC746004723C2 /* NotoSansCanadianAboriginal-Medium.ttf */,
+				163A0C4D2B0CC746004723C2 /* NotoSansCuneiform-Regular.ttf */,
+				163A0C4E2B0CC746004723C2 /* NotoSansSymbols2-Regular.ttf */,
 				16CB1F382B064C1D00E7485C /* NotoSerif-Regular.ttf */,
 				16CB1F372B064C0600E7485C /* NotoSansHK-Regular.ttf */,
 				16CB1F362B064AF900E7485C /* NotoSansHK-VariableFont_wght.ttf */,
