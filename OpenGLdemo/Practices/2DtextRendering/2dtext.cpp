@@ -6,8 +6,8 @@
 //
 
 #include "2dtext.hpp"
-#define Default_Width 800;
-#define Default_Height 600;
+#define Default_Width 1200;
+#define Default_Height 800;
 
 static unsigned const int SCR_WIDTH=Default_Width;
 static unsigned const int SCR_HEIGHT=Default_Height;
@@ -47,6 +47,16 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 //void RenderText(Shader &s,std::string text,GLfloat x,GLfloat y,GLfloat scale,glm::vec3 color);
 
+std::u32string u32text_string(U"mashiro-真白-ましろ ❀ ⛅ ✯ ❅\nᕕ(◠ڼ◠)ᕗ Ciallo～(∠・ω< )⌒★ (ᗜ˰ᗜ)\n天动万象 I will have order 𒆚 𒆚 𒆙");
+char text_buffer[4096]{"mashiro-真白-ましろ ❀ ⛅ ✯ ❅\nᕕ(◠ڼ◠)ᕗ Ciallo～(∠・ω< )⌒★ (ᗜ˰ᗜ)\n天动万象 I will have order 𒆚 𒆚 𒆙"};
+string text_string("mashiro-真白-ましろ ❀ ⛅ ✯ ❅\nᕕ(◠ڼ◠)ᕗ Ciallo～(∠・ω< )⌒★ (ᗜ˰ᗜ)\n天动万象 I will have order 𒆚 𒆚 𒆙");
+
+//void bitTrans(char text_buffer[],std::u32string &u32string_text){
+//    std::string text_string=text_buffer;
+//    std::wstring_convert<>
+//    u32string_text=converter.from_bytes(text_string);
+//}
+
 template<typename T>
 int RenderText(Shader &shader,T text,GLfloat x,GLfloat y,GLfloat scale,glm::vec3 color){
     FT_Library charft;
@@ -79,42 +89,44 @@ int RenderText(Shader &shader,T text,GLfloat x,GLfloat y,GLfloat scale,glm::vec3
             if(FT_Load_Char(charface, *wch, FT_LOAD_RENDER)){
                 cout<<"ERROR::getCharFromFreeType:Failed to load Glyph\n";
                 return -1;
+            }else{
+                GLuint chartexture;
+                glGenTextures(1,&chartexture);
+                glBindTexture(GL_TEXTURE_2D,chartexture);
+                glTexImage2D(GL_TEXTURE_2D,0,GL_RED,charface->glyph->bitmap.width,charface->glyph->bitmap.rows,0,GL_RED,GL_UNSIGNED_BYTE,charface->glyph->bitmap.buffer);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+                Character character={
+                    chartexture,
+                    glm::ivec2(charface->glyph->bitmap.width,charface->glyph->bitmap.rows),
+                    glm::ivec2(charface->glyph->bitmap_left,charface->glyph->bitmap_top),
+                    charface->glyph->advance.x
+                };
+                Characters.insert(std::pair<FT_ULong,Character>(*wch,character));
+                Character ch=Characters[*wch];
+                GLfloat xpos=x+ch.Bearing.x*scale;
+                GLfloat ypos=y-(ch.Size.y-ch.Bearing.y)*scale;
+                GLfloat w=ch.Size.x*scale;
+                GLfloat h=ch.Size.y*scale;
+                
+                GLfloat vertices[6][4]={
+                    {xpos,ypos+h,0.0f,0.0f},
+                    {xpos,ypos,0.0f,1.0f},
+                    {xpos+w,ypos,1.0f,1.0f},
+                    {xpos,ypos+h,0.0f,0.0f},
+                    {xpos+w,ypos,1.0f,1.0f},
+                    {xpos+w,ypos+h,1.0f,0.0f}
+                };
+                glBindTexture(GL_TEXTURE_2D,ch.TextureID);
+                glBindBuffer(GL_ARRAY_BUFFER,VBO);
+                glBufferSubData(GL_ARRAY_BUFFER,0,sizeof(vertices),vertices);
+                
+                glDrawArrays(GL_TRIANGLES,0,6);
+                x+=(ch.Advance>>6)*scale;
+                break;
             }
-            GLuint chartexture;
-            glGenTextures(1,&chartexture);
-            glBindTexture(GL_TEXTURE_2D,chartexture);
-            glTexImage2D(GL_TEXTURE_2D,0,GL_RED,charface->glyph->bitmap.width,charface->glyph->bitmap.rows,0,GL_RED,GL_UNSIGNED_BYTE,charface->glyph->bitmap.buffer);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-            Character character={
-                chartexture,
-                glm::ivec2(charface->glyph->bitmap.width,charface->glyph->bitmap.rows),
-                glm::ivec2(charface->glyph->bitmap_left,charface->glyph->bitmap_top),
-                charface->glyph->advance.x
-            };
-            Characters.insert(std::pair<FT_ULong,Character>(*wch,character));
-            Character ch=Characters[*wch];
-            GLfloat xpos=x+ch.Bearing.x*scale;
-            GLfloat ypos=y-(ch.Size.y-ch.Bearing.y)*scale;
-            GLfloat w=ch.Size.x*scale;
-            GLfloat h=ch.Size.y*scale;
-            
-            GLfloat vertices[6][4]={
-                {xpos,ypos+h,0.0f,0.0f},
-                {xpos,ypos,0.0f,1.0f},
-                {xpos+w,ypos,1.0f,1.0f},
-                {xpos,ypos+h,0.0f,0.0f},
-                {xpos+w,ypos,1.0f,1.0f},
-                {xpos+w,ypos+h,1.0f,0.0f}
-            };
-            glBindTexture(GL_TEXTURE_2D,ch.TextureID);
-            glBindBuffer(GL_ARRAY_BUFFER,VBO);
-            glBufferSubData(GL_ARRAY_BUFFER,0,sizeof(vertices),vertices);
-            
-            glDrawArrays(GL_TRIANGLES,0,6);
-            x+=(ch.Advance>>6)*scale;
         }
     }
     glBindVertexArray(0);
@@ -192,6 +204,8 @@ int _2dtext(){
     std::wstring s2=L"(C) LearnOpenGL.com";
     std::wstring s3=L"äöüß !";
     
+//    bitTrans(text_buffer, u32text_string);
+    
     while(!glfwWindowShouldClose(window)){
         processInput(window, mouse_callback, scroll_callback);
         
@@ -200,7 +214,7 @@ int _2dtext(){
         
         RenderText<std::wstring>(*shader, s1, 25.0f,25.0f,1.0f, glm::vec3(0.5f,0.8f,0.2f));
         RenderText<std::string>(*shader, "(C) LearnOpenGL.com", 500.0f, 570.0f, 0.5f, glm::vec3(0.3f,0.7f,0.9f));
-        RenderText<std::wstring>(*shader, s3, 200.0f, 250.0f, 1.0f, glm::vec3(0.4f,0.1f,0.8f));
+        RenderText<std::u32string>(*shader, u32text_string, 200.0f, 250.0f, 0.2f, glm::vec3(0.4f,0.1f,0.8f));
         
         glfwPollEvents();
         glfwSwapBuffers(window);
@@ -262,3 +276,4 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset){
 //    glBindVertexArray(0);
 //    glBindTexture(GL_TEXTURE_2D,0);
 //}
+
