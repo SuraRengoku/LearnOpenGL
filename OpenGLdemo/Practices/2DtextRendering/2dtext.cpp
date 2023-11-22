@@ -273,10 +273,7 @@ int _2dtext(){
         ImGui::Text("(%.3f ms)(%.1f fps)",1000.0f/io.Framerate,io.Framerate);
         ImGui::SliderFloat("Text Size", (float*)&TextSize, 0.005f, 1.0f);
         
-        if(ImGui::InputTextMultiline("Input Text", text_buffer, sizeof(text_buffer),ImVec2(-1,ImGui::GetTextLineHeight()*4),ImGuiInputTextFlags_EnterReturnsTrue)){//即使修改text_buffer，该函数仍然返回false
-            bitTrans(text_buffer, u32text_string);
-            text_changed=true;
-        }
+        ImGui::InputTextMultiline("Input Text", text_buffer, sizeof(text_buffer),ImVec2(-1,ImGui::GetTextLineHeight()*4),ImGuiInputTextFlags_EnterReturnsTrue);//即使修改text_buffer，该函数仍然返回false
                 
         bitTrans(text_buffer, u32text_string);//更新文本内容
         
