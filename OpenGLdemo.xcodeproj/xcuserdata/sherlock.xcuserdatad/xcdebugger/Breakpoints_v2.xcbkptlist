@@ -222,8 +222,8 @@
             filePath = "OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "RenderText(shader, text, x, y, scale, color)"
             landmarkType = "9">
             <Locations>
@@ -270,8 +270,8 @@
             filePath = "OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "_2dtext()"
             landmarkType = "9">
          </BreakpointContent>

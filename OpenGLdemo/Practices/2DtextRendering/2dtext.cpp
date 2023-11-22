@@ -4,7 +4,6 @@
 //
 //  Created by SHERLOCK on 14.11.23.
 //
-
 #include "2dtext.hpp"
 #define Default_Width 1200;
 #define Default_Height 800;
@@ -162,22 +161,22 @@ int _2dtext(){
     ImWchar ranges[]={0x0020,0xffff,0};//Unicode编码范围
     ImWchar ranges1[]={0x06B0,0x06ff,0};
     ImWchar ranges2[] = {0x1550, 0x15DD, 0};
-    ImWchar ranges3[] = {static_cast<ImWchar>(0x12199), static_cast<ImWchar>(0x1219A), 0};
+    ImWchar ranges3[] = {0x12190, 0x12543, 0};
     ImWchar ranges4[] = {0x25E0, 0x28ff, 0};
     ImWchar ranges5[] = {0x02E0, 0x02FF, 0};
-    ImWchar ranges6[] = {static_cast<ImWchar>(0x0000), static_cast<ImWchar>(0x1df1e), 0};
-    ImWchar ranges7[] = {0x20, static_cast<ImWchar>(0x3106c),0};
-    ImWchar ranges8[] = {0x20, static_cast<ImWchar>(0x3106c),0};
+    ImWchar ranges6[] = {0x0000, 0x1df1e, 0};
+    ImWchar ranges7[] = {0x20, 0x3106c,0};
+    ImWchar ranges8[] = {0x20, 0x3106c,0};
     
     ImFontConfig config;
     config.MergeMode=true;
     config.PixelSnapH=true;
     io.Fonts->AddFontFromFileTTF("resource/fonts/HarmonyOS_Sans_SC_Medium.ttf", 18.0f,NULL,ranges);
     io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansArabic-Medium.ttf", 18.0f,&config,ranges1);
-    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansArabic-Medium.ttf", 18.0f,&config,ranges2);
-    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansCanadianAboriginal-Medium.ttf", 22.0f,&config,ranges3);
-    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansCuneiform-Regular.ttf", 22.0f,&config,ranges4);
-    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansSymbols2-Regular.ttf", 22.0f,&config,ranges5);
+    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansCanadianAboriginal-Medium.ttf", 18.0f,&config,ranges2);
+    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansCuneiform-Regular.ttf", 22.0f,&config,ranges3);
+    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansSymbols2-Regular.ttf", 22.0f,&config,ranges4);
+    io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSans-ExtraBold.ttf", 22.0f,&config,ranges5);
     io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSerif-Regular.ttf", 22.0f,&config,ranges6);
     io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansHK-Regular.ttf", 22.0f,&config,ranges7);
     io.Fonts->AddFontFromFileTTF("resource/fonts/NotoSansHK-VariableFont_wght.ttf", 22.0f,&config,ranges8);
@@ -273,12 +272,12 @@ int _2dtext(){
         ImGui::Text("(%.3f ms)(%.1f fps)",1000.0f/io.Framerate,io.Framerate);
         ImGui::SliderFloat("Text Size", (float*)&TextSize, 0.005f, 1.0f);
         
-        ImGui::InputTextMultiline("Input Text", text_buffer, sizeof(text_buffer),ImVec2(-1,ImGui::GetTextLineHeight()*4),ImGuiInputTextFlags_EnterReturnsTrue);//即使修改text_buffer，该函数仍然返回false
+        if(ImGui::InputTextMultiline("Input Text", text_buffer, sizeof(text_buffer),ImVec2(-1,ImGui::GetTextLineHeight()*4))){
+            bitTrans(text_buffer, u32text_string);//update text
+        }//change the content of text_buffer, but the function still return false
                 
-        bitTrans(text_buffer, u32text_string);//更新文本内容
-        
         ImGui::End();
-//        RenderText<std::wstring>(*shader, s1, 25.0f,25.0f,1.0f, glm::vec3(0.5f,0.8f,0.2f));//scale直接放大会出现锯齿边缘
+//        RenderText<std::wstring>(*shader, s1, 25.0f,25.0f,1.0f, glm::vec3(0.5f,0.8f,0.2f));// enlarge by scale will cause aliasing
 //        RenderText<std::string>(*shader, "(C) LearnOpenGL.com", 500.0f, 570.0f, 0.5f, glm::vec3(0.3f,0.7f,0.9f));
         RenderText<std::u32string>(*shader, u32text_string, 200.0f, 250.0f, TextSize, TextColor);
         
