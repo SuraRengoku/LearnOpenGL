@@ -212,5 +212,85 @@
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38E88111-072A-4AB7-BB36-B8354E3335DE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "RenderText(shader, text, x, y, scale, color)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "38E88111-072A-4AB7-BB36-B8354E3335DE - 9a2b122dd911db8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "int RenderText&lt;std::__1::basic_string&lt;char32_t, std::__1::char_traits&lt;char32_t&gt;, std::__1::allocator&lt;char32_t&gt; &gt; &gt;(Shader&amp;, std::__1::basic_string&lt;char32_t, std::__1::char_traits&lt;char32_t&gt;, std::__1::allocator&lt;char32_t&gt; &gt;, float, float, float, glm::vec&lt;3, float, (glm::qualifier)0&gt;)"
+                  moduleName = "OpenGLdemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "600">
+               </Location>
+               <Location
+                  uuid = "38E88111-072A-4AB7-BB36-B8354E3335DE - 9a2b122dd911db8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "int RenderText&lt;std::__1::basic_string&lt;char32_t, std::__1::char_traits&lt;char32_t&gt;, std::__1::allocator&lt;char32_t&gt; &gt; &gt;(Shader&amp;, std::__1::basic_string&lt;char32_t, std::__1::char_traits&lt;char32_t&gt;, std::__1::allocator&lt;char32_t&gt; &gt;, float, float, float, glm::vec&lt;3, float, (glm::qualifier)0&gt;)"
+                  moduleName = "OpenGLdemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sherlock/Documents/Code/OpenGLdemo/OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "656">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5312582-BBEA-407E-965B-137D797F6E5C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "_2dtext()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE288D02-469E-4787-9E4B-A0FCD9F1D3A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OpenGLdemo/Practices/2DtextRendering/2dtext.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "_2dtext()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

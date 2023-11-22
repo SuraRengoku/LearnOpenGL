@@ -33,6 +33,7 @@
 		16355B272A3DFAE0001BAF56 /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B232A3DFAE0001BAF56 /* imgui_impl_glfw.cpp */; };
 		16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B252A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp */; };
 		16355B2C2A3E0D78001BAF56 /* basiclighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16355B2A2A3E0D78001BAF56 /* basiclighting.cpp */; };
+		163A0C552B0D010C004723C2 /* 2dgame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163A0C532B0D010C004723C2 /* 2dgame.cpp */; };
 		163BDA2D2AD6E7D500F4C904 /* pointshadows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA2B2AD6E7D500F4C904 /* pointshadows.cpp */; };
 		163BDA362AD84AC100F4C904 /* normalmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA342AD84AC100F4C904 /* normalmapping.cpp */; };
 		163BDA3E2AD9742700F4C904 /* parallaxmapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163BDA3C2AD9742700F4C904 /* parallaxmapping.cpp */; };
@@ -236,6 +237,8 @@
 		163A0C4F2B0CC746004723C2 /* NotoSansCanadianAboriginal-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCanadianAboriginal-Medium.ttf"; sourceTree = "<group>"; };
 		163A0C502B0CC746004723C2 /* NotoSansArabic-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansArabic-Medium.ttf"; sourceTree = "<group>"; };
 		163A0C512B0CC746004723C2 /* HarmonyOS_Sans_SC_Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HarmonyOS_Sans_SC_Medium.ttf; sourceTree = "<group>"; };
+		163A0C532B0D010C004723C2 /* 2dgame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 2dgame.cpp; sourceTree = "<group>"; };
+		163A0C542B0D010C004723C2 /* 2dgame.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = 2dgame.hpp; sourceTree = "<group>"; };
 		163BDA2B2AD6E7D500F4C904 /* pointshadows.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pointshadows.cpp; sourceTree = "<group>"; };
 		163BDA2C2AD6E7D500F4C904 /* pointshadows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pointshadows.hpp; sourceTree = "<group>"; };
 		163BDA2E2AD6FAD800F4C904 /* shadowdepth.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shadowdepth.vs; sourceTree = "<group>"; };
@@ -780,6 +783,15 @@
 			path = BasicLighting;
 			sourceTree = "<group>";
 		};
+		163A0C522B0D00F5004723C2 /* 2DGame */ = {
+			isa = PBXGroup;
+			children = (
+				163A0C532B0D010C004723C2 /* 2dgame.cpp */,
+				163A0C542B0D010C004723C2 /* 2dgame.hpp */,
+			);
+			path = 2DGame;
+			sourceTree = "<group>";
+		};
 		163BDA2A2AD6E7B500F4C904 /* PointShadows */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1039,7 @@
 		16CB1F2D2B03D82E00E7485C /* Practices */ = {
 			isa = PBXGroup;
 			children = (
+				163A0C522B0D00F5004723C2 /* 2DGame */,
 				16CB1F2F2B03D84300E7485C /* 2DtextRendering */,
 			);
 			path = Practices;
@@ -1475,6 +1488,7 @@
 				160A55FB2AE5A7E0007171EB /* render.cpp in Sources */,
 				16355B202A3DFA88001BAF56 /* imgui_tables.cpp in Sources */,
 				16355B282A3DFAE0001BAF56 /* imgui_impl_opengl3.cpp in Sources */,
+				163A0C552B0D010C004723C2 /* 2dgame.cpp in Sources */,
 				162968C42AC3D67B006768F9 /* shadowmapping.cpp in Sources */,
 				16355B022A3471CF001BAF56 /* camera_0.cpp in Sources */,
 			);
@@ -1605,6 +1619,7 @@
 		DD9339072A12F1F900F4FCDD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1629,6 +1644,7 @@
 		DD9339082A12F1F900F4FCDD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (

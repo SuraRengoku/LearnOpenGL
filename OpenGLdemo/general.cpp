@@ -5,6 +5,7 @@
 //  Created by SHERLOCK on 21.05.23.
 //
 #define STB_IMAGE_IMPLEMENTATION
+#define IMGUI_USE_WCHAR32
 #include "general.h"
 
 Triangle::Triangle(GLint verticesNum){

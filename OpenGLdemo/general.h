@@ -19,7 +19,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <ostream>
 #include <string>
+#include <codecvt>
 #include <type_traits>
 #include <math.h>
 #include <vector>
