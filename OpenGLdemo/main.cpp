@@ -57,8 +57,9 @@
 #include "diffuseirradiance.hpp"
 #include "specularibl.hpp"
 #include "2dtext.hpp"
+#include "2dgame.hpp"
 
 int main(int argc, const char * argv[]){
-    _2dtext();
+    _2dgame();
     return 0;
 }

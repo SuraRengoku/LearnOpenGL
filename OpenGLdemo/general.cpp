@@ -465,3 +465,41 @@ auto glfw_Init(int SCR_WIDTH,int SCR_HEIGHT,GLFWcursorposfun mouse_callback,GLFW
     }
     return window;
 }
+
+auto glfw_Init(GLuint SCR_WIDTH,GLuint SCR_HEIGHT,const char* name)->GLFWwindow*{
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GL_SAMPLES, 4);//四个采样点
+    //GLFW_OPENGL_PROFILE宏用于指定OpenGL上下文的配置文件类型
+    //GLFW_OPENGL_CORE_PROFILE宏用于表示使用核心配置文件
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    //启用向前兼容模式，允许在较新的版本中使用较旧的特性
+#endif
+
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, name, nullptr, nullptr);
+    try{
+        if(window==nullptr)
+            throw std::runtime_error("window generated unsuccessfully");
+    }catch(std::runtime_error err){
+        cerr<<err.what()<<"\n";
+        glfwTerminate();
+        throw;
+    }
+
+    glfwMakeContextCurrent(window);
+    
+    try{
+        if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+            throw std::runtime_error("fail to initialize GLAD");
+    }catch(std::runtime_error err){
+        cerr<<err.what()<<"\n";
+        glfwTerminate();
+        throw;
+    }
+    return window;
+}
+

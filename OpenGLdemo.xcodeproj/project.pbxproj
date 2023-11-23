@@ -14,6 +14,9 @@
 		160A55FB2AE5A7E0007171EB /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 160A55F92AE5A7E0007171EB /* render.cpp */; };
 		16129D892AB01A8D005CB9AD /* blending_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16129D872AB01A8D005CB9AD /* blending_.cpp */; };
 		16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16129D8C2AB04DFB005CB9AD /* faceculling.cpp */; };
+		16156DB12B0EBB0D004A20F5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16156DAF2B0EBB0D004A20F5 /* Game.cpp */; };
+		16156DB42B0EBC63004A20F5 /* ResourManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16156DB22B0EBC63004A20F5 /* ResourManager.cpp */; };
+		16156DB72B0EBDA4004A20F5 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16156DB52B0EBDA4004A20F5 /* Texture.cpp */; };
 		16221FCB2AB18D460010E439 /* framebuffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16221FC92AB18D460010E439 /* framebuffers.cpp */; };
 		16221FD32AB2B7260010E439 /* cubemaps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16221FD12AB2B7260010E439 /* cubemaps.cpp */; };
 		162357282AA6CB3C006B83A3 /* stenciltest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 162357262AA6CB3C006B83A3 /* stenciltest.cpp */; };
@@ -133,6 +136,12 @@
 		16129D8D2AB04DFB005CB9AD /* faceculling.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = faceculling.hpp; sourceTree = "<group>"; };
 		16129D8F2AB08730005CB9AD /* faceculling.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.vs; sourceTree = "<group>"; };
 		16129D902AB0873D005CB9AD /* faceculling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.fs; sourceTree = "<group>"; };
+		16156DAF2B0EBB0D004A20F5 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		16156DB02B0EBB0D004A20F5 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		16156DB22B0EBC63004A20F5 /* ResourManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ResourManager.cpp; sourceTree = "<group>"; };
+		16156DB32B0EBC63004A20F5 /* ResourManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourManager.hpp; sourceTree = "<group>"; };
+		16156DB52B0EBDA4004A20F5 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		16156DB62B0EBDA4004A20F5 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
 		161D7D642B02AF500075D440 /* pbr.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.vs; sourceTree = "<group>"; };
 		161D7D652B02AF580075D440 /* pbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.fs; sourceTree = "<group>"; };
 		161D7D6F2B038D160075D440 /* mossy-ground1-metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-metal.png"; sourceTree = "<group>"; };
@@ -788,6 +797,8 @@
 			children = (
 				163A0C532B0D010C004723C2 /* 2dgame.cpp */,
 				163A0C542B0D010C004723C2 /* 2dgame.hpp */,
+				16156DAF2B0EBB0D004A20F5 /* Game.cpp */,
+				16156DB02B0EBB0D004A20F5 /* Game.hpp */,
 			);
 			path = 2DGame;
 			sourceTree = "<group>";
@@ -1346,6 +1357,10 @@
 				16E22C2F2A2E6A49007F78A2 /* stb_image.h */,
 				160A55F92AE5A7E0007171EB /* render.cpp */,
 				160A55FA2AE5A7E0007171EB /* render.h */,
+				16156DB22B0EBC63004A20F5 /* ResourManager.cpp */,
+				16156DB32B0EBC63004A20F5 /* ResourManager.hpp */,
+				16156DB52B0EBDA4004A20F5 /* Texture.cpp */,
+				16156DB62B0EBDA4004A20F5 /* Texture.hpp */,
 			);
 			path = OpenGLdemo;
 			sourceTree = "<group>";
@@ -1443,6 +1458,7 @@
 				DD9339032A12F1F900F4FCDD /* triangle_0.cpp in Sources */,
 				16221FD32AB2B7260010E439 /* cubemaps.cpp in Sources */,
 				16E22C192A2D4939007F78A2 /* main.cpp in Sources */,
+				16156DB72B0EBDA4004A20F5 /* Texture.cpp in Sources */,
 				16129D8E2AB04DFB005CB9AD /* faceculling.cpp in Sources */,
 				16355B1F2A3DFA88001BAF56 /* imgui_draw.cpp in Sources */,
 				163BDA362AD84AC100F4C904 /* normalmapping.cpp in Sources */,
@@ -1471,6 +1487,7 @@
 				16355B212A3DFA88001BAF56 /* imgui_widgets.cpp in Sources */,
 				163BDA3E2AD9742700F4C904 /* parallaxmapping.cpp in Sources */,
 				16CE59B42A57713B0000F354 /* lightingmaps.cpp in Sources */,
+				16156DB12B0EBB0D004A20F5 /* Game.cpp in Sources */,
 				16CE59A22A4CC6B30000F354 /* viewlighting.cpp in Sources */,
 				16CE599D2A4994F20000F354 /* movelight.cpp in Sources */,
 				16DE6B092A313403006B7C10 /* texture_2.cpp in Sources */,
@@ -1482,6 +1499,7 @@
 				160247912A684E2E0069EA77 /* mesh.cpp in Sources */,
 				16E22C1C2A2DD7E8007F78A2 /* triangle_2.cpp in Sources */,
 				162968C92AC3E11D006768F9 /* scene.fs in Sources */,
+				16156DB42B0EBC63004A20F5 /* ResourManager.cpp in Sources */,
 				1628992A2AE28630007E0815 /* ssao.cpp in Sources */,
 				16D25C632ABC1EB9007A0900 /* instancing.cpp in Sources */,
 				16E22C1F2A2DEAB9007F78A2 /* triangle_3.cpp in Sources */,

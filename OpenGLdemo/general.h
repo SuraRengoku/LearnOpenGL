@@ -160,3 +160,4 @@ std::vector<std::string> multiuniform(std::string _main, std::string(elements) [
 #endif
 
 auto glfw_Init(int SCR_WIDTH,int SCR_HEIGHT,GLFWcursorposfun mouse_callback, GLFWscrollfun scroll_callback)->GLFWwindow*;
+auto glfw_Init(GLuint SCR_WIDTH,GLuint SCR_HEIGHT,const char* name)->GLFWwindow*;
