@@ -8,7 +8,8 @@
 #ifndef render_hpp
 #define render_hpp
 
-#include "general.h"
+#include "shader.hpp"
+#include "Texture.hpp"
 
 class Render{
 public:
@@ -88,5 +89,24 @@ private:
 public:
     SphereRender(int slice);
     void render() override;
+};
+
+class SpriteRender:public Render{
+private:
+    float spriteVertices[24]={
+        // 位置     // 纹理
+        0.0f, 1.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 0.0f, 1.0f, 0.0f
+    };
+public:
+    Shader shader;
+    SpriteRender(const Shader &shader);
+//    void setShader(const Shader &shader);
+    void render() override;
+    void DrawSprite(const Texture2D &texture,glm::vec2 position,glm::vec2 size=glm::vec2(10,10),GLfloat rotate=0.0f,glm::vec3 color=glm::vec3(1.0f));
 };
 #endif /* render_hpp */

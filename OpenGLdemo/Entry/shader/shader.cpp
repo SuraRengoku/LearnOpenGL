@@ -112,8 +112,9 @@ Shader::Shader(const char* vertexPath,const char* geometryPath, const char* frag
 }
 
 
-void Shader::use() const{
+Shader &Shader::use(){
     glUseProgram(this->ID);
+    return *this;
 }
 
 void Shader::setBool(const std::string &name, bool value) const{

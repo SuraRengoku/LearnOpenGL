@@ -137,11 +137,13 @@
 		16129D8F2AB08730005CB9AD /* faceculling.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.vs; sourceTree = "<group>"; };
 		16129D902AB0873D005CB9AD /* faceculling.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = faceculling.fs; sourceTree = "<group>"; };
 		16156DAF2B0EBB0D004A20F5 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
-		16156DB02B0EBB0D004A20F5 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		16156DB02B0EBB0D004A20F5 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		16156DB22B0EBC63004A20F5 /* ResourManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ResourManager.cpp; sourceTree = "<group>"; };
 		16156DB32B0EBC63004A20F5 /* ResourManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourManager.hpp; sourceTree = "<group>"; };
 		16156DB52B0EBDA4004A20F5 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		16156DB62B0EBDA4004A20F5 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		16156DB82B0FA994004A20F5 /* sprite.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = sprite.vs; sourceTree = "<group>"; };
+		16156DB92B0FA99D004A20F5 /* sprite.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = sprite.fs; sourceTree = "<group>"; };
 		161D7D642B02AF500075D440 /* pbr.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.vs; sourceTree = "<group>"; };
 		161D7D652B02AF580075D440 /* pbr.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pbr.fs; sourceTree = "<group>"; };
 		161D7D6F2B038D160075D440 /* mossy-ground1-metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mossy-ground1-metal.png"; sourceTree = "<group>"; };
@@ -798,7 +800,9 @@
 				163A0C532B0D010C004723C2 /* 2dgame.cpp */,
 				163A0C542B0D010C004723C2 /* 2dgame.hpp */,
 				16156DAF2B0EBB0D004A20F5 /* Game.cpp */,
-				16156DB02B0EBB0D004A20F5 /* Game.hpp */,
+				16156DB02B0EBB0D004A20F5 /* Game.h */,
+				16156DB82B0FA994004A20F5 /* sprite.vs */,
+				16156DB92B0FA99D004A20F5 /* sprite.fs */,
 			);
 			path = 2DGame;
 			sourceTree = "<group>";

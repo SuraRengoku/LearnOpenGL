@@ -64,10 +64,10 @@ Shader ResourceManager::loadShaderFromFile(const GLchar *vShaderFile, const GLch
     const GLchar *fShaderCode=fragmentCode.c_str();
     const GLchar *gShaderCode=geometryCode.c_str();
     if(gShaderFile!=nullptr){
-        Shader shader(vShaderCode,fShaderCode,gShaderCode);
+        Shader shader(vShaderFile,fShaderFile,gShaderFile);
         return shader;
     }
-    Shader shader(vShaderCode,fShaderCode);
+    Shader shader(vShaderFile,fShaderFile);
     return shader;
 }
 

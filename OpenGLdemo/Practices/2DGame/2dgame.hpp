@@ -12,7 +12,7 @@
 #include "shader.hpp"
 #include "model.hpp"
 #include "ResourManager.hpp"
-#include "Game.hpp"
+#include "Game.h"
 
 int _2dgame();
 

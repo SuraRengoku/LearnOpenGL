@@ -23,7 +23,7 @@ public:
     Shader(const char *vertexPath,const char *fragmentPath);
     Shader(const char *vertexPaht,const char *geometryPath,const char *fragmentPath);
     //使用/激活程序
-    void use() const;
+    Shader &use();
     //uniform工具函数
     void setBool(const std::string &name,bool value) const;
     void setInt(const std::string &name,int value) const;
